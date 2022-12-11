@@ -1,2 +1,5 @@
 _dist
 wwwdist
+pkgdist
+.testground
+.cloudbuildroot

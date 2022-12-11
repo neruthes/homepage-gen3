@@ -46,6 +46,24 @@ case $1 in
     4)
         make_indexhtml_for_dirs
         ;;
+    99)
+        ### Build tarball
+        # Clear
+        find .testground -delete
+        mkdir -p .testground
+        rm pkgdist/wwwdist.tar 2>/dev/null
+        # Build
+        cd wwwdist
+        tar -cvf ../pkgdist/wwwdist.tar ./
+        cd ..
+        # Test
+        cd .testground
+        tar -pxvf ../pkgdist/wwwdist.tar
+        cd ..
+        # Upload tarball
+        shareDirToNasPublic -a
+        TARBALLURL='https://nas-public-zt.neruthes.xyz/homepage-gen3-f2fe33d6fd3620c108a3db17/pkgdist/wwwdist.tar'
+        ;;
     *|full)
         bash build.sh 1
         bash build.sh 2
