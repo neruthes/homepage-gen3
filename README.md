@@ -1,6 +1,11 @@
 # Neruthes Homepage Gen3
 
-Experimental deployment: [https://homepage-gen3.neruthes.xyz/](https://homepage-gen3.neruthes.xyz/).
+Active deployment: [https://neruthes.xyz/](https://neruthes.xyz/).
+
+Mirrors:
+
+- https://neruthes-gen3.vercel.app/
+- https://homepage-gen3.neruthes.xyz/
 
 ## Copyright
 

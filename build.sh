@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function rebuild_all_tex_files() {
-    for TEX_FILE_PATH in $(find -path '*/*.tex' | grep -v TMPL | sort); do
+    for TEX_FILE_PATH in $(find -path '*/*.tex' | grep -v '/articles/' | sort); do
         PDF_FILE_PATH="_dist/${TEX_FILE_PATH:2:-4}.pdf"
         if [[ ! -e $PDF_FILE_PATH ]]; then
             echo "Artifact does not exist!"
@@ -18,9 +18,10 @@ function rebuild_all_tex_files() {
 function make_indexhtml_for_dirs() {
     INDEXABLE_DIRS_LIST="articles"
     for RAWDIR in $INDEXABLE_DIRS_LIST; do
+        echo "[INFO] Generating 'index.html' for directory '$RAWDIR'..."
         DIR="wwwdist/$RAWDIR"
         INDEXFILE="$DIR/index.html"
-        sed "s:HTMLTITLE:Neruthes | ${DIR^^}:" .src/dirindex.head.html > $INDEXFILE
+        sed "s:HTMLTITLE:Neruthes | ${RAWDIR^^}:" .src/dirindex.head.html | sed "s|DIRNAME|$RAWDIR|" > $INDEXFILE
         for ITEM in $(ls $DIR | grep -v 'index.html' | sort); do
             echo "<a class='dirindexlistanchor' href='./$ITEM'>$ITEM</a>" >> $INDEXFILE
         done
@@ -33,20 +34,27 @@ function make_indexhtml_for_dirs() {
 
 
 
+if [[ ! -z $2 ]]; then
+    for i in $*; do
+        bash $0 $i
+    done
+    exit
+fi
+
 case $1 in
-    1)
-        rsync -av --delete wwwsrc/ wwwdist/
+    1|latex_articles)
+        bash articles/build.sh
+        ntex articles/*.tex --2
         ;;
-    2)
+    2|latex_other)
         rebuild_all_tex_files
         ;;
-    3)
-        rsync -av _dist/ wwwdist/ --exclude tex-tmp
-        ;;
-    4)
+    3|wwwdist)
+        rsync -a --delete wwwsrc/ wwwdist/
+        rsync -a _dist/ wwwdist/ --exclude tex-tmp
         make_indexhtml_for_dirs
         ;;
-    99)
+    4|tarball)
         ### Build tarball
         # Clear
         find .testground -delete
@@ -62,12 +70,14 @@ case $1 in
         cd ..
         # Upload tarball
         shareDirToNasPublic -a
-        TARBALLURL='https://nas-public-zt.neruthes.xyz/homepage-gen3-f2fe33d6fd3620c108a3db17/pkgdist/wwwdist.tar'
+        if [[ $USER == neruthes ]]; then
+            bash cloudbuild.sh
+        fi
         ;;
     *|full)
-        bash build.sh 1
-        bash build.sh 2
-        bash build.sh 3
-        bash build.sh 4
+        # bash build.sh latex_articles
+        bash build.sh latex_other
+        bash build.sh wwwdist
+        bash build.sh tarball
         ;;
 esac

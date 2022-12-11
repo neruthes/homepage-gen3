@@ -14,6 +14,7 @@
         body {
             font-family: 'JetBrains Mono NL', serif;
             font-size: 18px;
+            line-height: 1.6;
             padding: 0px;
             margin: 0px;
         }
@@ -21,10 +22,11 @@
         .part-inner {
             max-width: 900px;
             padding: 30px;
-            margin: 0 auto;
+            margin: 0px auto;
         }
 
         .sitemap-section {
+            line-height: 1.6;
             border-bottom: 1px solid #DDD;
             padding: 15px 0px;
         }
@@ -32,18 +34,20 @@
         .sitemap-section-links a {
             color: #05D;
             text-decoration: none;
-            display: block;
-            padding: 8px 0px;
+            display: inline-block;
+            padding: 5px 0px;
+            margin: 0px 20px 0px 0px;
         }
 
         .sitemap-section-links a:hover {
-            /* background: rgba(0, 0, 0, 0.09); */
+            color: #000;
         }
 
         footer.global-part {
             font-size: 14px;
             color: #888;
         }
+
     </style>
 </head>
 
@@ -52,16 +56,64 @@
         <header class="global-part">
             <div class="part-inner">
                 <h1>Neruthes</h1>
-                <aside>Homepage Gen3 Demo</aside>
+                <!-- <aside>Homepage Gen3 Demo</aside> -->
+                <aside>
+                    Male · 1995 · Sino-Korean · Homosexual<br>
+                    Communist · Existentialist · Nihilist · Skeuomorphist<br>
+                    CB0ABC7756440D12915E3F25AFB3373F5200DF38
+                </aside>
             </div>
         </header>
         <div class="global-part">
             <div class="part-inner">
+                <!-- <div class="sitemap-section">
+                    <h2>Introduction</h2>
+                    <div class="sitemap-section-links">
+                        Male · 1995 · Sino-Korean · Homosexual<br>
+                        Communist · Existentialist · Nihilist · Skeuomorphist<br>
+                        CB0ABC7756440D12915E3F25AFB3373F5200DF38
+                    </div>
+                </div> -->
                 <div class="sitemap-section">
                     <h2>Articles</h2>
                     <div class="sitemap-section-links">
-                        <a href="./articles/Neruthes_articles_vol1.pdf">Neruthes_articles_vol1</a>
-                        <a href="./articles/Neruthes_articles_vol2.pdf">Neruthes_articles_vol2</a>
+                        <a href="./articles/Neruthes_articles_vol001.pdf">Volume 1</a>
+                        <a href="./articles/Neruthes_articles_vol002.pdf">Volume 2</a>
+                    </div>
+                </div>
+                <div class="sitemap-section">
+                    <h2>Links</h2>
+                    <div class="sitemap-section-links">
+                        <a href="https://github.com/neruthes">GitHub</a>
+                        <a href="#" onclick="location.href = atob('aHR0cHM6Ly90Lm1lL25lcnV0aGVz')">Telegram</a>
+                        <a href="https://twitter.com/neruthes">Twitter</a>
+                        <a href="https://dribbble.com/neruthes">Dribbble</a>
+                    </div>
+                </div>
+                <div class="sitemap-section">
+                    <h2>Files</h2>
+                    <div class="sitemap-section-links">
+                        <a href="./openpgp.txt">openpgp.txt</a>
+                        <a href="./authorized_keys">authorized_keys</a>
+                    </div>
+                </div>
+                <div class="sitemap-section">
+                    <h2>Directories</h2>
+                    <div class="sitemap-section-links">
+                        <a href="./articles/">articles</a>
+                    </div>
+                </div>
+                <div class="sitemap-section">
+                    <h2>Projects</h2>
+                    <div class="sitemap-section-links">
+                        <a href="https://homepage-gen2.neruthes.xyz/">Old Website (Gen2)</a>
+                        <a href="https://neruthesgithubdistweb.vercel.app/">GitHub Dist Web</a>
+                    </div>
+                </div>
+                <div class="sitemap-section">
+                    <h2>Mirrors</h2>
+                    <div class="sitemap-section-links">
+                        <a href="https://neruthes-gen3.vercel.app/">neruthes-gen3.vercel.app</a>
                     </div>
                 </div>
             </div>

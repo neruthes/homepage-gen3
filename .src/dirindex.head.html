@@ -14,6 +14,7 @@
         body {
             font-family: 'JetBrains Mono NL', serif;
             font-size: 18px;
+            line-height: 1.6;
             padding: 0px;
             margin: 0px;
         }
@@ -25,15 +26,23 @@
         }
 
         .sitemap-section {
+            line-height: 1.6;
             border-bottom: 1px solid #DDD;
             padding: 15px 0px;
         }
 
+        header nav a,
         .sitemap-section-links a {
             color: #05D;
             text-decoration: none;
+            /* display: inline-block; */
             display: block;
-            padding: 8px 0px;
+            padding: 5px 0px;
+            /* margin: 0px 15px 0px 0px; */
+        }
+
+        .sitemap-section-links a:hover {
+            color: #000;
         }
 
         footer.global-part {
@@ -51,7 +60,7 @@
 
             <h1>HTMLTITLE</h1>
             <nav>
-                <a href="../">Home</a> / DIRNAME
+                <a style="display: inline;" href="../">Home</a> / DIRNAME
             </nav>
         </div>
     </header>

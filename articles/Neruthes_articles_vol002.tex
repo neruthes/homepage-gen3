@@ -1,4 +1,112 @@
 \documentclass[12pt,a4paper]{report}
+
+\usepackage[a4paper,textwidth=38em,tmargin=24mm,bmargin=30mm]{geometry}
+\usepackage{calc}
+\usepackage{amsmath,xltxtra,fontspec,xunicode,tocloft,tabu,datetime2}
+\usepackage{titlesec}
+
+\usepackage{paralist,enumitem,varwidth}
+\setdefaultleftmargin{2em}{2em}{1em}{1em}{1em}{1em}
+
+\usepackage{datetime2}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    colorlinks=false,
+    pdfpagemode=FullScreen
+}
+
+
+
+\usepackage[PunctStyle=plain,RubberPunctSkip=false,CJKglue=\hskip 0pt,CJKecglue=\hskip 4pt plus 20pt]{xeCJK}
+\usepackage{xeCJKfntef}
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt
+
+% =========================================
+\usepackage{fancyhdr}
+\usepackage{graphicx,eso-pic}
+
+\setmainfont{Latin Modern Roman}
+\setromanfont{Latin Modern Roman}
+\setsansfont{Myriad Pro}
+\setmonofont{JetBrains Mono NL}
+\setCJKmainfont{Noto Serif CJK SC}
+\setCJKromanfont{Noto Serif CJK SC}
+\setCJKsansfont{Noto Sans CJK SC}
+\setCJKmonofont{Noto Sans CJK SC}
+% =========================================
+\frenchspacing
+
+\usepackage{listings}
+\lstset{
+	basicstyle=\ttfamily\footnotesize,
+	numbersep=5pt,
+	backgroundcolor=\color{black!5},
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	tabsize=2,
+	captionpos=b,
+	breaklines=true,
+	breakatwhitespace=true,
+	breakautoindent=true,
+	linewidth=\textwidth
+}
+
+
+
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+
+\graphicspath{ {/home/neruthes/DEV/ntexlibs/pic/} }
+
+\linespread{1.15}
+
+
+
+\hypersetup{
+    colorlinks=false,
+    pdftitle={Neruthes Articles Collection | Volume 2},
+    pdfpagemode=FullScreen,
+}
+\title{Neruthes Articles Collection}
+\author{Volume 2}
+\date{Revision \today}
+
+
+
+\renewcommand{\contentsname}{\LARGE\sffamily\mdseries Contents}
+
+\newcommand{\iarticle}[2]{
+    % argv: date, title
+    \clearpage
+    \vbox to 25pt{\small\ttfamily#1}\par
+    {\LARGE\sffamily\mdseries#2}\par\vskip 30pt
+    \phantomsection
+    \addcontentsline{toc}{chapter}{#2}
+}
+
+
+
+
+
+
 \begin{document}
-Hello World!
+\begin{titlepage}
+    \sffamily
+    \maketitle
+\end{titlepage}
+\tableofcontents\clearpage
+
+\input{articles/.list/list-002.TEX}
+
+
+\clearpage\pagestyle{empty}
+\leavevmode\vfill
+\small\sffamily
+Copyright \copyright{} 2022-2022 Neruthes. All rights reserved.
+
+
 \end{document}
