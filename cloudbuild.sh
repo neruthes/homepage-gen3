@@ -7,4 +7,4 @@ TARBALLURL='https://nas-public.neruthes.xyz:2096/homepage-gen3-f2fe33d6fd3620c10
 mkdir -p .cloudbuildroot
 cd .cloudbuildroot
 rm -rf ./*
-wget "$TARBALLURL" -O wwwdist.tar && tar -pxvf wwwdist.tar
+curl "$TARBALLURL" -o wwwdist.tar && tar -pxvf wwwdist.tar
