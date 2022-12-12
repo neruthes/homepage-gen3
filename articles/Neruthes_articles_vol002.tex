@@ -53,6 +53,16 @@
 	linewidth=\textwidth
 }
 
+\fancypagestyle{plain}{
+    \renewcommand{\headrulewidth}{0pt}
+    \lhead{}
+    \chead{}
+    \rhead{}
+    \lfoot{\small\sffamily Neruthes Articles Collection~~\S~~Volume 1}
+    \cfoot{}
+    \rfoot{\small\ttfamily \thepage}
+}
+
 
 
 
@@ -82,8 +92,8 @@
 \newcommand{\iarticle}[2]{
     % argv: date, title
     \clearpage
-    \vbox to 25pt{\small\ttfamily#1}\par
-    {\LARGE\sffamily\mdseries#2}\par\vskip 30pt
+    {\small\ttfamily#1\vfill}\par\vskip 13pt
+    {\raggedright\LARGE\sffamily\mdseries#2}\par\vskip 30pt
     \phantomsection
     \addcontentsline{toc}{chapter}{#2}
 }
@@ -93,20 +103,53 @@
 
 
 
+
+
+
+
+
 \begin{document}
 \begin{titlepage}
-    \sffamily
-    \maketitle
+	\center
+	\sffamily
+	\fontspec{Inter}
+	% \maketitle
+	\includegraphics[width=33mm]{wwwsrc/neruthes-forceCircle-unpadded.png}\par
+	\vskip 110pt
+    {\fontsize{30pt}{30pt}\selectfont Neruthes}\par\vskip 30pt
+    {\LARGE Articles Collection}\par
+	\vfill
+	\normalsize
+	Volume 2\\
+	\today\par
+	% \par\vskip 10pt
+	% \hrule
 \end{titlepage}
+\pagestyle{plain}
 \tableofcontents\clearpage
 
+
+
+
+
+\rmfamily
 \input{articles/.list/list-002.TEX}
+
+
+
+
+
 
 
 \clearpage\pagestyle{empty}
 \leavevmode\vfill
 \small\sffamily
-Copyright \copyright{} 2022-2022 Neruthes. All rights reserved.
+Copyright \copyright{} 2022-2022 Neruthes. All rights reserved.\par
+This collection of articles is part of the blog of Neruthes.\par
+This document may be found online at these locations:\\
+\href{https://neruthes.xyz/articles/Neruthes_articles_vol002.pdf}{neruthes.xyz} /
+\href{https://neruthes.pages.dev/articles/Neruthes_articles_vol002.pdf}{neruthes.pages.dev} /
+\href{https://neruthes.vercel.app/articles/Neruthes_articles_vol002.pdf}{neruthes.vercel.app}
 
 
 \end{document}

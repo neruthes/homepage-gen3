@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function rebuild_all_tex_files() {
-    for TEX_FILE_PATH in $(find -path '*/*.tex' | grep -v '/articles/' | sort); do
+    for TEX_FILE_PATH in $(ls */*.tex | grep -v 'articles/' | sort); do
         PDF_FILE_PATH="_dist/${TEX_FILE_PATH:2:-4}.pdf"
         if [[ ! -e $PDF_FILE_PATH ]]; then
             echo "Artifact does not exist!"
@@ -36,7 +36,7 @@ function make_indexhtml_for_dirs() {
 
 if [[ ! -z $2 ]]; then
     for i in $*; do
-        bash $0 $i
+        bash build.sh $i
     done
     exit
 fi
@@ -70,13 +70,9 @@ case $1 in
         cd ..
         # Upload tarball
         shareDirToNasPublic -a
+        # Test cloudbuild
         if [[ $USER == neruthes ]]; then
             bash cloudbuild.sh
-        fi
-        ;;
-    r2)
-        if [[ -e /mnt/cf-r2/neruthes-homepage-gen3/ismounted ]]; then
-            rsync -av wwwdist/ /mnt/cf-r2/neruthes-homepage-gen3/
         fi
         ;;
     oss)
