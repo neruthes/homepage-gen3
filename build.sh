@@ -74,6 +74,16 @@ case $1 in
             bash cloudbuild.sh
         fi
         ;;
+    r2)
+        if [[ -e /mnt/cf-r2/neruthes-homepage-gen3/ismounted ]]; then
+            rsync -av wwwdist/ /mnt/cf-r2/neruthes-homepage-gen3/
+        fi
+        ;;
+    oss)
+        cfoss pkgdist/wwwdist.tar
+        # OSSURL=https://oss-r2.neruthes.xyz/o/wwwdist.tar--32bf9712f488d4bdd2401d2c6ccc16ef.tar
+        # OSSURL=https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/o/wwwdist.tar--32bf9712f488d4bdd2401d2c6ccc16ef.tar
+        ;;
     *|full)
         # bash build.sh latex_articles
         bash build.sh latex_other
