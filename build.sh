@@ -43,7 +43,7 @@ fi
 
 case $1 in
     1|latex_articles)
-        bash articles/build.sh
+        bash .data/articles/build.sh
         ntex articles/*.tex --2
         ;;
     2|latex_other)
@@ -74,11 +74,16 @@ case $1 in
         if [[ $USER == neruthes ]]; then
             bash cloudbuild.sh
         fi
+        ### Build other archives
+        zip -9vr pkgdist/wwwdist wwwdist
         ;;
-    oss)
+    5|oss)
         cfoss pkgdist/wwwdist.tar
-        # OSSURL=https://oss-r2.neruthes.xyz/o/wwwdist.tar--32bf9712f488d4bdd2401d2c6ccc16ef.tar
-        # OSSURL=https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/o/wwwdist.tar--32bf9712f488d4bdd2401d2c6ccc16ef.tar
+        # OSSURL=https://oss-r2.neruthes.xyz/o/wwwdist.tar--00ef643fb4afb6610f3adbbb0ac4fc7c.tar
+        # OSSURL=https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/o/wwwdist.tar--00ef643fb4afb6610f3adbbb0ac4fc7c.tar
+        cfoss pkgdist/wwwdist.zip
+        # OSSURL=https://oss-r2.neruthes.xyz/o/wwwdist.zip--b541ef4f9e09d35ed02d639dada83215.zip
+        # OSSURL=https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/o/wwwdist.zip--b541ef4f9e09d35ed02d639dada83215.zip
         ;;
     99|deploy)
         pushgithubdistweb --now
@@ -87,9 +92,10 @@ case $1 in
         git push
         ;;
     *|full)
-        # bash build.sh latex_articles
-        bash build.sh latex_other
-        bash build.sh wwwdist
-        bash build.sh tarball
+        # bash build.sh 1 #latex_articles
+        bash build.sh 2 #latex_other
+        bash build.sh 3 #wwwdist
+        bash build.sh 4 #tarball
+        bash build.sh 5 #oss
         ;;
 esac

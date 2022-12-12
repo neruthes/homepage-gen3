@@ -92,9 +92,9 @@
 \newcommand{\iarticle}[2]{
     % argv: date, title
     \clearpage
+    \phantomsection
     {\small\ttfamily#1}\par\vskip 13pt
     {\raggedright\LARGE\sffamily\mdseries#2}\par\vskip 30pt
-    \phantomsection
     \addcontentsline{toc}{chapter}{#2}
 }
 
@@ -133,7 +133,7 @@
 
 
 \rmfamily
-\input{articles/.list/list-002.TEX}
+\input{.data/articles/list/list-002.TEX}
 
 
 
