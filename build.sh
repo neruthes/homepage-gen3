@@ -70,10 +70,6 @@ case $1 in
         cd ..
         # Upload tarball
         shareDirToNasPublic -a
-        # Test cloudbuild
-        if [[ $USER == neruthes ]]; then
-            bash cloudbuild.sh
-        fi
         ### Build other archives
         zip -9vr pkgdist/wwwdist wwwdist
         ;;
@@ -84,6 +80,11 @@ case $1 in
         cfoss pkgdist/wwwdist.zip
         # OSSURL=https://oss-r2.neruthes.xyz/o/wwwdist.zip--b541ef4f9e09d35ed02d639dada83215.zip
         # OSSURL=https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/o/wwwdist.zip--b541ef4f9e09d35ed02d639dada83215.zip
+        ;;
+    90)
+        if [[ $USER == neruthes ]]; then
+            bash cloudbuild.sh
+        fi
         ;;
     99|deploy)
         pushgithubdistweb --now
