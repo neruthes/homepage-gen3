@@ -74,10 +74,9 @@ case $1 in
         zip -9vr pkgdist/wwwdist wwwdist
         ;;
     5|oss)
-        cfoss pkgdist/wwwdist.tar
+        cfoss pkgdist/wwwdist.tar && exec cfoss pkgdist/wwwdist.zip
         # OSSURL=https://oss-r2.neruthes.xyz/o/wwwdist.tar--00ef643fb4afb6610f3adbbb0ac4fc7c.tar
         # OSSURL=https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/o/wwwdist.tar--00ef643fb4afb6610f3adbbb0ac4fc7c.tar
-        cfoss pkgdist/wwwdist.zip
         # OSSURL=https://oss-r2.neruthes.xyz/o/wwwdist.zip--b541ef4f9e09d35ed02d639dada83215.zip
         # OSSURL=https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/o/wwwdist.zip--b541ef4f9e09d35ed02d639dada83215.zip
         ;;
@@ -94,15 +93,22 @@ case $1 in
         ;;
     full|'')
         echo "[INFO] Staring a full build-deloy workflow..."
-        sleep 4
-        bash build.sh latex_other wwwdist tarball oss
+        sleep 2
+        # bash build.sh latex_other wwwdist tarball oss
+        bash build.sh latex_other wwwdist tarball
+        if [[ $@ == 0 ]]; then
+            echo "exit 0!"
+            exit 0
+        fi
+        #---------------------------
         echo "[INFO] Wait 60s before initiating cloud-deploy, allowing Cloudflare R2 to purge the old tarball..."
         SLEPT_TIME=0
-        while [[ $SLEPT_TIME -lt 60 ]]; do
-            sleep 5; SLEPT_TIME=$((SLEPT_TIME+5)) ; printf "$SLEPT_TIME   ";
+        while [[ $SLEPT_TIME -lt 10 ]]; do
+            sleep 1; SLEPT_TIME=$((SLEPT_TIME+1)) ; printf "                \r  $SLEPT_TIME / 60  ";
         done
         printf '\n'
-        bash build.sh deploy
+        #---------------------------
+        echo bash build.sh deploy
         ;;
     *)
         echo "[ERROR] No rule to build '$1'. Stopping."

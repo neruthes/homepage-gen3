@@ -1,34 +1,36 @@
 \input{.src/items.class.TEX}
 
-\hypersetup{
-    pdftitle={Neruthes Website \S{} Items \S{} Videos}
-}
+\hypersetup{pdftitle={Neruthes Website Items \S{} Videos}}
 
-\newcounter{vidseq}
-\setcounter{vidseq}{0}
-\newlength{\rightcolwidth}
-\settowidth{\rightcolwidth}{\ttfamily\footnotesize BV1zG411zzzz999}
-\newcommand{\videoitem}[3]{
-    % argv: title / youtube / bv
-    \stepcounter{vidseq}
-    \parbox[t][42pt][t]{2.5em}{\footnotesize\ttfamily\arabic{vidseq}}%
-    \parbox[t][42pt][t]{\textwidth-2em-2.5em-\rightcolwidth}{\raggedright#1}\hfill%
-    \parbox[t][42pt][t]{\rightcolwidth}{%
-        \ttfamily\footnotesize
-        Y: \href{https://www.youtube.com/watch?v=#2}{#2}\linebreak%
-        B: \href{https://www.bilibili.com/video/#3}{#3}%
+\newcommand{\videoitem}[4]{
+    % argv: coverimgpath / title / youtube / bv
+    \parbox[b][29mm][b]{\linewidth}{%
+        \includegraphics[height=29mm]{/home/neruthes/PIC/NeruthesVideoCovers/#1}%
+        \hfill%
+        \parbox[b][29mm][b]{27em}{
+            \leavevmode\vskip 2pt
+            \raggedright
+            \large#2\par\vfill
+            \footnotesize\ttfamily
+            \textcolor{gray}{%
+                \href{https://www.youtube.com/watch?v=#3}{#3}\hfill%
+                \href{https://www.bilibili.com/video/#4}{#4}%
+            }\par\vskip 2pt%
+        }%
     }%
     \par
-    % \vskip 9pt
+    \vskip 11pt
 }
+
 
 \begin{document}
 \doctitle{Videos}{video}
 
 \section*{\ttfamily 2022-12}
 
-\videoitem{【旅行者客串猎魔人】Day1 内心毫无波兰《巫师3 PS5》(P1)}{jNx1rvh-hlU}{BV1zG411K7Xz}
-\videoitem{【旅行者客串猎魔人】Day1 内心毫无波兰《巫师3 PS5》(P2)}{X0TAEu77rK4}{BV1M14y1N7n9}
-\videoitem{【旅行者客串猎魔人】Day1 内心毫无波兰《巫师3 PS5》(P3)}{jRf4IMrKnDo}{BV1u84y1b7U2}
-\videoitem{【旅行者客串猎魔人】Day1 内心毫无波兰《巫师3 PS5》(P4)}{uLwkAUuGNEA}{BV1584y1b7kz}
+\videoitem{wit3ps5/.tbcache/wit3ps5-day001-1}{【旅行者客串猎魔人】Day1内心毫无波兰《巫师3 PS5》(P1)}{jNx1rvh-hlU}{BV1zG411K7Xz}
+\videoitem{wit3ps5/.tbcache/wit3ps5-day001-2}{【旅行者客串猎魔人】Day1内心毫无波兰《巫师3 PS5》(P2)}{X0TAEu77rK4}{BV1M14y1N7n9}
+\videoitem{wit3ps5/.tbcache/wit3ps5-day001-3}{【旅行者客串猎魔人】Day1内心毫无波兰《巫师3 PS5》(P3)}{jRf4IMrKnDo}{BV1u84y1b7U2}
+\videoitem{wit3ps5/.tbcache/wit3ps5-day001-4}{【旅行者客串猎魔人】Day1内心毫无波兰《巫师3 PS5》(P4)}{uLwkAUuGNEA}{BV1584y1b7kz}
+
 \end{document}
