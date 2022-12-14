@@ -39,7 +39,7 @@
         .sitemap-section {
             line-height: 1.6;
             border-bottom: 1px solid #DDD;
-            padding: 15px 0px;
+            padding: 25px 0px;
         }
 
         header nav a,
@@ -78,7 +78,7 @@
             const rawdirstr = document.body.getAttribute('data-my-location');
             const hierarchychain = rawdirstr.split('/');
             const totalDepth = hierarchychain.length;
-            nav.innerHTML = `<a style="display: inline;" href="${(new Array(totalDepth)).fill('../').join('')}">Home</a> / `;
+            nav.innerHTML = `<a style="display: inline-block;" href="${(new Array(totalDepth)).fill('../').join('')}">Home</a> / `;
             nav.innerHTML += hierarchychain.slice(0, totalDepth - 1).map(function (dir, i) {
                 const depth = totalDepth - i - 1;
                 return `<a style="display: inline-block;" href="${(new Array(depth)).fill('../').join('')}">${dir}</a> / `;
