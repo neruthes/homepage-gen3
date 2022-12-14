@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Neruthes - DIRNAME</title>
+    <title>Neruthes - RAWDIRNAME</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="../neruthes.png">
     <link rel="apple-touch-icon" href="../neruthes.png">
@@ -64,16 +64,27 @@
     </style>
 </head>
 
-<body>
+<body data-my-location="RAWDIRNAME">
 
     <header>
         <div class="part-inner">
 
             <h1>Neruthes</h1>
-            <nav>
-                <a style="display: inline;" href="../">Home</a> / DIRNAME
+            <nav id="grand-nav">
             </nav>
         </div>
+        <script>
+            const nav = document.querySelector('#grand-nav');
+            const rawdirstr = document.body.getAttribute('data-my-location');
+            const hierarchychain = rawdirstr.split('/');
+            const totalDepth = hierarchychain.length;
+            nav.innerHTML = `<a style="display: inline;" href="${(new Array(totalDepth)).fill('../').join('')}">Home</a> / `;
+            nav.innerHTML += hierarchychain.slice(0, totalDepth - 1).map(function (dir, i) {
+                const depth = totalDepth - i - 1;
+                return `<a style="display: inline-block;" href="${(new Array(depth)).fill('../').join('')}">${dir}</a> / `;
+            }).join('');
+            nav.innerHTML += `${hierarchychain[totalDepth - 1]}`;
+        </script>
     </header>
     <div class="part-inner sitemap-section-links">
         <h2>List of files</h2>

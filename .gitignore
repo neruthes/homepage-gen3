@@ -1,5 +1,6 @@
-_dist
-wwwdist
-pkgdist
-.testground
-.cloudbuildroot
+/.texassets
+/_dist
+/wwwdist
+/pkgdist
+/.testground
+/.cloudbuildroot

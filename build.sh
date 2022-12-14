@@ -16,14 +16,25 @@ function rebuild_all_tex_files() {
 }
 
 function make_indexhtml_for_dirs() {
-    INDEXABLE_DIRS_LIST="articles items"
+    INDEXABLE_DIRS_LIST="
+        articles items
+        texassets
+        texassets/video-cover texassets/video-cover/wit3ps5
+    "
     for RAWDIR in $INDEXABLE_DIRS_LIST; do
         echo "[INFO] Generating 'index.html' for directory '$RAWDIR'..."
         DIR="wwwdist/$RAWDIR"
+        mkdir -p $DIR
         INDEXFILE="$DIR/index.html"
-        sed "s:HTMLTITLE:Neruthes | ${RAWDIR^^}:" .src/dirindex.head.html | sed "s|DIRNAME|$RAWDIR|" > $INDEXFILE
+        sed "s:HTMLTITLE:Neruthes | ${RAWDIR^^}:" .src/dirindex.head.html \
+            | sed "s|RAWDIRNAME|$RAWDIR|"  > $INDEXFILE
         for ITEM in $(ls $DIR | grep -v 'index.html' | sort); do
-            echo "<a class='dirindexlistanchor' href='./$ITEM'>$ITEM</a>" >> $INDEXFILE
+            if [[ -d $DIR/$ITEM ]]; then
+                ITEM_SUFFIX="/"
+            else
+                ITEM_SUFFIX=""
+            fi
+            echo "<a class='dirindexlistanchor' href='./$ITEM$ITEM_SUFFIX'>$ITEM$ITEM_SUFFIX</a>" >> $INDEXFILE
         done
         cat .src/dirindex.tail.html >> $INDEXFILE
     done
@@ -51,6 +62,8 @@ case $1 in
         ;;
     3|wwwdist)
         rsync -a --delete wwwsrc/ wwwdist/
+        rm -rf wwwdist/texassets/
+        rsync -a --delete .texassets/ wwwdist/texassets/
         rsync -a _dist/ wwwdist/ --exclude tex-tmp
         make_indexhtml_for_dirs
         ;;
@@ -80,6 +93,18 @@ case $1 in
         # OSSURL=https://oss-r2.neruthes.xyz/o/wwwdist.zip--b541ef4f9e09d35ed02d639dada83215.zip
         # OSSURL=https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/o/wwwdist.zip--b541ef4f9e09d35ed02d639dada83215.zip
         ;;
+    texassets)
+        assetsdir=".texassets"
+        ### Directory: video-cover
+        tbcache $HOME/PIC/NeruthesVideoCovers
+        rm -rf $assetsdir/video-cover
+        for imgrealpath in $HOME/PIC/NeruthesVideoCovers/*/.tbcache/*.jpg; do
+            mkdir -p $assetsdir/video-cover/$(cut -d/ -f6 <<< $imgrealpath)
+            cp  $imgrealpath  $assetsdir/video-cover/$(cut -d/ -f6,8 <<< $imgrealpath)
+        done
+        ### End
+        du -xhd1 $assetsdir
+        ;;
     90|test)
         if [[ $USER == neruthes ]]; then
             bash cloudbuild.sh
@@ -94,21 +119,21 @@ case $1 in
     full|'')
         echo "[INFO] Staring a full build-deloy workflow..."
         sleep 2
-        # bash build.sh latex_other wwwdist tarball oss
-        bash build.sh latex_other wwwdist tarball
-        if [[ $@ == 0 ]]; then
-            echo "exit 0!"
-            exit 0
+        bash build.sh latex_other texassets wwwdist tarball oss
+        if [[ "$?" != 0 ]]; then
+            ### Uploading with cfoss is not successful
+            echo "[ERROR] OSS upload failed. Cannot proceed."
+            exit 1
         fi
         #---------------------------
         echo "[INFO] Wait 60s before initiating cloud-deploy, allowing Cloudflare R2 to purge the old tarball..."
         SLEPT_TIME=0
-        while [[ $SLEPT_TIME -lt 10 ]]; do
-            sleep 1; SLEPT_TIME=$((SLEPT_TIME+1)) ; printf "                \r  $SLEPT_TIME / 60  ";
+        while [[ $SLEPT_TIME -lt 60 ]]; do
+            sleep 1; SLEPT_TIME=$((SLEPT_TIME+1)) ; printf "                \r   Progress:   $SLEPT_TIME / 60  ";
         done
         printf '\n'
         #---------------------------
-        echo bash build.sh deploy
+        bash build.sh deploy
         ;;
     *)
         echo "[ERROR] No rule to build '$1'. Stopping."
