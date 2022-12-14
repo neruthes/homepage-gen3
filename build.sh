@@ -2,9 +2,9 @@
 
 function rebuild_all_tex_files() {
     for TEX_FILE_PATH in $(ls */*.tex | grep -v 'articles/' | sort); do
-        PDF_FILE_PATH="_dist/${TEX_FILE_PATH:2:-4}.pdf"
+        PDF_FILE_PATH="_dist/${TEX_FILE_PATH:0:-4}.pdf"
         if [[ ! -e $PDF_FILE_PATH ]]; then
-            echo "Artifact does not exist!"
+            echo "Artifact does not exist! $PDF_FILE_PATH"
             ntex "$TEX_FILE_PATH" --2
         else
             if [[ $(date +%s -r $TEX_FILE_PATH) -gt $(date +%s -r $PDF_FILE_PATH) ]]; then
@@ -16,7 +16,7 @@ function rebuild_all_tex_files() {
 }
 
 function make_indexhtml_for_dirs() {
-    INDEXABLE_DIRS_LIST="articles"
+    INDEXABLE_DIRS_LIST="articles items"
     for RAWDIR in $INDEXABLE_DIRS_LIST; do
         echo "[INFO] Generating 'index.html' for directory '$RAWDIR'..."
         DIR="wwwdist/$RAWDIR"
@@ -81,7 +81,7 @@ case $1 in
         # OSSURL=https://oss-r2.neruthes.xyz/o/wwwdist.zip--b541ef4f9e09d35ed02d639dada83215.zip
         # OSSURL=https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/o/wwwdist.zip--b541ef4f9e09d35ed02d639dada83215.zip
         ;;
-    90)
+    90|test)
         if [[ $USER == neruthes ]]; then
             bash cloudbuild.sh
         fi
@@ -92,11 +92,21 @@ case $1 in
         git commit -m "Automatic deploy command: $(TZ=UTC date -Is | cut -c1-19 | sed 's/T/ /')"
         git push
         ;;
-    *|full)
-        # bash build.sh 1 #latex_articles
-        bash build.sh 2 #latex_other
-        bash build.sh 3 #wwwdist
-        bash build.sh 4 #tarball
-        bash build.sh 5 #oss
+    full|'')
+        echo "[INFO] Staring a full build-deloy workflow..."
+        sleep 4
+        bash build.sh latex_other wwwdist tarball oss
+        echo "[INFO] Wait 60s before initiating cloud-deploy, allowing Cloudflare R2 to purge the old tarball..."
+        SLEPT_TIME=0
+        while [[ $SLEPT_TIME -lt 60 ]]; do
+            sleep 5; SLEPT_TIME=$((SLEPT_TIME+5)) ; printf "$SLEPT_TIME   ";
+        done
+        printf '\n'
+        bash build.sh deploy
+        ;;
+    *)
+        echo "[ERROR] No rule to build '$1'. Stopping."
+        echo "Acceptable rules:"
+            echo "latex_articles  latex_other  wwwdist  tarball  oss  test  deploy"
         ;;
 esac

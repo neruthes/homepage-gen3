@@ -4,17 +4,40 @@
 <head>
     <meta charset="utf-8" />
     <title>Neruthes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="./neruthes.png">
     <link rel="apple-touch-icon" href="./neruthes.png">
+    <style>
+        @font-face {
+            font-family: 'JetBrains Mono WOFF';
+            src: url('./webstatic/fonts/jetbrains-mono/JetBrainsMono-Regular.woff2');
+            font-weight: normal;
+        }
+
+        @font-face {
+            font-family: 'JetBrains Mono WOFF';
+            src: url('./webstatic/fonts/jetbrains-mono/JetBrainsMono-Bold.woff2');
+            font-weight: bold;
+        }
+
+        @font-face {
+            font-family: 'JetBrains Mono WOFF';
+            src: url('./webstatic/fonts/jetbrains-mono/JetBrainsMono-Light.woff2');
+            font-weight: lighter;
+        }
+
+    </style>
     <style>
         * {
             text-rendering: geometricPrecision;
             box-sizing: border-box;
+            hyphens: none;
+            font-variant-ligatures: none;
         }
 
         html,
         body {
-            font-family: 'JetBrains Mono NL', -apple-system, 'Noto Sans Mono', 'Noto Sans', sans-serif, 'Noto Sans CJK SC';
+            font-family: 'JetBrains Mono NL', 'JetBrains Mono WOFF', 'JetBrains Mono', -apple-system, 'Noto Sans Mono', 'Noto Sans', sans-serif, 'Noto Sans CJK SC';
             font-size: 15px;
             line-height: 1.6;
             padding: 0px;
@@ -65,26 +88,18 @@
 <body>
     <div class="grand-container">
         <header class="global-part">
-            <div class="part-inner">
+            <div class="part-inner" style="padding-top: 190px; padding-bottom: 100px;">
                 <h1>Neruthes</h1>
                 <!-- <aside>Homepage Gen3 Demo</aside> -->
-                <aside>
-                    Male · 1995 · Sino-Korean · Homosexual<br>
-                    Communist · Existentialist · Nihilist · Skeuomorphist<br>
-                    AFB3373F5200DF38
+                <aside style="max-width: 515px; font-size: 15px;">
+                    Neoparian · Male · 1995 · Sino-Korean · Homosexual ·
+                    Communist · Existentialist · Nihilist · Skeuomorphist ·
+                    0xAFB3373F5200DF38
                 </aside>
             </div>
         </header>
         <div class="global-part">
             <div class="part-inner">
-                <!-- <div class="sitemap-section">
-                    <h2>Introduction</h2>
-                    <div class="sitemap-section-links">
-                        Male · 1995 · Sino-Korean · Homosexual<br>
-                        Communist · Existentialist · Nihilist · Skeuomorphist<br>
-                        CB0ABC7756440D12915E3F25AFB3373F5200DF38
-                    </div>
-                </div> -->
                 <div class="sitemap-section">
                     <h2>Blog</h2>
                     <div class="sitemap-section-links">
@@ -93,13 +108,23 @@
                     </div>
                 </div>
                 <div class="sitemap-section">
+                    <h2>Items</h2>
+                    <div class="sitemap-section-links">
+                        <a href="./items/video.pdf">Videos</a>&nbsp;&nbsp;
+                    </div>
+                </div>
+                <div class="sitemap-section">
                     <h2>Links</h2>
                     <div class="sitemap-section-links">
+                        <a href="" onclick="location.href = atob('bWFpbHRvOmlAbmVydXRoZXMueHl6')">Email</a>&nbsp;&nbsp;
                         <a href="https://github.com/neruthes">GitHub</a>&nbsp;&nbsp;
-                        <a href="#"
+                        <a href=""
                             onclick="location.href = atob('aHR0cHM6Ly90Lm1lL25lcnV0aGVz')">Telegram</a>&nbsp;&nbsp;
                         <a href="https://twitter.com/neruthes">Twitter</a>&nbsp;&nbsp;
                         <a href="https://dribbble.com/neruthes">Dribbble</a>&nbsp;&nbsp;
+                        <a href="https://keybase.io/neruthes">Keybase</a>&nbsp;&nbsp;
+                        <a href="https://www.youtube.com/channel/UCfiE_MEP3tLZur9iupJsQ1w">YouTube</a>&nbsp;&nbsp;
+                        <a href="https://space.bilibili.com/479699383">Bilibili</a>&nbsp;&nbsp;
                     </div>
                 </div>
                 <div class="sitemap-section">
@@ -110,15 +135,17 @@
                     </div>
                 </div>
                 <div class="sitemap-section">
-                    <h2>Directories</h2>
+                    <h2>Sitemap</h2>
                     <div class="sitemap-section-links">
                         <a href="./articles/">/articles</a>&nbsp;&nbsp;
+                        <a href="./items/">/items</a>&nbsp;&nbsp;
                     </div>
                 </div>
                 <div class="sitemap-section">
                     <h2>Projects</h2>
                     <div class="sitemap-section-links">
-                        <a href="https://neruthesgithubdistweb.vercel.app/">GitHub Dist Web</a>&nbsp;&nbsp;
+                        <a href="https://neruthesgithubdistweb.vercel.app/">Neruthes GitHub Dist Web</a><br>
+                        <a href="https://t.me/neruthesartworkdrafts/">Neruthes Artwork Drafts</a><br>
                     </div>
                 </div>
                 <div class="sitemap-section">

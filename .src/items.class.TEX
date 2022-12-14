@@ -1,0 +1,45 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[a4paper,textwidth=42em,tmargin=24mm,bmargin=33mm]{geometry}
+\usepackage{calc}
+\usepackage{amsmath,xltxtra,fontspec,xunicode,datetime2,tabu}
+\usepackage[hidelinks]{hyperref}
+\usepackage[PunctStyle=plain,RubberPunctSkip=false,CJKglue=\hskip 0pt,CJKecglue=\hskip 4pt plus 20pt]{xeCJK}
+\usepackage{xeCJKfntef}
+
+\setmainfont{Latin Modern Roman}
+\setromanfont{Latin Modern Roman}
+\setsansfont{Myriad Pro}
+\setmonofont{JetBrains Mono NL}
+\setCJKmainfont{Noto Serif CJK SC}
+\setCJKromanfont{Noto Serif CJK SC}
+\setCJKsansfont{Noto Sans CJK SC}
+\setCJKmonofont{Noto Sans CJK SC}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\linespread{1.2}
+
+\hypersetup{
+    colorlinks=false,
+    pdfpagemode=FullScreen,
+    pdftitle={Neruthes Website Items \S{} Video}
+}
+
+\newcommand{\doctitle}[2]{
+    % argv: title, filename
+    \parbox{\textwidth}{%
+        \sffamily
+        \small
+        Neruthes Website Items\par\vskip 1pt
+        \LARGE
+        #1\par\vskip 7pt
+        \small
+        This list may be found online at these locations:~\hfill%
+        \href{https://neruthes.xyz/items/#2.pdf}{neruthes.xyz}\hfill%
+        \href{https://neruthes.vercel.app/items/#2.pdf}{neruthes.vercel.app}\hfill%
+        \href{https://neruthes.pages.dev/items/#2.pdf}{neruthes.pages.dev}\par
+    }\par
+    \vskip 20pt
+    \hrule
+    \vskip 20pt
+}
