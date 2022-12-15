@@ -55,11 +55,12 @@ case $1 in
         ntex articles/*.tex --2
         ;;
     2|latex_other)
+        bash build.sh _texassets
         rebuild_all_tex_files
         ;;
     3|wwwdist)
         rsync -a --delete wwwsrc/ wwwdist/                      # Initialize
-        bash build.sh texassets                                 # Import texassets
+        bash build.sh _texassets                                 # Import texassets
         rm -rf wwwdist/texassets/                               # Clear texassets in wwwdist
         rsync -a --delete .texassets/ wwwdist/texassets/        # Reload from latest texassets
         rsync -a _dist/ wwwdist/ --exclude tex-tmp              # Copy PDF into wwwdist
@@ -103,14 +104,18 @@ case $1 in
         # OSSURL=https://oss-r2.neruthes.xyz/o/fulltarball.tar--06e9cd96e2fe53f96483bc814e8398c4.tar
         # OSSURL=https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/o/fulltarball.tar--06e9cd96e2fe53f96483bc814e8398c4.tar
         ;;
-    texassets)
+    _texassets)
         assetsdir=".texassets"
         ### Directory: video-cover
         tbcache $HOME/PIC/NeruthesVideoCovers
         rm -rf $assetsdir/video-cover
-        for imgrealpath in $HOME/PIC/NeruthesVideoCovers/*/.tbcache/*.jpg; do
+        # for imgrealpath in $HOME/PIC/NeruthesVideoCovers/*/.tbcache/*.jpg; do
+        #     mkdir -p $assetsdir/video-cover/$(cut -d/ -f6 <<< $imgrealpath)
+        #     cp  $imgrealpath  $assetsdir/video-cover/$(cut -d/ -f6,8 <<< $imgrealpath)
+        # done
+        for imgrealpath in $HOME/PIC/NeruthesVideoCovers/*/*.jpg; do
             mkdir -p $assetsdir/video-cover/$(cut -d/ -f6 <<< $imgrealpath)
-            cp  $imgrealpath  $assetsdir/video-cover/$(cut -d/ -f6,8 <<< $imgrealpath)
+            cp  $imgrealpath  $assetsdir/video-cover/$(cut -d/ -f6- <<< $imgrealpath)
         done
         ### End
         du -xhd1 $assetsdir
@@ -129,7 +134,7 @@ case $1 in
     full|'')
         echo "[INFO] Staring a full build-deloy workflow..."
         sleep 2
-        bash build.sh latex_other texassets wwwdist tarball oss
+        bash build.sh latex_other _texassets wwwdist tarball oss
         if [[ "$?" != 0 ]]; then
             ### Uploading with cfoss is not successful
             echo "[ERROR] OSS upload failed. Cannot proceed."
@@ -148,6 +153,6 @@ case $1 in
     *)
         echo "[ERROR] No rule to build '$1'. Stopping."
         echo "Acceptable rules:"
-            echo "latex_articles  latex_other  texassets  wwwdist  tarball  oss  fulltarball  test  deploy"
+            echo "latex_articles  latex_other  _texassets  wwwdist  tarball  oss  fulltarball  test  deploy"
         ;;
 esac
