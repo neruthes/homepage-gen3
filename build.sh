@@ -16,15 +16,12 @@ function rebuild_all_tex_files() {
 }
 
 function make_indexhtml_for_dirs() {
-    INDEXABLE_DIRS_LIST="
-        articles items
-        texassets
-        texassets/video-cover texassets/video-cover/wit3ps5
-    "
-    for RAWDIR in $INDEXABLE_DIRS_LIST; do
+    DIRSLIST="$(find wwwdist -type d)"
+    for DIR in $DIRSLIST; do
+        RAWDIR="${DIR:8}"
+        echo "RAWDIR: $RAWDIR"
         echo "[INFO] Generating 'index.html' for directory '$RAWDIR'..."
-        DIR="wwwdist/$RAWDIR"
-        mkdir -p $DIR
+        # mkdir -p $DIR
         INDEXFILE="$DIR/index.html"
         sed "s:HTMLTITLE:Neruthes | ${RAWDIR^^}:" .src/dirindex.head.html \
             | sed "s|RAWDIRNAME|$RAWDIR|"  > $INDEXFILE
@@ -61,11 +58,13 @@ case $1 in
         rebuild_all_tex_files
         ;;
     3|wwwdist)
-        rsync -a --delete wwwsrc/ wwwdist/
-        rm -rf wwwdist/texassets/
-        rsync -a --delete .texassets/ wwwdist/texassets/
-        rsync -a _dist/ wwwdist/ --exclude tex-tmp
-        make_indexhtml_for_dirs
+        rsync -a --delete wwwsrc/ wwwdist/                      # Initialize
+        bash build.sh texassets                                 # Import texassets
+        rm -rf wwwdist/texassets/                               # Clear texassets in wwwdist
+        rsync -a --delete .texassets/ wwwdist/texassets/        # Reload from latest texassets
+        rsync -a _dist/ wwwdist/ --exclude tex-tmp              # Copy PDF into wwwdist
+        make_indexhtml_for_dirs                                 # Generate 'index.html' for all subdirs
+        rsync -av wwwsrc/ wwwdist/                              # Reload necessary 'index.html' files
         ;;
     4|tarball)
         ### Build tarball
@@ -81,17 +80,28 @@ case $1 in
         cd .testground
         tar -pxvf ../pkgdist/wwwdist.tar
         cd ..
-        # Upload tarball
-        shareDirToNasPublic -a
         ### Build other archives
         zip -9vr pkgdist/wwwdist wwwdist
+        rm /tmp/fulltarball.tar 2>/dev/null
+        tar -cvf /tmp/fulltarball.tar \
+            --exclude='.cloudbuildroot' \
+            --exclude='.testground' \
+            --exclude='pkgdist' \
+            --exclude='.git' \
+            .
+        cat /tmp/fulltarball.tar > pkgdist/fulltarball.tar
         ;;
     5|oss)
-        cfoss pkgdist/wwwdist.tar && exec cfoss pkgdist/wwwdist.zip
+        shareDirToNasPublic -a
+        cfoss pkgdist/wwwdist.tar &&
+        cfoss pkgdist/wwwdist.zip &&
+        cfoss pkgdist/fulltarball.tar
         # OSSURL=https://oss-r2.neruthes.xyz/o/wwwdist.tar--00ef643fb4afb6610f3adbbb0ac4fc7c.tar
         # OSSURL=https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/o/wwwdist.tar--00ef643fb4afb6610f3adbbb0ac4fc7c.tar
         # OSSURL=https://oss-r2.neruthes.xyz/o/wwwdist.zip--b541ef4f9e09d35ed02d639dada83215.zip
         # OSSURL=https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/o/wwwdist.zip--b541ef4f9e09d35ed02d639dada83215.zip
+        # OSSURL=https://oss-r2.neruthes.xyz/o/fulltarball.tar--06e9cd96e2fe53f96483bc814e8398c4.tar
+        # OSSURL=https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/o/fulltarball.tar--06e9cd96e2fe53f96483bc814e8398c4.tar
         ;;
     texassets)
         assetsdir=".texassets"
@@ -138,6 +148,6 @@ case $1 in
     *)
         echo "[ERROR] No rule to build '$1'. Stopping."
         echo "Acceptable rules:"
-            echo "latex_articles  latex_other  wwwdist  tarball  oss  test  deploy"
+            echo "latex_articles  latex_other  texassets  wwwdist  tarball  oss  fulltarball  test  deploy"
         ;;
 esac
