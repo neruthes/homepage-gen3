@@ -1,5 +1,12 @@
 #!/bin/bash
 
+
+## Preparations
+touch .env .localenv
+source .env
+source .localenv
+
+
 function rebuild_all_tex_files() {
     for TEX_FILE_PATH in $(ls */*.tex | grep -v 'articles/' | sort); do
         PDF_FILE_PATH="_dist/${TEX_FILE_PATH:0:-4}.pdf"
@@ -19,7 +26,6 @@ function make_indexhtml_for_dirs() {
     DIRSLIST="$(find wwwdist -type d)"
     for DIR in $DIRSLIST; do
         RAWDIR="${DIR:8}"
-        echo "RAWDIR: $RAWDIR"
         echo "[INFO] Generating 'index.html' for directory '$RAWDIR'..."
         # mkdir -p $DIR
         INDEXFILE="$DIR/index.html"
@@ -50,17 +56,18 @@ if [[ ! -z $2 ]]; then
 fi
 
 case $1 in
+    0|prepare)
+        bash build.sh _texassets                                # Import texassets
+        ;;
     1|latex_articles)
         bash .data/articles/build.sh
         ntex articles/*.tex --2
         ;;
     2|latex_other)
-        bash build.sh _texassets
         rebuild_all_tex_files
         ;;
     3|wwwdist)
         rsync -a --delete wwwsrc/ wwwdist/                      # Initialize
-        bash build.sh _texassets                                 # Import texassets
         rm -rf wwwdist/texassets/                               # Clear texassets in wwwdist
         rsync -a --delete .texassets/ wwwdist/texassets/        # Reload from latest texassets
         rsync -a _dist/ wwwdist/ --exclude tex-tmp              # Copy PDF into wwwdist
@@ -93,17 +100,15 @@ case $1 in
         cat /tmp/fulltarball.tar > pkgdist/fulltarball.tar
         ;;
     5|upload)
-        bash build.sh _rclone
         shareDirToNasPublic -a
-        cfoss pkgdist/wwwdist.tar &&
-        cfoss pkgdist/wwwdist.zip &&
-        cfoss pkgdist/fulltarball.tar
-        # OSSURL=https://oss-r2.neruthes.xyz/o/wwwdist.tar--00ef643fb4afb6610f3adbbb0ac4fc7c.tar
-        # OSSURL=https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/o/wwwdist.tar--00ef643fb4afb6610f3adbbb0ac4fc7c.tar
-        # OSSURL=https://oss-r2.neruthes.xyz/o/wwwdist.zip--b541ef4f9e09d35ed02d639dada83215.zip
-        # OSSURL=https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/o/wwwdist.zip--b541ef4f9e09d35ed02d639dada83215.zip
-        # OSSURL=https://oss-r2.neruthes.xyz/o/fulltarball.tar--06e9cd96e2fe53f96483bc814e8398c4.tar
-        # OSSURL=https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/o/fulltarball.tar--06e9cd96e2fe53f96483bc814e8398c4.tar
+        bash build.sh _rclone
+        S3_ARGS="--endpoint-url $S3_ENDPOINT --bucket oss"
+        for fn in wwwdist.tar wwwdist.zip fulltarball.tar; do
+            aws s3api put-object  --body pkgdist/$fn  --key files/neruthes-homepage-gen3/pkgdist/$fn  $S3_ARGS
+        done
+        # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/files/neruthes-homepage-gen3/pkgdist/wwwdist.tar
+        # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/files/neruthes-homepage-gen3/pkgdist/wwwdist.zip
+        # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/files/neruthes-homepage-gen3/pkgdist/fulltarball.tar
         ;;
     _rclone)
         rclone sync -P -L  pkgdist  dropbox-main:devdistpub/homepage-gen3/pkgdist
@@ -132,17 +137,18 @@ case $1 in
     full|'')
         echo "[INFO] Staring a full build-deloy workflow..."
         sleep 2
-        bash build.sh  latex_other _texassets wwwdist tarball upload
+        bash build.sh  prepare latex_other _texassets wwwdist tarball upload
         if [[ "$?" != 0 ]]; then
             ### Uploading with cfoss is not successful
             echo "[ERROR] OSS upload failed. Cannot proceed."
             exit 1
         fi
         #---------------------------
-        echo "[INFO] Wait 60s before initiating cloud-deploy, allowing Cloudflare R2 to purge the old tarball..."
+        WAITTIME=30
+        echo "[INFO] Wait ${WAITTIME}s before initiating cloud-deploy, allowing Cloudflare R2 to purge the old tarball..."
         SLEPT_TIME=0
-        while [[ $SLEPT_TIME -lt 60 ]]; do
-            sleep 1; SLEPT_TIME=$((SLEPT_TIME+1)) ; printf "                \r   Progress:   $SLEPT_TIME / 60  ";
+        while [[ $SLEPT_TIME -lt ${WAITTIME} ]]; do
+            sleep 1; SLEPT_TIME=$((SLEPT_TIME+1)) ; printf "                \r   Progress:   $SLEPT_TIME / ${WAITTIME}  ";
         done
         printf '\n'
         #---------------------------

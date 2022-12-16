@@ -4,3 +4,4 @@
 /pkgdist
 /.testground
 /.cloudbuildroot
+/.localenv
