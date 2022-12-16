@@ -8,7 +8,7 @@
 
 \setmainfont{Latin Modern Roman}
 \setromanfont{Latin Modern Roman}
-\setsansfont{Myriad Pro}
+\setsansfont{Inter}
 \setmonofont{JetBrains Mono NL}
 \setCJKmainfont{Noto Serif CJK SC}
 \setCJKromanfont{Noto Serif CJK SC}
@@ -27,15 +27,17 @@
 \newcommand{\doctitle}[2]{
     % argv: title, filename
     \parbox{\textwidth}{%
+        \center
         \sffamily
+        % \ttfamily
         \small
-        Neruthes Website Items\par\vskip 5pt
+        Neruthes Website~~\S~~List of\par\vskip 5pt
         \huge
         #1\par\vskip 12pt
         \small
-        This list may be found online at these locations:~\hfill%
-        \href{https://neruthes.xyz/items/#2.pdf}{neruthes.xyz}\hfill%
-        \href{https://neruthes.vercel.app/items/#2.pdf}{neruthes.vercel.app}\hfill%
+        This list may be found online at these locations:\\
+        \href{https://neruthes.xyz/items/#2.pdf}{neruthes.xyz}~~/~~%
+        \href{https://neruthes.vercel.app/items/#2.pdf}{neruthes.vercel.app}~~/~~%
         \href{https://neruthes.pages.dev/items/#2.pdf}{neruthes.pages.dev}\par
     }\par
     \vskip 20pt

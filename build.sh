@@ -92,7 +92,8 @@ case $1 in
             .
         cat /tmp/fulltarball.tar > pkgdist/fulltarball.tar
         ;;
-    5|oss)
+    5|upload)
+        bash build.sh _rclone
         shareDirToNasPublic -a
         cfoss pkgdist/wwwdist.tar &&
         cfoss pkgdist/wwwdist.zip &&
@@ -104,20 +105,17 @@ case $1 in
         # OSSURL=https://oss-r2.neruthes.xyz/o/fulltarball.tar--06e9cd96e2fe53f96483bc814e8398c4.tar
         # OSSURL=https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/o/fulltarball.tar--06e9cd96e2fe53f96483bc814e8398c4.tar
         ;;
+    _rclone)
+        rclone sync -P -L  pkgdist  dropbox-main:devdistpub/homepage-gen3/pkgdist
+        ;;
     _texassets)
         assetsdir=".texassets"
         ### Directory: video-cover
-        tbcache $HOME/PIC/NeruthesVideoCovers
-        rm -rf $assetsdir/video-cover
-        # for imgrealpath in $HOME/PIC/NeruthesVideoCovers/*/.tbcache/*.jpg; do
-        #     mkdir -p $assetsdir/video-cover/$(cut -d/ -f6 <<< $imgrealpath)
-        #     cp  $imgrealpath  $assetsdir/video-cover/$(cut -d/ -f6,8 <<< $imgrealpath)
-        # done
-        for imgrealpath in $HOME/PIC/NeruthesVideoCovers/*/*.jpg; do
-            mkdir -p $assetsdir/video-cover/$(cut -d/ -f6 <<< $imgrealpath)
-            cp  $imgrealpath  $assetsdir/video-cover/$(cut -d/ -f6- <<< $imgrealpath)
-        done
+        rsync -av --delete  --exclude '/*/.tbcache' --include '/*/*.jpg' --exclude '/*/*.*' \
+            $HOME/PIC/NeruthesVideoCovers/ \
+            $assetsdir/video-cover/
         ### End
+        echo "Size of assetsdir:"
         du -xhd1 $assetsdir
         ;;
     90|test)
@@ -134,7 +132,7 @@ case $1 in
     full|'')
         echo "[INFO] Staring a full build-deloy workflow..."
         sleep 2
-        bash build.sh latex_other _texassets wwwdist tarball oss
+        bash build.sh  latex_other _texassets wwwdist tarball upload
         if [[ "$?" != 0 ]]; then
             ### Uploading with cfoss is not successful
             echo "[ERROR] OSS upload failed. Cannot proceed."
@@ -153,6 +151,6 @@ case $1 in
     *)
         echo "[ERROR] No rule to build '$1'. Stopping."
         echo "Acceptable rules:"
-            echo "latex_articles  latex_other  _texassets  wwwdist  tarball  oss  fulltarball  test  deploy"
+            echo "latex_articles  latex_other  _texassets  wwwdist  tarball  upload  fulltarball  test  deploy"
         ;;
 esac

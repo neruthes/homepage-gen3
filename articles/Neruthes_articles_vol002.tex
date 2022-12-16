@@ -1,6 +1,6 @@
 \documentclass[12pt,a4paper]{report}
 
-\usepackage[a4paper,textwidth=38em,tmargin=24mm,bmargin=30mm]{geometry}
+\usepackage[a4paper,textwidth=37em,tmargin=24mm,bmargin=30mm]{geometry}
 \usepackage{calc}
 \usepackage{amsmath,xltxtra,fontspec,xunicode,tocloft,tabu,datetime2}
 \usepackage{titlesec}
@@ -28,7 +28,8 @@
 
 \setmainfont{Latin Modern Roman}
 \setromanfont{Latin Modern Roman}
-\setsansfont{Myriad Pro}
+% \setsansfont{IBM Plex Sans}
+\setsansfont{Inter}
 \setmonofont{JetBrains Mono NL}
 \setCJKmainfont{Noto Serif CJK SC}
 \setCJKromanfont{Noto Serif CJK SC}
@@ -85,17 +86,22 @@
 \author{Volume 2}
 \date{Revision \today}
 
+% Working with tocloft
 
-
+\renewcommand{\cftchapfont}{\ttfamily\small}
+\settowidth{\cftchapnumwidth}{\cftchapfont 2222-22-22==}
+\renewcommand{\cftchappagefont}{\ttfamily\small}
+\setlength{\cftbeforechapskip}{1pt}
 \renewcommand{\contentsname}{\LARGE\sffamily\mdseries Contents}
 
 \newcommand{\iarticle}[2]{
     % argv: date, title
     \clearpage
+    \stepcounter{chapter}
     \phantomsection
     {\small\ttfamily#1}\par\vskip 13pt
     {\raggedright\LARGE\sffamily\mdseries#2}\par\vskip 30pt
-    \addcontentsline{toc}{chapter}{#2}
+    \addcontentsline{toc}{chapter}{\numberline{#1}#2}
 }
 
 
@@ -111,17 +117,17 @@
 \begin{document}
 \begin{titlepage}
 	\center
-    \ttfamily
+	\ttfamily
 	% \fontspec{Inter}
 	\includegraphics[width=33mm]{wwwsrc/neruthes-forceCircle-unpadded.png}\par
 	\vskip 110pt
-    {\fontsize{30pt}{30pt}\selectfont\MakeUppercase{Neruthes}}\par\vskip 30pt
-    {\LARGE\MakeUppercase{Articles Collection}}\par
+		{\fontsize{30pt}{30pt}\selectfont\MakeUppercase{Neruthes}}\par\vskip 30pt
+		{\LARGE\MakeUppercase{Articles Collection}}\par
 	\vfill
 	\normalsize
-    \MakeUppercase{
-	Volume 2\\
-	\today}\par
+	\MakeUppercase{
+		Volume 2\\
+		\today}\par
 	% \par\vskip 10pt
 	% \hrule
 \end{titlepage}
@@ -143,7 +149,7 @@
 
 \clearpage\pagestyle{empty}
 \leavevmode\vfill
-\small\sffamily
+\footnotesize\sffamily
 Copyright \copyright{} 2022-2022 Neruthes. All rights reserved.\par
 This collection of articles is part of the blog of Neruthes.\par
 This document may be found online at these locations:\\
