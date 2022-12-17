@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Neruthes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="./neruthes.png">
+    <link rel="apple-touch-icon" href="./neruthes.png">
+    <style>
+        @font-face {
+            font-family: 'JetBrains Mono WOFF';
+            src: url('./webstatic/fonts/jetbrains-mono/JetBrainsMono-Regular.woff2');
+            font-weight: normal;
+        }
+
+        @font-face {
+            font-family: 'JetBrains Mono WOFF';
+            src: url('./webstatic/fonts/jetbrains-mono/JetBrainsMono-Bold.woff2');
+            font-weight: bold;
+        }
+
+        @font-face {
+            font-family: 'JetBrains Mono WOFF';
+            src: url('./webstatic/fonts/jetbrains-mono/JetBrainsMono-Light.woff2');
+            font-weight: lighter;
+        }
+
+    </style>
+    <style>
+        * {
+            text-rendering: geometricPrecision;
+            box-sizing: border-box;
+            hyphens: none;
+            font-variant-ligatures: none;
+        }
+
+        html,
+        body {
+            font-family: 'JetBrains Mono NL', 'JetBrains Mono WOFF', 'JetBrains Mono', -apple-system, 'Noto Sans Mono', 'Noto Sans', sans-serif, 'Noto Sans CJK SC';
+            font-size: 15px;
+            line-height: 1.6;
+            padding: 0px;
+            margin: 0px;
+        }
+
+        h1 {
+            font-size: 25px;
+        }
+
+        h2 {
+            font-size: 22px;
+        }
+
+        .part-inner {
+            max-width: 800px;
+            padding: 30px;
+            margin: 0px auto;
+        }
+
+        .sitemap-section {
+            line-height: 1.6;
+            border-bottom: 1px solid #DDD;
+            padding: 25px 0px;
+        }
+
+        .sitemap-section-links a {
+            color: #05D;
+            text-decoration: none;
+            display: inline-block;
+            padding: 5px 0px;
+            /* margin: 0px 20px 0px 0px; */
+            margin: 0px 0px 0px 0px;
+        }
+
+        .sitemap-section-links a:hover {
+            color: #000;
+        }
+
+        footer.global-part {
+            font-size: 13px;
+            color: #888;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="grand-container">
+        <header class="global-part">
+            <div class="part-inner" style="padding-top: 90px;">
+                <div style="padding: 0px 0px 50px;">
+                    <img src="./neruthes-forceCircle-unpadded.png" alt="Neruthes Avatar"
+                        style="display: block; height: 120px;">
+                </div>
+                <!-- <h1><span>Neruthes</span></h1> -->
+            </div>
+        </header>
+        <div class="global-part">
+            <div class="part-inner">
+                <div class="sitemap-section">
+                    <h2>404 Not Found</h2>
+                    <div class="sitemap-section-links">
+                        <p>There is nothing in this place.</p>
+                        <p>Go back to the <a style="display: inline;" href="/">homepage</a> quick, before you are lost in the mist...</p>
+                        <p>Or, probably, you are arriving here because some webpage used to exist here?</p>
+                        <p>If this is the case, you could try this link:</p>
+                        <script>
+                            const uripart = location.pathname + location.search + location.hash;
+                            document.write(`<p><a style="display: inline;" href="https://neruthes.github.io${uripart}">https://neruthes.github.io${uripart}</a></p>`);
+                        </script>
+                        <p>Hope it works...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="global-part">
+            <div class="part-inner" style="padding-bottom: 100px;">
+                Copyright &copy; 2012-2022 Neruthes. All rights reserved.
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

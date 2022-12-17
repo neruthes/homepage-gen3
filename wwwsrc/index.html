@@ -7,6 +7,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="./neruthes.png">
     <link rel="apple-touch-icon" href="./neruthes.png">
+    <!-- <script>
+        window.addEventListener('load', function () {
+            const t = Date.now();
+            if (t < (new Date('2024-12-31T00:00:00.000Z')).getTime()) {
+                if (location.pathname !== '/' && location.pathname !== '/index.html' && location.search.indexOf('nojump=1') === -1 || location.search.indexOf('previewjumper=1') !== -1) {
+                    // It is likely that this page is being served as a 404 page.
+                    // If this happens, usually, the visitor is hitting here because of the recent migration from homepage-gen2 to homepage-gen3
+                    // Therefore, I will need to redirect the visitor to another page.
+                    const uripart = location.pathname + location.search + location.hash;
+                    document.body.innerHTML = `<div style="padding: 30px; max-width: 800px; margin: 0 auto;">
+                        <h1>404 Not Found</h1>
+                        <p>There is nothing in this place.</p>
+                        <p>Go back to the <a href="/">homepage</a> quick, before you are lost in the mist...</p>
+                        <p>Or, probably, you are arriving here because some webpage used to exist here?</p>
+                        <p>If this is the case, you could try this link:</p>
+                        <p><a href="https://neruthes.github.io${uripart}">https://neruthes.github.io${uripart}</a></p>
+                        <p>Hope it works...</p>
+                    </div>`;
+                };
+            };
+        });
+    </script> -->
     <style>
         @font-face {
             font-family: 'JetBrains Mono WOFF';
@@ -89,7 +111,7 @@
     <div class="grand-container">
         <header class="global-part">
             <div class="part-inner" style="padding-top: 190px; padding-bottom: 100px;">
-                <div style="padding: 0 0 50px;">
+                <div style="padding: 0px 0px 50px;">
                     <img src="./neruthes-forceCircle-unpadded.png" alt="Neruthes Avatar"
                         style="display: block; height: 120px;">
                 </div>
