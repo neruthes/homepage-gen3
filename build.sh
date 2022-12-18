@@ -67,6 +67,10 @@ case $1 in
         rebuild_all_tex_files
         ;;
     3|wwwdist)
+        for html in wwwsrc/*.html; do
+            ### Last resort when I forget to update the CurrentYear pointer
+            sed -i "s|2012-2022 Neruthes. All rights reserved.|2012-$(date +%Y) Neruthes. All rights reserved.|" "$html"
+        done
         rsync -a --delete wwwsrc/ wwwdist/                      # Initialize
         rm -rf wwwdist/texassets/                               # Clear texassets in wwwdist
         rsync -a --delete .texassets/ wwwdist/texassets/        # Reload from latest texassets
