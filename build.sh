@@ -43,16 +43,19 @@ function make_indexhtml_for_dirs() {
     done
 }
 
-
+function die() {
+    echo "$1"
+    exit 1
+}
 
 
 
 
 if [[ ! -z $2 ]]; then
     for i in $*; do
-        bash build.sh $i
+        bash build.sh $i || die "[ERROR] Some problem happaned."
     done
-    exit
+    exit 0
 fi
 
 case $1 in
@@ -105,10 +108,11 @@ case $1 in
         ;;
     5|upload)
         shareDirToNasPublic -a
-        bash build.sh _rclone
-        S3_ARGS="--endpoint-url $S3_ENDPOINT --bucket oss"
-        for fn in wwwdist.tar wwwdist.zip fulltarball.tar; do
-            aws s3api put-object  --body pkgdist/$fn  --key files/neruthes-homepage-gen3/pkgdist/$fn  $S3_ARGS
+        # bash build.sh _rclone
+        # S3_ARGS="--endpoint-url $S3_ENDPOINT --bucket oss"
+        for fn in pkgdist/*; do
+            cfoss "$fn"
+            # aws s3api put-object  --body pkgdist/$fn  --key files/neruthes-homepage-gen3/pkgdist/$fn  $S3_ARGS
         done
         # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/files/neruthes-homepage-gen3/pkgdist/wwwdist.tar
         # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/files/neruthes-homepage-gen3/pkgdist/wwwdist.zip
