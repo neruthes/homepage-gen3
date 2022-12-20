@@ -84,15 +84,15 @@
 
     </style>
     <script>
-        // If the current URI has a prefix within the list, automatically redirect there without showing the 404 notice to the visitor
+        // If the current URL has a prefix within the list, automatically redirect there without showing the 404 notice to the visitor
         const autoRedirList = [
             '/RpHM',
             '/Base4096',
             '/jsu',
-            '/jsu',
+            '/tmp',
         ];
         autoRedirList.forEach(function (prefix) {
-            if (location.hostname === 'neruthes.xyz' || location.pathname.startsWith(prefix)) {
+            if (location.hostname === 'neruthes.xyz' && location.pathname.startsWith(prefix)) {
                 location.hostname = 'neruthes.github.io';
             };
         });

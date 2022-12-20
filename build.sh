@@ -112,9 +112,9 @@ case $1 in
         for fn in pkgdist/*; do
             cfoss "$fn"
         done
-        # https://oss-r2.neruthes.xyz/o/wwwdist.tar--00ef643fb4afb6610f3adbbb0ac4fc7c.tar
-        # https://oss-r2.neruthes.xyz/o/wwwdist.zip--b541ef4f9e09d35ed02d639dada83215.zip
-        # https://oss-r2.neruthes.xyz/o/fulltarball.tar--06e9cd96e2fe53f96483bc814e8398c4.tar
+        # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/o/wwwdist.tar--00ef643fb4afb6610f3adbbb0ac4fc7c.tar
+        # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/o/wwwdist.zip--b541ef4f9e09d35ed02d639dada83215.zip
+        # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/o/fulltarball.tar--06e9cd96e2fe53f96483bc814e8398c4.tar
         ;;
     _rclone)
         rclone sync -P -L  pkgdist  dropbox-main:devdistpub/homepage-gen3/pkgdist
@@ -149,7 +149,7 @@ case $1 in
             exit 1
         fi
         #---------------------------
-        WAIT_TIME=30
+        WAIT_TIME=40
         echo "[INFO] Wait ${WAIT_TIME}s before initiating cloud-deploy, allowing Cloudflare R2 to purge the old tarball..."
         SLEPT_TIME=0
         while [[ "$SLEPT_TIME" -lt "$WAIT_TIME" ]]; do
