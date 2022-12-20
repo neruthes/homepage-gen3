@@ -1,5 +1,6 @@
 /.texassets
 /_dist
+/.tmp
 /wwwdist
 /pkgdist
 /.testground
