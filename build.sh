@@ -109,14 +109,12 @@ case $1 in
     5|upload)
         shareDirToNasPublic -a
         # bash build.sh _rclone
-        # S3_ARGS="--endpoint-url $S3_ENDPOINT --bucket oss"
         for fn in pkgdist/*; do
             cfoss "$fn"
-            # aws s3api put-object  --body pkgdist/$fn  --key files/neruthes-homepage-gen3/pkgdist/$fn  $S3_ARGS
         done
-        # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/files/neruthes-homepage-gen3/pkgdist/wwwdist.tar
-        # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/files/neruthes-homepage-gen3/pkgdist/wwwdist.zip
-        # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/files/neruthes-homepage-gen3/pkgdist/fulltarball.tar
+        # https://oss-r2.neruthes.xyz/o/wwwdist.tar--00ef643fb4afb6610f3adbbb0ac4fc7c.tar
+        # https://oss-r2.neruthes.xyz/o/wwwdist.zip--b541ef4f9e09d35ed02d639dada83215.zip
+        # https://oss-r2.neruthes.xyz/o/fulltarball.tar--06e9cd96e2fe53f96483bc814e8398c4.tar
         ;;
     _rclone)
         rclone sync -P -L  pkgdist  dropbox-main:devdistpub/homepage-gen3/pkgdist
@@ -144,7 +142,6 @@ case $1 in
         ;;
     full|'')
         echo "[INFO] Staring a full build-deloy workflow..."
-        sleep 2
         bash build.sh  prepare latex_other _texassets wwwdist tarball upload
         if [[ "$?" != 0 ]]; then
             ### Uploading with cfoss is not successful
@@ -152,19 +149,22 @@ case $1 in
             exit 1
         fi
         #---------------------------
-        WAITTIME=30
-        echo "[INFO] Wait ${WAITTIME}s before initiating cloud-deploy, allowing Cloudflare R2 to purge the old tarball..."
+        WAIT_TIME=30
+        echo "[INFO] Wait ${WAIT_TIME}s before initiating cloud-deploy, allowing Cloudflare R2 to purge the old tarball..."
         SLEPT_TIME=0
-        while [[ $SLEPT_TIME -lt ${WAITTIME} ]]; do
-            sleep 1; SLEPT_TIME=$((SLEPT_TIME+1)) ; printf "                \r   Progress:   $SLEPT_TIME / ${WAITTIME}  ";
+        while [[ "$SLEPT_TIME" -lt "$WAIT_TIME" ]]; do
+            sleep 1; SLEPT_TIME=$((SLEPT_TIME+1)) ; printf "                \r   Progress:   $SLEPT_TIME / $WAIT_TIME  ";
         done
         printf '\n'
         #---------------------------
         bash build.sh deploy
+        echo "[INFO] And other matters..."
+        bash build.sh _rclone
         ;;
     *)
         echo "[ERROR] No rule to build '$1'. Stopping."
         echo "Acceptable rules:"
-            echo "latex_articles  latex_other  _texassets  wwwdist  tarball  upload  fulltarball  test  deploy"
+        echo "  prepare  latex_articles  latex_other  wwwdist  tarball  upload  fulltarball  test  deploy"
+        echo "  _texassets  _rclone"
         ;;
 esac
