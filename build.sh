@@ -45,7 +45,7 @@ function make_indexhtml_for_dirs() {
 
 function die() {
     echo "$1"
-    exit 1
+    exit $1
 }
 
 
@@ -55,7 +55,7 @@ if [[ ! -z $2 ]]; then
     for i in $*; do
         bash build.sh $i || die "[ERROR] Some problem happaned."
     done
-    exit 0
+    exit $?
 fi
 
 case $1 in
@@ -112,7 +112,7 @@ case $1 in
         shareDirToNasPublic -a
         # bash build.sh _rclone
         for fn in pkgdist/*; do
-            cfoss "$fn"
+            cfoss "$fn" || die "[ERROR] Failed to upload"
         done
         # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/o/wwwdist.tar--00ef643fb4afb6610f3adbbb0ac4fc7c.tar
         # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/o/wwwdist.zip--b541ef4f9e09d35ed02d639dada83215.zip
@@ -137,19 +137,14 @@ case $1 in
         fi
         ;;
     99|deploy)
-        pushgithubdistweb --now
+        pushgithubdistweb
         git add .
         git commit -m "Automatic deploy command: $(TZ=UTC date -Is | cut -c1-19 | sed 's/T/ /')"
         git push
         ;;
     full|'')
         echo "[INFO] Staring a full build-deloy workflow..."
-        bash build.sh  prepare latex_other _texassets wwwdist tarball upload
-        if [[ "$?" != 0 ]]; then
-            ### Uploading with cfoss is not successful
-            echo "[ERROR] OSS upload failed. Cannot proceed."
-            exit 1
-        fi
+        bash build.sh  prepare latex_other _texassets wwwdist tarball upload || die "[ERROR] OSS upload failed. Cannot proceed."
         #---------------------------
         WAIT_TIME=40
         echo "[INFO] Wait ${WAIT_TIME}s before initiating cloud-deploy, allowing Cloudflare R2 to purge the old tarball..."

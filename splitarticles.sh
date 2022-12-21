@@ -3,8 +3,11 @@
 if [[ -z $VOLID ]]; then
     VOLID=002
 fi
-if [[ -z $SHIFT_BY ]]; then
-    SHIFT_BY=1  # Nominal page1 (in TOC senses) is at page2 (in technical senses)
+if [[ -z $SKIP_LEAD ]]; then
+    SKIP_LEAD=1  # Skip first pages
+fi
+if [[ -z $SKIP_TAIL ]]; then
+    SKIP_TAIL=1  # Truncate last pages
 fi
 
 PDF_FILE_PATH="_dist/articles/Neruthes_articles_vol$VOLID.pdf"
@@ -21,11 +24,11 @@ function parseline() {
     article_page_start="$(cut -d'}' -f4 <<< "$line1" | cut -c2-)"
     echo "article_date=$article_date"
     echo "article_title=$article_title"
-    echo "article_page_start=$((article_page_start+SHIFT_BY))"
+    echo "article_page_start=$((article_page_start+SKIP_LEAD))"
     # echo "ln=$ln  total_lines=$(wc -l $GREP_MATCH | cut -d' ' -f1)"
     if [[ $ln == $MATCHED_LINES ]]; then
         ### The current line is the last line
-        echo "article_page_end=$((FINAL_PAGE+SHIFT_BY))"
+        echo "article_page_end=$((FINAL_PAGE+SKIP_LEAD-SKIP_TAIL))"      ### Remove the trailing page
         return 0
     fi
     ### Usually...

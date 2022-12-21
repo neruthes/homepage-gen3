@@ -28,9 +28,9 @@
 \usepackage{fancyhdr}
 \usepackage{graphicx,eso-pic}
 
-\setmainfont{Latin Modern Roman}
-\setromanfont{Latin Modern Roman}
-\setsansfont{Inter}
+\setmainfont[Numbers=Lining]{Calluna}
+\setromanfont[Numbers=Lining]{Calluna}
+\setsansfont[Numbers=Lining]{Myriad Pro}
 \setmonofont{JetBrains Mono NL}
 \setCJKmainfont{Noto Serif CJK SC}
 \setCJKromanfont{Noto Serif CJK SC}
@@ -60,7 +60,7 @@
     \lhead{}
     \chead{}
     \rhead{}
-    \lfoot{\footnotesize\sffamily Neruthes Articles Collection~~\S~~Volume 2}
+    \lfoot{\small\rmfamily Neruthes Articles Collection~~\S~~Volume 2}
     \cfoot{}
     \rfoot{\small\ttfamily \thepage}
 }
@@ -93,7 +93,7 @@
 \settowidth{\cftchapnumwidth}{\cftchapfont 2222-22-22==}
 \renewcommand{\cftchappagefont}{\ttfamily\small}
 \setlength{\cftbeforechapskip}{1pt}
-\renewcommand{\contentsname}{\LARGE\sffamily\mdseries Contents}
+\renewcommand{\contentsname}{\LARGE\rmfamily\mdseries Contents}
 
 \newcommand{\iarticle}[2]{
     % argv: date, title
@@ -101,7 +101,7 @@
     \stepcounter{chapter}
     \phantomsection
     {\small\ttfamily#1}\par\vskip 13pt
-    {\raggedright\LARGE\sffamily\mdseries#2}\par\vskip 30pt
+    {\raggedright\LARGE\rmfamily\mdseries#2}\par\vskip 30pt
     \addcontentsline{toc}{chapter}{\numberline{#1}#2}
 }
 
@@ -140,6 +140,7 @@
 
 
 \rmfamily
+\sffamily
 \input{.data/articles/list/list-002.TEX}
 
 
@@ -154,8 +155,8 @@
 Copyright \copyright{} 2022-2022 Neruthes. All rights reserved.\par
 This collection of articles is part of the blog of Neruthes.\par
 This document may be found online at these locations:\\
-\href{https://neruthes.xyz/articles/Neruthes_articles_vol002.pdf}{neruthes.xyz} /
-\href{https://neruthes.pages.dev/articles/Neruthes_articles_vol002.pdf}{neruthes.pages.dev} /
+\href{https://neruthes.xyz/articles/Neruthes_articles_vol002.pdf}{neruthes.xyz}~~/~~%
+\href{https://neruthes.pages.dev/articles/Neruthes_articles_vol002.pdf}{neruthes.pages.dev}~~/~~%
 \href{https://neruthes.vercel.app/articles/Neruthes_articles_vol002.pdf}{neruthes.vercel.app}
 
 
