@@ -60,6 +60,7 @@ fi
 
 case $1 in
     0|prepare)
+        bash .data/articles/build.sh                            # Rebuild articles list
         bash build.sh _texassets                                # Import texassets
         ;;
     1|latex_articles)
@@ -70,16 +71,17 @@ case $1 in
         rebuild_all_tex_files
         ;;
     3|wwwdist)
+        bash splitarticles.sh                                            # Split blog articles
         for html in wwwsrc/*.html; do
             ### Last resort when I forget to update the CurrentYear pointer
             sed -i "s|2012-2022 Neruthes. All rights reserved.|2012-$(date +%Y) Neruthes. All rights reserved.|" "$html"
         done
-        rsync -a --delete wwwsrc/ wwwdist/                      # Initialize
-        rm -rf wwwdist/texassets/                               # Clear texassets in wwwdist
-        rsync -a --delete .texassets/ wwwdist/texassets/        # Reload from latest texassets
-        rsync -a _dist/ wwwdist/ --exclude tex-tmp              # Copy PDF into wwwdist
-        make_indexhtml_for_dirs                                 # Generate 'index.html' for all subdirs
-        rsync -av wwwsrc/ wwwdist/                              # Reload necessary 'index.html' files
+        rsync -a --delete wwwsrc/ wwwdist/                          # Initialize
+        rm -rf wwwdist/texassets/                                   # Clear texassets in wwwdist
+        rsync -a --delete .texassets/ wwwdist/texassets/            # Reload from latest texassets
+        rsync -a _dist/ wwwdist/ --exclude tex-tmp --exclude .tmp   # Copy PDF into wwwdist
+        make_indexhtml_for_dirs                                     # Generate 'index.html' for all subdirs
+        rsync -av wwwsrc/ wwwdist/                                  # Reload necessary 'index.html' files
         ;;
     4|tarball)
         ### Build tarball
