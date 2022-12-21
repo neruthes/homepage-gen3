@@ -4,7 +4,8 @@ Active deployment: [https://neruthes.xyz/](https://neruthes.xyz/).
 
 Mirrors:
 
-- https://neruthes-gen3.vercel.app/
+- https://neruthes.pages.dev/
+- https://neruthes.vercel.app/
 - https://homepage-gen3.neruthes.xyz/
 
 ## Copyright
