@@ -7,7 +7,7 @@
 
 \usepackage{titlesec}
 
-\usepackage{paralist,enumitem,varwidth}
+\usepackage{lipsum,paralist,enumitem}
 \setdefaultleftmargin{2em}{2em}{1em}{1em}{1em}{1em}
 
 \usepackage{datetime2}
@@ -18,8 +18,8 @@
 }
 
 
-
-\usepackage[PunctStyle=plain,RubberPunctSkip=false,CJKglue=\hskip 0pt,CJKecglue=\hskip 4pt plus 20pt]{xeCJK}
+\newcommand{\myvphantom}[0]{\vphantom{QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890ςρθδφγηξλζχψβμ汉字ひらがなカタカナ\"A}}
+\usepackage[PunctStyle=plain,RubberPunctSkip=false,CJKglue=\myvphantom\hskip 0pt,CJKecglue=\myvphantom\hskip 4pt plus 20pt]{xeCJK}
 \usepackage{xeCJKfntef}
 \XeTeXlinebreaklocale "zh"
 \XeTeXlinebreakskip = 0pt
@@ -87,13 +87,24 @@
 \author{Volume 2}
 \date{Revision \today}
 
-% Working with tocloft
 
-\renewcommand{\cftchapfont}{\ttfamily\small}
+\newcommand{\chaptertitlefont}{\fontspec[Numbers=Lining,Ligatures=TeX]{Libertinus Serif}\LARGE\mdseries}
+
+
+% Working with tocloft
+\makeatletter
+\renewcommand{\@pnumwidth}{3em}
+\renewcommand{\@tocrmarg}{17em}
+\makeatother
+\renewcommand{\cftchapfont}{\ttfamily\small\raggedright}
 \settowidth{\cftchapnumwidth}{\cftchapfont 2222-22-22==}
 \renewcommand{\cftchappagefont}{\ttfamily\small}
 \setlength{\cftbeforechapskip}{1pt}
-\renewcommand{\contentsname}{\LARGE\sffamily\mdseries Contents}
+\renewcommand{\contentsname}{\chaptertitlefont\myvphantom Contents}
+
+
+
+
 
 \newcommand{\iarticle}[2]{
     % argv: date, title
@@ -101,7 +112,7 @@
     \stepcounter{chapter}
     \phantomsection
     {\small\ttfamily#1}\par\vskip 13pt
-    {\raggedright\LARGE\sffamily\mdseries#2}\par\vskip 30pt
+    \parbox{0.8\linewidth}{\raggedright\chaptertitlefont\myvphantom#2}\par\vskip 30pt
     \addcontentsline{toc}{chapter}{\numberline{#1}#2}
 }
 

@@ -16,7 +16,7 @@ function rebuild_all_tex_files() {
         else
             if [[ $(date +%s -r $TEX_FILE_PATH) -gt $(date +%s -r $PDF_FILE_PATH) ]]; then
                 echo "Must rebuild this file!"
-                ntex "$TEX_FILE_PATH"
+                ntex "$TEX_FILE_PATH" --2
             fi
         fi
     done
@@ -59,6 +59,26 @@ if [[ ! -z $2 ]]; then
 fi
 
 case $1 in
+    _dist/articles-split/vol*/p*.pdf)
+        echo "[INFO] Converting '$1' to image..."
+        OUTFN="$(cut -d/ -f3-4 --output-delimiter=- <<< "$1")"
+        rm ".tmp/split-img/$OUTFN-*.png" 2>/dev/null
+        pdftoppm  "$1"  ".tmp/split-img/$OUTFN"  -png  -r 300  -gray
+        du -h "$(realpath ".tmp/split-img/$OUTFN-1.png")"
+        ;;
+    _rclone)
+        rclone sync -P -L  pkgdist  dropbox-main:devdistpub/homepage-gen3/pkgdist
+        ;;
+    _texassets)
+        assetsdir=".texassets"
+        ### Directory: video-cover
+        rsync -av --delete  --exclude '/*/.tbcache' --include '/*/*.jpg' --exclude '/*/*.*' \
+            $HOME/PIC/NeruthesVideoCovers/ \
+            $assetsdir/video-cover/
+        ### End
+        echo "Size of assetsdir:"
+        du -xhd1 $assetsdir
+        ;;
     0|prepare)
         bash .data/articles/build.sh                            # Rebuild articles list
         bash build.sh _texassets                                # Import texassets
@@ -118,19 +138,6 @@ case $1 in
         # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/o/wwwdist.zip--b541ef4f9e09d35ed02d639dada83215.zip
         # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/o/fulltarball.tar--06e9cd96e2fe53f96483bc814e8398c4.tar
         ;;
-    _rclone)
-        rclone sync -P -L  pkgdist  dropbox-main:devdistpub/homepage-gen3/pkgdist
-        ;;
-    _texassets)
-        assetsdir=".texassets"
-        ### Directory: video-cover
-        rsync -av --delete  --exclude '/*/.tbcache' --include '/*/*.jpg' --exclude '/*/*.*' \
-            $HOME/PIC/NeruthesVideoCovers/ \
-            $assetsdir/video-cover/
-        ### End
-        echo "Size of assetsdir:"
-        du -xhd1 $assetsdir
-        ;;
     90|test)
         if [[ $USER == neruthes ]]; then
             bash cloudbuild.sh
@@ -164,7 +171,6 @@ case $1 in
     *)
         echo "[ERROR] No rule to build '$1'. Stopping."
         echo "Acceptable rules:"
-        echo "  prepare  latex_articles  latex_other  wwwdist  tarball  upload  fulltarball  test  deploy"
-        echo "  _texassets  _rclone"
+        echo "  prepare  latex_articles  latex_other  wwwdist  tarball  upload  fulltarball  test  deploy  afterdeploy"
         ;;
 esac
