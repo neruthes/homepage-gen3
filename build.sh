@@ -142,6 +142,9 @@ case $1 in
         git commit -m "Automatic deploy command: $(TZ=UTC date -Is | cut -c1-19 | sed 's/T/ /')"
         git push
         ;;
+    999|afterdeploy)
+        bash build.sh _rclone
+        ;;
     full|'')
         echo "[INFO] Staring a full build-deloy workflow..."
         bash build.sh  prepare latex_other _texassets wwwdist tarball upload || die "[ERROR] OSS upload failed. Cannot proceed."
@@ -156,7 +159,7 @@ case $1 in
         #---------------------------
         bash build.sh deploy
         echo "[INFO] And other matters..."
-        bash build.sh _rclone
+        echo "   $ bash build.sh afterdeploy"
         ;;
     *)
         echo "[ERROR] No rule to build '$1'. Stopping."
