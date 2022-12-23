@@ -102,6 +102,7 @@ case $1 in
         rsync -a _dist/ wwwdist/ --exclude tex-tmp --exclude .tmp   # Copy PDF into wwwdist
         make_indexhtml_for_dirs                                     # Generate 'index.html' for all subdirs
         rsync -av wwwsrc/ wwwdist/                                  # Reload necessary 'index.html' files
+        sed "s|BUILDDATETIME|$(TZ=UTC date +%Y-%m-%d)|" wwwsrc/index.html > wwwdist/index.html
         ;;
     4|tarball)
         ### Build tarball
