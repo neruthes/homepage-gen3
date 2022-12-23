@@ -6,7 +6,12 @@ Mirrors:
 
 - https://neruthes.pages.dev/
 - https://neruthes.vercel.app/
-- https://homepage-gen3.neruthes.xyz/
+
+Mirrors for homepage-gen2:
+
+- https://neruthes.github.io/
+- https://neruthes-gen2.vercel.app/
+- https://homepage-gen2.neruthes.xyz/
 
 ## Copyright
 
