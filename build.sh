@@ -152,6 +152,8 @@ case $1 in
         zip -9vr pkgdist/wwwdist wwwdist
         rm /tmp/fulltarball.tar 2>/dev/null
         tar -cvf /tmp/fulltarball.tar \
+            --exclude='.tmp' \
+            --exclude='_dist/.tmp' \
             --exclude='.cloudbuildroot' \
             --exclude='.testground' \
             --exclude='pkgdist' \
