@@ -5,24 +5,31 @@
 \newcommand{\sgitem}[2]{
     % argv: name, url
     \noindent%
-    % \begin{tcolorbox}[sharp corners,boxrule=0.4pt,colframe=black,colback=white,top=3mm,bottom=3mm,left=3mm,right=3mm]
-        % \parskip=5pt
-        \parbox[t][15mm][t]{\linewidth}{%
-            \rmfamily\Large\mdseries\myvphantom#1\par
-            \ttfamily\small\mdseries\myvphantom\href{#2}{#2}\par
-        }\par
-        \hrule\vskip 6mm
-    % \end{tcolorbox}
+    \parbox[t][16mm][t]{\linewidth}{%
+    \parskip=3pt
+        \rmfamily\Large\mdseries\myvphantom#1\par
+        \ttfamily\small\mdseries\myvphantom\href{#2}{#2}\par
+    }\par
+}
+\newcommand{\sgitemalt}[2]{
+    % argv: name, url
+    \item \textrm{\large#1}\nopagebreak\\\nopagebreak\texttt{\small\href{#2}{#2}}
 }
 
 \begin{document}
 \doctitle{Social Graph}{socialgraph}
 
-\sgitem{Catten Linger}{https://cattenlinger.github.io/}
-\sgitem{Hackroid}{https://hackroid.com/}
-\sgitem{James Swineson}{https://swineson.me/}
+\begin{itemize}
+    \sgitemalt{Catten Linger}{https://cattenlinger.github.io/}
+    \sgitemalt{Hackroid}{https://hackroid.com/}
+    \sgitemalt{James Swineson}{https://swineson.me/}
+\end{itemize}
 
-\vfill\small\rmfamily
+% \sgitem{Catten Linger}{https://cattenlinger.github.io/}
+% \sgitem{Hackroid}{https://hackroid.com/}
+% \sgitem{James Swineson}{https://swineson.me/}
+
+\vskip 20mm\vfill\small\rmfamily
 All names are sorted in Unicode dictionary order.
 
 
