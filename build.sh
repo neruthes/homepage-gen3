@@ -43,9 +43,38 @@ function make_indexhtml_for_dirs() {
     done
 }
 
+function __sitemap_urlitem() {
+    echo "
+<url>
+    <loc>https://neruthes.xyz/$1</loc>
+    <lastmod>$2</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>$3</priority>
+</url>" >> sitemap.xml
+}
+function generate_sitemap_xml() {
+    cd wwwdist
+    ### Start
+    DATENOW="$(date -Is)"
+    echo '<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">' > sitemap.xml
+    ### Middle
+    __sitemap_urlitem "" "$DATENOW" "1"
+    for i in articles/ articles/*.pdf articles-split/ lists/; do
+        __sitemap_urlitem "$i" "$(date -r $i -Is)" "0.8"
+    done
+    for fpath in articles-split/*/*.pdf; do
+        __sitemap_urlitem "$fpath" "$(date -r $fpath -Is)" "0.6"
+    done
+    ### End
+    echo '</urlset>"' >> sitemap.xml
+}
+
 function die() {
     echo "$1"
-    exit $1
+    exit 1
 }
 
 
@@ -103,6 +132,7 @@ case $1 in
         make_indexhtml_for_dirs                                     # Generate 'index.html' for all subdirs
         rsync -av wwwsrc/ wwwdist/                                  # Reload necessary 'index.html' files
         sed "s|BUILDDATETIME|$(TZ=UTC date +%Y-%m-%d)|" wwwsrc/index.html > wwwdist/index.html
+        generate_sitemap_xml
         ;;
     4|tarball)
         ### Build tarball

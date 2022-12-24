@@ -1,14 +1,18 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage[a4paper,textwidth=42em,tmargin=24mm,bmargin=33mm]{geometry}
 \usepackage{calc}
-\usepackage{amsmath,amssymb,xltxtra,fontspec,xunicode,datetime2,xcolor,tabu,graphicx,paralist,enumitem}
+\usepackage{amsmath,amssymb,xltxtra,fontspec,xunicode,datetime2,xcolor,tabu,graphicx,paralist,enumitem,tcolorbox}
 \usepackage[hidelinks]{hyperref}
-\usepackage[PunctStyle=plain,RubberPunctSkip=false,CJKglue=\hskip 0pt,CJKecglue=\hskip 4pt plus 20pt]{xeCJK}
+
+\usepackage[PunctStyle=plain,RubberPunctSkip=false,CJKglue=\hskip 0pt,CJKecglue=\hskip 0.22em plus 200pt]{xeCJK}
+% \newcommand{\myvphantom}[0]{\vphantom{QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890ςρθδφγηξλζχψβμ汉字ひらがなカタカナ\"A}}
+\newcommand{\myvphantom}[0]{\vphantom{QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890ςρθδφγηξλζχψβμ\"A}}
+\xeCJKsetup{CJKglue=\myvphantom\hskip 0pt,CJKecglue=\myvphantom\hskip 0.22em plus 200pt}
 \usepackage{xeCJKfntef}
 
-\setmainfont{Latin Modern Roman}
-\setromanfont{Latin Modern Roman}
-\setsansfont{Inter}
+\setmainfont[Numbers=Lining]{Source Serif Pro}
+\setromanfont[Numbers=Lining]{Source Serif Pro}
+\setsansfont[Numbers=Lining]{Inter}
 \setmonofont{JetBrains Mono NL}
 \setCJKmainfont{Noto Serif CJK SC}
 \setCJKromanfont{Noto Serif CJK SC}
@@ -33,7 +37,7 @@
         \small
         Neruthes Website~~\S~~List of\par\vskip 5pt
         \huge
-        #1\par\vskip 12pt
+        {\fontspec{Libertinus Serif}#1}\par\vskip 12pt
         \small
         This list may be found online at these locations:\\
         \href{https://neruthes.xyz/items/#2.pdf}{neruthes.xyz}~~/~~%

@@ -86,10 +86,14 @@
     <script>
         // If the current URL has a prefix within the list, automatically redirect there without showing the 404 notice to the visitor
         const autoRedirList = [
+            '/kotomatsu',
+            '/zeit',
             '/RpHM',
             '/Base4096',
             '/jsu',
             '/tmp',
+            '/poesie-du-passe',
+            '/crypt-utils',
         ];
         autoRedirList.forEach(function (prefix) {
             if (location.hostname === 'neruthes.xyz' && location.pathname.startsWith(prefix)) {
