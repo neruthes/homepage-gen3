@@ -11,7 +11,7 @@ if [[ -z $SKIP_TAIL ]]; then
 fi
 
 PDF_FILE_PATH="_dist/articles/Neruthes_articles_vol$VOLID.pdf"
-TOC_PATH="./_dist/tex-tmp/Neruthes_articles_vol$VOLID.toc"
+TOC_PATH=".tmp/Neruthes_articles_vol$VOLID.toc"
 
 PDF_TOTAL_PAGES="$(qpdf --show-npages "$PDF_FILE_PATH")"
 FINAL_PAGE="$((PDF_TOTAL_PAGES-1))"

@@ -167,9 +167,9 @@ case $1 in
         for fn in pkgdist/*; do
             cfoss "$fn" || die "[ERROR] Failed to upload"
         done
-        # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/o/wwwdist.tar--00ef643fb4afb6610f3adbbb0ac4fc7c.tar
-        # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/o/wwwdist.zip--b541ef4f9e09d35ed02d639dada83215.zip
-        # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/o/fulltarball.tar--06e9cd96e2fe53f96483bc814e8398c4.tar
+        # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/keep/homepage-gen3/wwwdist.tar--00ef643fb4afb6610f3adbbb0ac4fc7c.tar
+        # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/keep/homepage-gen3/wwwdist.zip--b541ef4f9e09d35ed02d639dada83215.zip
+        # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/keep/homepage-gen3/fulltarball.tar--06e9cd96e2fe53f96483bc814e8398c4.tar
         ;;
     90|test)
         if [[ $USER == neruthes ]]; then
