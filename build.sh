@@ -163,7 +163,6 @@ case $1 in
         ;;
     5|upload)
         shareDirToNasPublic -a
-        # bash build.sh _rclone
         for fn in pkgdist/*; do
             cfoss "$fn" || die "[ERROR] Failed to upload"
         done
