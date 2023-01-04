@@ -176,6 +176,7 @@ case $1 in
         fi
         ;;
     99|deploy)
+        TZ=UTC date -Is > .deploydatemark
         pushgithubdistweb
         git add .
         git commit -m "Automatic deploy command: $(TZ=UTC date -Is | cut -c1-19 | sed 's/T/ /')"
