@@ -88,6 +88,12 @@ if [[ ! -z $2 ]]; then
 fi
 
 case $1 in
+    tag)
+        tag_suffix="$(git tag | grep $(date +%Y%m) | wc -l)"
+        tagname="v$(date +%Y%m).$tag_suffix"
+        echo git tag $tagname
+        echo git push origin $tagname
+        ;;
     _dist/articles-split/vol*/p*.pdf)
         echo "[INFO] Converting '$1' to image..."
         OUTFN="$(cut -d/ -f3-4 --output-delimiter=- <<< "$1")"
