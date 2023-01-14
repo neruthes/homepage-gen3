@@ -1,0 +1,133 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[a4paper,textwidth=42em,tmargin=15mm,bmargin=15mm]{geometry}
+\usepackage{calc}
+\usepackage{amsmath,amssymb,xltxtra,fontspec,xunicode}
+
+
+\usepackage{xeCJK,xeCJKfntef}
+\newcommand{\myvphantom}[0]{\vphantom{QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890ςρθδφγηξλζχψβμ\"A}}
+\xeCJKsetup{PunctStyle=plain,RubberPunctSkip=false,CJKglue=\myvphantom\hskip 0pt,CJKecglue=\myvphantom\hskip 0.22em plus 200pt}
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt
+
+% =========================================
+\usepackage{paralist}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{fontawesome5}
+\usepackage{hyphenat}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+	colorlinks=false,
+	pdfpagemode=FullScreen,
+    pdftitle={Neruthes - Resume}
+}
+\setmainfont{NewComputerModern}
+\setromanfont{NewComputerModern}
+\setsansfont{Seravek Medium}
+\setmonofont{JetBrains Mono}
+\setCJKmainfont{Noto Sans CJK SC}
+\setCJKromanfont{Noto Sans CJK SC}
+\setCJKsansfont{Noto Sans CJK SC Medium}
+\setCJKmonofont{Noto Sans CJK SC}
+\title{Neruthes - Resume}
+\author{Neruthes}
+\date{\today}
+% =========================================
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\frenchspacing
+
+
+\setdefaultleftmargin{1.5em}{1em}{1em}{1em}{1em}{1em}
+
+\graphicspath{{./}}
+
+
+\pagestyle{empty}
+
+% ===========================
+% HEADER
+% ===========================
+\sffamily\mdseries
+
+
+% ===========================
+% COMMANDS
+% ===========================
+\definecolor{mygray}{gray}{0.4}
+
+\newcommand{\makeinfosection}{
+	\begin{minipage}[b][54mm][t]{22em}
+        \leavevmode\vskip 3mm
+		{\Huge\fontspec{Realtime Rounded}\bfseries NERUTHES}
+
+		\vskip 20pt
+		\ttfamily\small
+		\baselineskip=18pt
+		\parbox[t]{8mm}{\myvphantom\faIcon{globe-asia}}       \fontspec{JetBrains Mono NL Medium}\myvphantom\href{https://neruthes.xyz}{neruthes.xyz}\par
+		\parbox[t]{8mm}{\myvphantom\faIcon{at}}               \fontspec{JetBrains Mono NL Medium}\myvphantom\href{mailto:i@neruthes.xyz}{i@neruthes.xyz}\par
+		\parbox[t]{8mm}{\myvphantom\faIcon{github}}           \fontspec{JetBrains Mono NL Medium}\myvphantom\href{https://github.com/neruthes}{github.com/neruthes}\par
+		\parbox[t]{8mm}{\myvphantom\faIcon{dribbble}}         \fontspec{JetBrains Mono NL Medium}\myvphantom\href{https://dribbble.com/neruthes}{dribbble.com/neruthes}\par
+	\end{minipage}\hfill%
+	\begin{minipage}[b][54mm][t]{30mm}
+		\hfill\includegraphics[width=26mm]{/home/neruthes/DEV/homepage-gen3/wwwsrc/neruthes-forceCircle-unpadded.png} \\
+	\end{minipage}
+}
+
+
+\newcommand{\mysection}[1]{
+	% \vskip 20pt
+	\parbox{\linewidth}{
+		{\fontspec[LetterSpace=0.5]{Realtime Rounded Semibold}\Large\mdseries{\myvphantom#1}}
+	}\par
+	\rule{\linewidth}{1.3pt}
+}
+\newcommand{\subsecexp}[5]{
+	% 1=title  2=company  3=start  4=end  5=text
+	\vskip 20pt
+	\parbox{\linewidth}{
+		\myspan{#3 - #4}\par\vskip 4pt
+		\mytitle{#1} \hfill \mycompany{#2}\par
+		\vskip 6pt
+		\hrule
+		\mydesctext{\myvphantom#5}
+	}\par
+}
+
+\newcommand{\subsecproj}[3]{
+	% 1=role  2=name  3=intro
+	\vskip 20pt
+	\begin{minipage}{\linewidth}
+		\mytitle{#2}\par\vskip 2pt
+		{\scshape\fontspec{Seravek}\CJKfontspec{Noto Sans CJK SC}\normalsize\mdseries#1}\par\vskip 7pt
+		\mydesctext{\small#3}
+	\end{minipage}\par
+}
+
+
+
+\newcommand{\ifontmycompany}[0]{\mdseries\fontspec{Seravek}\CJKfontspec{Noto Sans CJK SC Medium}}
+
+
+
+\newcommand{\myref}[1]{
+	\vskip 5pt
+	{\fontspec{Seravek}\small\mdseries\itshape\textcolor{mygray}{\myvphantom#1}}
+}
+\newcommand{\mytitle}[1]{
+	{\large\sffamily\CJKfontspec{Noto Sans CJK SC Bold}{\myvphantom#1}}
+}
+\newcommand{\mycompany}[1]{
+	{\large\sffamily\ifontmycompany\myvphantom#1}
+}
+\newcommand{\myspan}[1]{
+	\parbox{\linewidth}{
+		\fontspec{JetBrains Mono NL}\bfseries\small
+		\textcolor{black}{\myvphantom#1}
+	}
+}
+\newcommand{\mydesctext}[1]{
+	\parbox{\linewidth}{\rmfamily\normalsize\mdseries\myvphantom#1}}\par

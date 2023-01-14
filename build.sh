@@ -26,20 +26,21 @@ function make_indexhtml_for_dirs() {
     DIRSLIST="$(find wwwdist -type d)"
     for DIR in $DIRSLIST; do
         RAWDIR="${DIR:8}"
-        echo "[INFO] Generating 'index.html' for directory '$RAWDIR'..."
-        # mkdir -p $DIR
         INDEXFILE="$DIR/index.html"
-        sed "s:HTMLTITLE:Neruthes | ${RAWDIR^^}:" .src/dirindex.head.html \
-            | sed "s|RAWDIRNAME|$RAWDIR|"  > $INDEXFILE
-        for ITEM in $(ls $DIR | grep -v 'index.html' | sort); do
-            if [[ -d $DIR/$ITEM ]]; then
-                ITEM_SUFFIX="/"
-            else
-                ITEM_SUFFIX=""
-            fi
-            echo "<a class='dirindexlistanchor' href='./$ITEM$ITEM_SUFFIX'>$ITEM$ITEM_SUFFIX</a>" >> $INDEXFILE
-        done
-        cat .src/dirindex.tail.html >> $INDEXFILE
+        if [[ ! -e $INDEXFILE ]]; then
+            echo "[INFO] Generating 'index.html' for directory '$RAWDIR'..."
+            sed "s:HTMLTITLE:Neruthes | ${RAWDIR}:" .src/dirindex.head.html \
+                | sed "s|RAWDIRNAME|$RAWDIR|"  > $INDEXFILE
+            for ITEM in $(ls $DIR | grep -v 'index.html' | sort); do
+                if [[ -d $DIR/$ITEM ]]; then
+                    ITEM_SUFFIX="/"
+                else
+                    ITEM_SUFFIX=""
+                fi
+                echo "<a class='dirindexlistanchor' href='./$ITEM$ITEM_SUFFIX'>$ITEM$ITEM_SUFFIX</a>" >> $INDEXFILE
+            done
+            cat .src/dirindex.tail.html >> $INDEXFILE
+        fi
     done
 }
 
@@ -73,7 +74,7 @@ xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitem
 }
 
 function die() {
-    echo "$1"
+    echo "$1" >&2
     exit 1
 }
 
@@ -91,8 +92,10 @@ case $1 in
     tag)
         tag_suffix="$(git tag | grep $(date +%Y%m) | wc -l)"
         tagname="v$(date +%Y%m).$tag_suffix"
-        echo git tag $tagname
-        echo git push origin $tagname
+        echo "COMMAND:  git tag $tagname && git push origin $tagname"
+        echo "URL:      https://github.com/neruthes/hompage-gen3/releases/new"
+        echo "MESSAGE:  Snapshot $tagname"
+        realpath pkgdist/*
         ;;
     _dist/articles-split/vol*/p*.pdf)
         echo "[INFO] Converting '$1' to image..."
@@ -135,8 +138,7 @@ case $1 in
         rm -rf wwwdist/texassets/                                   # Clear texassets in wwwdist
         rsync -a --delete .texassets/ wwwdist/texassets/            # Reload from latest texassets
         rsync -a _dist/ wwwdist/ --exclude tex-tmp --exclude .tmp   # Copy PDF into wwwdist
-        make_indexhtml_for_dirs                                     # Generate 'index.html' for all subdirs
-        rsync -av wwwsrc/ wwwdist/                                  # Reload necessary 'index.html' files
+        make_indexhtml_for_dirs                                     # Create 'index.html' for dirs which do not already have one
         sed "s|BUILDDATETIME|$(TZ=UTC date +%Y-%m-%d)|" wwwsrc/index.html > wwwdist/index.html
         generate_sitemap_xml
         ;;
@@ -209,7 +211,5 @@ case $1 in
         ;;
     *)
         echo "[ERROR] No rule to build '$1'. Stopping."
-        echo "Acceptable rules:"
-        echo "  prepare  latex_articles  latex_other  wwwdist  tarball  upload  fulltarball  test  deploy  afterdeploy"
         ;;
 esac
