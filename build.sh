@@ -45,6 +45,7 @@ function make_indexhtml_for_dirs() {
 }
 
 function __sitemap_urlitem() {
+    ### argv: path, date, priority
     echo "
 <url>
     <loc>https://neruthes.xyz/$1</loc>
@@ -70,7 +71,7 @@ xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitem
         __sitemap_urlitem "$fpath" "$(date -r $fpath -Is)" "0.6"
     done
     ### End
-    echo '</urlset>"' >> sitemap.xml
+    echo '</urlset>' >> sitemap.xml
 }
 
 function die() {
@@ -139,7 +140,7 @@ case $1 in
         rsync -a --delete .texassets/ wwwdist/texassets/            # Reload from latest texassets
         rsync -a _dist/ wwwdist/ --exclude tex-tmp --exclude .tmp   # Copy PDF into wwwdist
         make_indexhtml_for_dirs                                     # Create 'index.html' for dirs which do not already have one
-        sed "s|BUILDDATETIME|$(TZ=UTC date +%Y-%m-%d)|" wwwsrc/index.html > wwwdist/index.html
+        sed "s|BUILDDATETIME|$(TZ=UTC date +%F)|" wwwsrc/index.html > wwwdist/index.html
         generate_sitemap_xml
         ;;
     4|tarball)

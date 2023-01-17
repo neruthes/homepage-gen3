@@ -91,7 +91,7 @@
 
         footer.global-part {
             font-size: 13px;
-            color: #888;
+            color: #808080;
         }
 
     </style>
@@ -162,14 +162,33 @@
                         <a href="./texassets/">/texassets</a>&nbsp;&nbsp;
                     </div>
                 </div>
-                <div class="sitemap-section">
+
+                <style>
+                    [data-section-id="projects"] aside {
+                        font-size: 13px;
+                        font-weight: normal;
+                        color: #808080;
+                        padding: 0 0 12px;
+                    }
+
+                    [data-section-id="projects"] aside:last-child {
+                        padding: 0;
+                    }
+
+                </style>
+                <div class="sitemap-section" data-section-id="projects">
                     <h2>Projects</h2>
                     <div class="sitemap-section-links">
                         <a href="https://neruthesgithubdistweb.vercel.app/">Neruthes GitHub Dist Web</a><br>
+                        <aside>Live mirror collection of the artifacts of some of my projects.</aside>
                         <a href="https://webdigest.pages.dev/">Web Digest</a><br>
+                        <aside>Collection of big stories on the web.</aside>
                         <a href="https://ysplayerjournal.pages.dev/">Genshin Player Journal</a><br>
+                        <aside>Memories of Genshin players inside and outside the game per se.</aside>
                         <a href="https://t.me/neruthesartworkdrafts/">Neruthes Artwork Drafts Channel</a><br>
+                        <aside>Draft artworks.</aside>
                         <a href="https://github.com/neruthes/apubnode">ApubNode</a><br>
+                        <aside>Experimental ActivityPub server, CLI toolkit for static site.</aside>
                     </div>
                 </div>
                 <div class="sitemap-section">
