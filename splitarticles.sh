@@ -38,12 +38,19 @@ function parseline() {
 }
 
 function makesubpdf() {
-    inputdata="$1"
-    postid="$(printf "%03d\n" $linecount)"
-    article_page_start="$(grep article_page_start <<< "$inputdata" | cut -d= -f2-)"
-    article_page_end="$(grep article_page_end <<< "$inputdata" | cut -d= -f2-)"
-    echo RANGED_NAME="p${postid}" pdfrange "$PDF_FILE_PATH" "$article_page_start-$article_page_end" "$OUTPUTDIR"
-    RANGED_NAME="p${postid}" pdfrange "$PDF_FILE_PATH" "$article_page_start-$article_page_end" "$OUTPUTDIR"
+    PARSED_LINE_INFO="$1"
+    article_page_start="$(grep article_page_start <<< "$PARSED_LINE_INFO" | cut -d= -f2-)"
+    article_page_end="$(grep article_page_end <<< "$PARSED_LINE_INFO" | cut -d= -f2-)"
+    article_date="$(grep article_date <<< "$PARSED_LINE_INFO" | cut -d= -f2)"
+    if [[ "$article_date" == "$lastdate" ]]; then
+        local_index="$((local_index+1))"
+    else
+        local_index=0
+    fi
+    RANGED_NAME="$article_date.$local_index" pdfrange "$PDF_FILE_PATH" "$article_page_start-$article_page_end" "$OUTPUTDIR"
+    lastdate="$article_date"
+    echo "local_index=$local_index"
+    echo "lastdate=$lastdate"
 }
 
 
@@ -58,9 +65,15 @@ MATCHED_LINES="$(wc -l $GREP_MATCH | cut -d' ' -f1)"
 
 IFS=$'\n'
 linecount=1
+export lastdate=0
+export local_index=0
 while [[ $linecount -le $MATCHED_LINES ]]; do
-    PARSED_INFO="$(parseline $linecount)"
-    makesubpdf "$PARSED_INFO"
+    PARSED_LINE_INFO="$(parseline $linecount)"
+    makesubpdf_output="$(makesubpdf "$PARSED_LINE_INFO")"
+    # echo "$makesubpdf_output"
+    export lastdate="$(grep lastdate= <<< "$makesubpdf_output" | cut -d= -f2)"
+    export local_index="$(grep local_index= <<< "$makesubpdf_output" | cut -d= -f2)"
     linecount=$((linecount+1))
 done
 
+ls -1 _dist/articles-split/vol$VOLID | sort

@@ -119,11 +119,11 @@ case $1 in
         du -xhd1 $assetsdir
         ;;
     0|prepare)
-        bash .data/articles/build.sh                            # Rebuild articles list
+        bash .data/articles/makelist.sh                         # Rebuild articles list
         bash build.sh _texassets                                # Import texassets
         ;;
     1|latex_articles)
-        bash .data/articles/build.sh
+        bash .data/articles/makelist.sh
         ntex articles/*.tex --2
         ;;
     2|latex_other)
@@ -143,7 +143,7 @@ case $1 in
         sed "s|BUILDDATETIME|$(TZ=UTC date +%F)|" wwwsrc/index.html > wwwdist/index.html
         generate_sitemap_xml
         ;;
-    4|tarball)
+    4|tarball|pkgdist)
         ### Build tarball
         # Clear
         find .testground -delete
@@ -159,8 +159,9 @@ case $1 in
         cd ..
         ### Build other archives
         zip -9vr pkgdist/wwwdist wwwdist
-        rm /tmp/fulltarball.tar 2>/dev/null
-        tar -cvf /tmp/fulltarball.tar \
+        # rm /tmp/fulltarball.tar 2>/dev/null
+        tmptarballpath="/tmp/fulltarball-$RANDOM$RANDOM$RANDOM.tar"
+        tar -cvf $tmptarballpath \
             --exclude='.tmp' \
             --exclude='_dist/.tmp' \
             --exclude='.cloudbuildroot' \
@@ -168,7 +169,7 @@ case $1 in
             --exclude='pkgdist' \
             --exclude='.git' \
             .
-        cat /tmp/fulltarball.tar > pkgdist/fulltarball.tar
+        mv "$tmptarballpath" pkgdist/fulltarball.tar
         ;;
     5|upload)
         shareDirToNasPublic -a
