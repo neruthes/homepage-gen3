@@ -5,10 +5,10 @@
         div.setAttribute('style', `position: fixed; top: 2vh; height: 96vh; ${align}: 2vh;`)
         let img = document.createElement('img');
         img.setAttribute('src', ({
-            left: 'https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/keep/homepage-gen3/kotomatsu-chunlian-left.jpg--68a7231d33921a3ed155ce5729063a15.jpg',
-            right: 'https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/keep/homepage-gen3/kotomatsu-chunlian-right.jpg--350ba9822a57e189baedaf3ece5c0b1e.jpg'
+            left: 'https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/keep/homepage-gen3/kotomatsu-chunlian-left.jpg--6157b2f047fae206f9d4ab7b9271b97d.jpg',
+            right: 'https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/keep/homepage-gen3/kotomatsu-chunlian-right.jpg--bebe87d86fd4be276332a0feaecb9586.jpg'
         })[align]);
-        img.setAttribute('style', `height: 100%; display: block; margin: 0 auto;`);
+        img.setAttribute('style', `height: 100%; max-width: 15.7vh; display: block; margin: 0 auto;`);
         div.appendChild(img);
         return div;
     };
@@ -29,7 +29,7 @@
             div.setAttribute('style', `position: fixed; top: 2vh; width: calc(100vw - 8vh); height: ${96 / 2152 * 350}vh; left: 4vh;`);
             const img = document.createElement('img');
             // img.setAttribute('src', `https://neruthes.github.io/assets/other-images/kotomatsu-chunlian-hengpi.jpg`);
-            img.setAttribute('src', `https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/keep/homepage-gen3/kotomatsu-chunlian-hengpi.jpg--3148fb271f573464bd2808cdf03d95c6.jpg`);
+            img.setAttribute('src', `https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/keep/homepage-gen3/kotomatsu-chunlian-hengpi.jpg--b685aabf957e061f28ed2699f98b3048.jpg`);
             img.setAttribute('style', `max-height: 100%; max-width: 100%; display: block; margin: 0 auto;`);
             div.appendChild(img);
             return div;

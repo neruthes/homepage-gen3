@@ -98,12 +98,12 @@ case $1 in
         echo "MESSAGE:  Snapshot $tagname"
         realpath pkgdist/*
         ;;
-    _dist/articles-split/vol*/p*.pdf)
+    _dist/articles-split/vol*/*.pdf)
         echo "[INFO] Converting '$1' to image..."
         OUTFN="$(cut -d/ -f3-4 --output-delimiter=- <<< "$1")"
-        rm ".tmp/split-img/$OUTFN-*.png" 2>/dev/null
-        pdftoppm  "$1"  ".tmp/split-img/$OUTFN"  -png  -r 300  -gray
-        du -h "$(realpath ".tmp/split-img/$OUTFN-1.png")"
+        rm ".tmp1/split-img/$OUTFN-*.png" 2>/dev/null
+        pdftoppm  "$1"  ".tmp1/split-img/$OUTFN"  -png  -r 300  -gray
+        du -h "$(realpath ".tmp1/split-img/$OUTFN-1.png")"
         ;;
     _rclone)
         proxychains -q rclone sync -P -L  pkgdist  dropbox-main:devdistpub/homepage-gen3/pkgdist

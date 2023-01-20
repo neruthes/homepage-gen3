@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Brygada+1918:wght@400;600&display=swap');
 
-@font-face {
+/* @font-face {
     font-family: 'C059 woff2';
     font-style: normal;
     font-weight: 600;
@@ -14,10 +14,10 @@
     font-weight: 400;
     font-display: swap;
     src: url('https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/keep/homepage-gen3/C059-Roman.woff2--f49af439e6265bc7488b9d2934ee7e19.woff2') url('https://oss-r2.neruthes.xyz/keep/homepage-gen3/C059-Roman.woff2--f49af439e6265bc7488b9d2934ee7e19.woff2') format('woff2');
-}
+} */
 
 body {
-    font-family: 'C059 woff2', 'C059', 'Brygada 1918', 'C059', 'Century Schoolbook', '', serif;
+    font-family: 'Brygada 1918', 'C059', 'Century Schoolbook', 'Source Serif Pro', 'Libertinus Serif', 'NewComputerModern', 'Georgia', serif;
     color: #443414 !important;
     background: #f9eed2 !important;
 }

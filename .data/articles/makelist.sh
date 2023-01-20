@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DRAFTDIR=".tmp/draftarticles"
+DRAFTDIR=".tmp1/draftarticles"
 mkdir -p "$DRAFTDIR"
 
 VOL_LIST="002"
