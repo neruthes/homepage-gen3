@@ -106,7 +106,7 @@ case $1 in
         du -h "$(realpath ".tmp/split-img/$OUTFN-1.png")"
         ;;
     _rclone)
-        rclone sync -P -L  pkgdist  dropbox-main:devdistpub/homepage-gen3/pkgdist
+        proxychains -q rclone sync -P -L  pkgdist  dropbox-main:devdistpub/homepage-gen3/pkgdist
         ;;
     _texassets)
         assetsdir=".texassets"
@@ -195,7 +195,7 @@ case $1 in
     999|afterdeploy)
         bash build.sh _rclone
         ;;
-    full|'')
+    full|''|'.')
         echo "[INFO] Staring a full build-deloy workflow..."
         bash build.sh  prepare latex_other _texassets wwwdist tarball upload || die "[ERROR] OSS upload failed. Cannot proceed."
         #---------------------------
