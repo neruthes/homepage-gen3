@@ -15,6 +15,8 @@
     <meta name="twitter:description" content="The Personal Website of Neruthes">
     <meta name="twitter:image" content="/neruthes-forceCircle-padded.png">
 
+    <script async src="/webstatic/js/themeloader.js"></script>
+
     <link rel="canonical" href="https://neruthes.xyz/RAWDIRNAME/">
     <link rel="shortcut icon" href="/neruthes.png">
     <link rel="apple-touch-icon" href="/neruthes.png">
@@ -34,6 +36,11 @@
             padding: 0px;
             margin: 0px;
         }
+        
+        a {
+            color: #05D;
+            text-decoration: none;
+        }
 
         .part-inner {
             max-width: 800px;
@@ -43,6 +50,7 @@
 
         h1 {
             font-size: 25px;
+            text-transform: uppercase;
         }
 
         h2 {
@@ -55,11 +63,8 @@
             padding: 25px 0px;
         }
 
-        header nav a,
+        header nav a {}
         .sitemap-section-links a {
-            color: #05D;
-            text-decoration: none;
-            /* display: inline-block; */
             display: block;
             padding: 5px 0px;
             /* margin: 0px 15px 0px 0px; */
@@ -71,7 +76,8 @@
 
         footer.global-part {
             font-size: 13px;
-            color: #888;
+            color: inherit;
+            opacity: 0.73;
         }
 
     </style>
@@ -82,7 +88,7 @@
     <header>
         <div class="part-inner">
 
-            <h1>NERUTHES</h1>
+            <h1><span id="js-h1namespan">Neruthes</span></h1>
             <nav id="grand-nav">
             </nav>
         </div>
@@ -91,10 +97,10 @@
             const rawdirstr = document.body.getAttribute('data-my-location');
             const hierarchychain = rawdirstr.split('/');
             const totalDepth = hierarchychain.length;
-            nav.innerHTML = `<a style="display: inline-block;" href="${(new Array(totalDepth)).fill('../').join('')}">Home</a> / `;
+            nav.innerHTML = `<a href="${(new Array(totalDepth)).fill('../').join('')}">Home</a> / `;
             nav.innerHTML += hierarchychain.slice(0, totalDepth - 1).map(function (dir, i) {
                 const depth = totalDepth - i - 1;
-                return `<a style="display: inline-block;" href="${(new Array(depth)).fill('../').join('')}">${dir}</a> / `;
+                return `<a href="${(new Array(depth)).fill('../').join('')}">${dir}</a> / `;
             }).join('');
             nav.innerHTML += `${hierarchychain[totalDepth - 1]}`;
         </script>

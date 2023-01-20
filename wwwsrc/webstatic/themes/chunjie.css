@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Brygada+1918:wght@400;600&display=swap');
+
+@font-face {
+    font-family: 'C059 woff2';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/keep/homepage-gen3/C059-Bold.woff2--cb13d770116afa8fc9338c72a2549879.woff2') url('https://oss-r2.neruthes.xyz/keep/homepage-gen3/C059-Bold.woff2--cb13d770116afa8fc9338c72a2549879.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'C059 woff2';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/keep/homepage-gen3/C059-Roman.woff2--f49af439e6265bc7488b9d2934ee7e19.woff2') url('https://oss-r2.neruthes.xyz/keep/homepage-gen3/C059-Roman.woff2--f49af439e6265bc7488b9d2934ee7e19.woff2') format('woff2');
+}
+
+body {
+    font-family: 'C059 woff2', 'C059', 'Brygada 1918', 'C059', 'Century Schoolbook', '', serif;
+    color: #443414 !important;
+    background: #f9eed2 !important;
+}
+
+h1 {
+    color: #443414 !important;
+}
+
+a {
+    /* color: #0a1d8a !important; */
+    color: #d32d17 !important;
+    /* text-decoration: underline !important; */
+}
+
+
+@media screen and (max-width: 1109px) {
+    .desktop-only {
+        display: none;
+        visibility: hidden;
+    }
+}
+
+@media screen and (orientation: portrait) {
+    .desktop-only {
+        display: none;
+        visibility: hidden;
+    }
+}
+
+body[data-should-always-hide-hengpi="true"] .hengpi,
+body[data-should-hide-hengpi="true"] .hengpi {
+    display: none;
+}
+
+.chunlian {
+    transition: all 180ms ease;
+}
+
+.chunlian>img {
+    box-shadow: rgba(68, 52, 20, 0.2) 0px 0px 20px 0px !important;
+    transition: all 180ms ease;
+    border-radius: 5px;
+}
+
+.chunlian>img:hover {
+    box-shadow: rgba(68, 52, 20, 0.5) 0px 0px 40px 0px !important;
+    transform: translateY(-5px);
+}
+
+body[data-chunlian-hover="true"] .chunlian img {
+    opacity: 0 !important;
+}

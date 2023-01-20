@@ -83,3 +83,9 @@ done
 mkdir -p wwwsrc/.var/articles-split
 listfn="wwwsrc/.var/articles-split/list$VOLID.txt"
 ls -1 _dist/articles-split/vol$VOLID | sort > $listfn
+
+
+
+
+
+### TODO: Generate RSS

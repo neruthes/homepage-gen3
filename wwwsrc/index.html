@@ -15,6 +15,8 @@
     <meta name="twitter:description" content="The Personal Website of Neruthes">
     <meta name="twitter:image" content="/neruthes-forceCircle-padded.png">
 
+    <script async src="/webstatic/js/themeloader.js"></script>
+
     <link rel="canonical" href="https://neruthes.xyz/">
     <link rel="shortcut icon" href="./neruthes.png">
     <link rel="apple-touch-icon" href="./neruthes.png">
@@ -55,6 +57,11 @@
             margin: 0px;
         }
 
+        a {
+            color: #05D;
+            display: inline-block;
+        }
+
         h1 {
             font-size: 25px;
             text-transform: uppercase;
@@ -77,9 +84,8 @@
         }
 
         .sitemap-section-links a {
-            color: #05D;
+            /* color: initial; */
             text-decoration: none;
-            display: inline-block;
             padding: 5px 0px;
             /* margin: 0px 20px 0px 0px; */
             margin: 0px 0px 0px 0px;
@@ -91,7 +97,14 @@
 
         footer.global-part {
             font-size: 13px;
-            color: #808080;
+            color: inherit;
+            opacity: 0.73;
+        }
+
+    </style>
+    <style>
+        #js-siteAvatar {
+            opacity: 0;
         }
 
     </style>
@@ -101,11 +114,26 @@
     <div class="grand-container">
         <header class="global-part">
             <div class="part-inner" style="padding-top: 190px; padding-bottom: 100px;">
-                <div style="padding: 0px 0px 50px;">
-                    <img src="./neruthes-forceCircle-unpadded.png" alt="Neruthes Avatar"
-                        style="display: block; height: 120px;">
+                <div id="js-siteAvatarWrapper" style="padding: 0px; min-height: 200px;">
+                    <img id="js-siteAvatar" src="./neruthes-forceCircle-unpadded.png" alt=""
+                        style="display: block; height: 120px; width: 120px;">
                 </div>
-                <h1><span>Neruthes</span></h1>
+                <h1><span id="js-h1namespan">Neruthes</span></h1>
+                <script>
+                    const resizeTopAvatar = function () {
+                        const ofw = document.querySelector('#js-h1namespan').offsetWidth;
+                        document.querySelector('#js-siteAvatar').style.width = ofw + 'px';
+                        document.querySelector('#js-siteAvatar').style.height = ofw + 'px';
+                        if (ofw >= 180) {
+                            document.querySelector('#js-siteAvatarWrapper').style.paddingBottom = (20 + ofw - 180) + 'px';
+                        }
+                    };
+                    resizeTopAvatar();
+                    document.querySelector('#js-siteAvatar').style.opacity = '1';
+                    setTimeout(function () {
+                        document.querySelector('#js-siteAvatar').alt = 'Neruthes Avatar';
+                    }, 4000);
+                </script>
                 <aside style="max-width: 515px; font-size: 15px; line-height: 1.8;">
                     Neoparian · Male · 1995 · Sino-Korean · Homosexual ·
                     Communist · Existentialist · Nihilist · Skeuomorphist ·
@@ -113,6 +141,7 @@
                 </aside>
             </div>
         </header>
+
         <div class="global-part">
             <div class="part-inner">
                 <div class="sitemap-section">
@@ -162,12 +191,12 @@
                         <a href="./texassets/">/texassets</a>&nbsp;&nbsp;
                     </div>
                 </div>
-
                 <style>
                     [data-section-id="projects"] aside {
                         font-size: 13px;
                         font-weight: normal;
-                        color: #808080;
+                        color: inherit;
+                        opacity: 0.73;
                         padding: 0 0 12px;
                     }
 
@@ -208,6 +237,7 @@
                 </div>
             </div>
         </div>
+
         <footer class="global-part">
             <div class="part-inner" style="padding-bottom: 100px;">
                 <div>Copyright &copy; 2012-2023 Neruthes. All rights reserved.</div>

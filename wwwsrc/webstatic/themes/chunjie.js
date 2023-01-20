@@ -1,0 +1,51 @@
+(function () {
+    const makeElement = function (align) {
+        let div = document.createElement('div');
+        div.setAttribute('class', `chunlian vertical ${align}`);
+        div.setAttribute('style', `position: fixed; top: 2vh; height: 96vh; ${align}: 2vh;`)
+        let img = document.createElement('img');
+        img.setAttribute('src', ({
+            left: 'https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/keep/homepage-gen3/kotomatsu-chunlian-left.jpg--68a7231d33921a3ed155ce5729063a15.jpg',
+            right: 'https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/keep/homepage-gen3/kotomatsu-chunlian-right.jpg--350ba9822a57e189baedaf3ece5c0b1e.jpg'
+        })[align]);
+        img.setAttribute('style', `height: 100%; display: block; margin: 0 auto;`);
+        div.appendChild(img);
+        return div;
+    };
+
+    // Is screen wide enough?
+    if (window.screen.availWidth >= 1100) {
+        const shanglian = makeElement('right');
+        const xialian = makeElement('left');
+        document.body.appendChild(shanglian);
+        document.body.appendChild(xialian);
+    };
+
+    // Is screen tall enough?
+    if (window.screen.availHeight >= 700) {
+        const hengpi = (function () {
+            const div = document.createElement('div');
+            div.setAttribute('class', 'chunlian hengpi');
+            div.setAttribute('style', `position: fixed; top: 2vh; width: calc(100vw - 8vh); height: ${96 / 2152 * 350}vh; left: 4vh;`);
+            const img = document.createElement('img');
+            // img.setAttribute('src', `https://neruthes.github.io/assets/other-images/kotomatsu-chunlian-hengpi.jpg`);
+            img.setAttribute('src', `https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/keep/homepage-gen3/kotomatsu-chunlian-hengpi.jpg--3148fb271f573464bd2808cdf03d95c6.jpg`);
+            img.setAttribute('style', `max-height: 100%; max-width: 100%; display: block; margin: 0 auto;`);
+            div.appendChild(img);
+            return div;
+        })();
+        document.body.appendChild(hengpi);
+        document.addEventListener('scroll', function () {
+            if (window.pageYOffset > window.screen.availHeight * 0.8) {
+                document.body.setAttribute('data-should-hide-hengpi', 'true');
+            } else {
+                document.body.setAttribute('data-should-hide-hengpi', 'false');
+            };
+            const opacity = Math.max(0, (1 - 1.25 * (window.pageYOffset / window.screen.availHeight)));
+            document.querySelector('.chunlian.hengpi').style.opacity = opacity;
+        });
+        const bodyTopExtraPadding = document.createElement('div');
+        bodyTopExtraPadding.setAttribute('style', `height: 22vh;`);
+        document.body.prepend(bodyTopExtraPadding);
+    };
+})();
