@@ -138,7 +138,7 @@ case $1 in
         rsync -a --delete wwwsrc/ wwwdist/                          # Initialize
         rm -rf wwwdist/texassets/                                   # Clear texassets in wwwdist
         rsync -a --delete .texassets/ wwwdist/texassets/            # Reload from latest texassets
-        rsync -a _dist/ wwwdist/ --exclude tex-tmp --exclude .tmp   # Copy PDF into wwwdist
+        rsync -a _dist/ wwwdist/ --exclude .tmp                     # Copy PDF into wwwdist
         make_indexhtml_for_dirs                                     # Create 'index.html' for dirs which do not already have one
         sed "s|BUILDDATETIME|$(TZ=UTC date +%F)|" wwwsrc/index.html > wwwdist/index.html
         generate_sitemap_xml

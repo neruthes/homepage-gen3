@@ -57,23 +57,29 @@ function makesubpdf() {
 
 OUTPUTDIR="_dist/articles-split/vol$VOLID"
 mkdir -p $OUTPUTDIR
+rm $OUTPUTDIR/*.pdf
 
 
 GREP_MATCH=".tmp/splitarticles.match.txt"
 grep '{chapter}' $TOC_PATH > $GREP_MATCH
 MATCHED_LINES="$(wc -l $GREP_MATCH | cut -d' ' -f1)"
 
+
+
+
 IFS=$'\n'
-linecount=1
+itr=1
 export lastdate=0
 export local_index=0
-while [[ $linecount -le $MATCHED_LINES ]]; do
-    PARSED_LINE_INFO="$(parseline $linecount)"
+while [[ $itr -le $MATCHED_LINES ]]; do
+    PARSED_LINE_INFO="$(parseline $itr)"
     makesubpdf_output="$(makesubpdf "$PARSED_LINE_INFO")"
     # echo "$makesubpdf_output"
     export lastdate="$(grep lastdate= <<< "$makesubpdf_output" | cut -d= -f2)"
     export local_index="$(grep local_index= <<< "$makesubpdf_output" | cut -d= -f2)"
-    linecount=$((linecount+1))
+    itr=$((itr+1))
 done
 
-ls -1 _dist/articles-split/vol$VOLID | sort
+mkdir -p wwwsrc/.var/articles-split
+listfn="wwwsrc/.var/articles-split/list$VOLID.txt"
+ls -1 _dist/articles-split/vol$VOLID | sort > $listfn

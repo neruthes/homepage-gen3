@@ -6,7 +6,7 @@
     <title>404 Not Found</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta property="og:title" content="404 Not Found">
+    <meta property="og:title" content="Neruthes (neruthes.xyz) - 404 Not Found">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@neruthes">
     <meta name="twitter:title" content="Neruthes (neruthes.xyz) - 404 Not Found">
@@ -109,6 +109,35 @@
                 location.hostname = 'neruthes.github.io';
             };
         });
+    </script>
+    <script>
+        const delayBodyRender = function () {
+            window.setTimeout(function () {
+                if (document.body) {
+                    document.body.children.forEach(function (node) {
+                        node.style.visibility = 'hidden';
+                    });
+                } else {
+                    window.delayBodyRender();
+                };
+            }, 8);
+        };
+    </script>
+    <script>
+        // Alias links for /articles-split/vol*/*.pdf
+        (function (match) {
+            // delayBodyRender();
+            const vol = match[1];
+            const seq = match[2];
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', `/.var/articles-split/list${vol}.txt`);
+            xhr.onload = function () {
+                const filename = xhr.responseText.trim().split('\n')[seq-1];
+                const newPathName = `/articles-split/vol${vol}/${filename}`;
+                location.replace(newPathName)
+            };
+            xhr.send();
+        })( location.pathname.match(/^\/articles-split\/vol(\d{3})\/p(\d{3}).pdf$/) );
     </script>
 </head>
 
