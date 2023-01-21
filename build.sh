@@ -195,7 +195,7 @@ case $1 in
     999|afterdeploy)
         bash build.sh _rclone
         ;;
-    full|''|'.')
+    full|''|.)
         echo "[INFO] Staring a full build-deloy workflow..."
         bash build.sh  prepare latex_other _texassets wwwdist tarball upload || die "[ERROR] OSS upload failed. Cannot proceed."
         #---------------------------

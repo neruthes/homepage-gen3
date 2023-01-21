@@ -41,7 +41,7 @@ window.addEventListener('load', function () {
         document.head.appendChild(cssTag);
     };
 
-    
+
     const startJob = function (func, argv, interval, life) {
         const fn = func.name;
         const limit = Math.ceil(life * 1000 / interval);       // 20s life at 100ms interval means 20*1000/100=200 recursions
@@ -68,4 +68,4 @@ window.addEventListener('load', function () {
             node.style.width = w + 'px';
         });
     }, [], 250, 6);
-});
+}, { capture: true });

@@ -15,10 +15,8 @@
 
     // Is screen wide enough?
     if (window.screen.availWidth > 1070) {
-        const shanglian = makeElement('right');
-        const xialian = makeElement('left');
-        document.body.appendChild(shanglian);
-        document.body.appendChild(xialian);
+        document.body.appendChild(makeElement('right'));
+        document.body.appendChild(makeElement('left'));
     };
 
     // Is screen tall enough?
