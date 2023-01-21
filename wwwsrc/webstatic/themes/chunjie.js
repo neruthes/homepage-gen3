@@ -14,7 +14,7 @@
     };
 
     // Is screen wide enough?
-    if (window.screen.availWidth >= 1070) {
+    if (window.screen.availWidth > 1070) {
         const shanglian = makeElement('right');
         const xialian = makeElement('left');
         document.body.appendChild(shanglian);
@@ -22,7 +22,7 @@
     };
 
     // Is screen tall enough?
-    if (window.screen.availHeight >= 700) {
+    if (window.screen.availHeight > 700) {
         const hengpi = (function () {
             const div = document.createElement('div');
             div.setAttribute('class', 'chunlian hengpi pinMySize');

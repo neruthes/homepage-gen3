@@ -33,7 +33,7 @@ a {
 }
 
 
-@media screen and (max-width: 1109px) {
+@media screen and (max-width: 1070px) {
     .desktop-only {
         display: none;
         visibility: hidden;
