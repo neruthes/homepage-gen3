@@ -72,7 +72,7 @@
         }
 
         .part-inner {
-            max-width: 800px;
+            max-width: 760px;
             padding: 30px;
             margin: 0px auto;
         }
@@ -120,19 +120,22 @@
                 </div>
                 <h1><span id="js-h1namespan">Neruthes</span></h1>
                 <script>
-                    const resizeTopAvatar = function () {
+                    window.resizeTopAvatar = function () {
+                        console.log(`**  resizeTopAvatar:  Starting`);
                         const ofw = document.querySelector('#js-h1namespan').offsetWidth;
+                        console.log(ofw);
                         document.querySelector('#js-siteAvatar').style.width = ofw + 'px';
                         document.querySelector('#js-siteAvatar').style.height = ofw + 'px';
                         if (ofw >= 180) {
                             document.querySelector('#js-siteAvatarWrapper').style.paddingBottom = (20 + ofw - 180) + 'px';
-                        }
+                        };
                     };
                     resizeTopAvatar();
                     document.querySelector('#js-siteAvatar').style.opacity = '1';
                     setTimeout(function () {
                         document.querySelector('#js-siteAvatar').alt = 'Neruthes Avatar';
                     }, 4000);
+
                 </script>
                 <aside style="max-width: 515px; font-size: 15px; line-height: 1.8;">
                     Neoparian · Male · 1995 · Sino-Korean · Homosexual ·

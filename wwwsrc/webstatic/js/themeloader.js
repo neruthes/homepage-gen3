@@ -41,17 +41,31 @@ window.addEventListener('load', function () {
         document.head.appendChild(cssTag);
     };
 
+    
     const startJob = function (func, argv, interval, life) {
         const fn = func.name;
-        const limit = life * 1000 / interval;       // 20s life at 100ms interval means 20*1000/100=200 recursions
+        const limit = Math.ceil(life * 1000 / interval);       // 20s life at 100ms interval means 20*1000/100=200 recursions
         const _jobLabmda = function (fn, func, argv, interval, recur, limit) {
             if (recur >= limit) { console.log(`Job ${fn} exited after ${recur} recursions.`); return 0; };
             func.apply(null, argv);
-            setTimeout(function () {
+            window.setTimeout(function () {
                 _jobLabmda(fn, func, argv, interval, recur + 1, limit);
             }, interval);
         };
+        console.log(`themeloader.js: Starting job for ${fn}`);
+        console.log(this);
         _jobLabmda(fn, func, argv, interval, 0, limit);
     };
-    if (window.resizeTopAvatar) { startJob(resizeTopAvatar, [], 50, 10) };
+    if (window.resizeTopAvatar) { startJob(resizeTopAvatar, [], 100, 30) };
+
+    // Other custom jobs here...
+    startJob(function () {
+        document.querySelectorAll('.pinMySize').forEach(function (node) {
+            node.classList.remove('pinMySize');
+            const h = node.offsetHeight;
+            const w = node.offsetWidth;
+            node.style.height = h + 'px';
+            node.style.width = w + 'px';
+        });
+    }, [], 250, 6);
 });

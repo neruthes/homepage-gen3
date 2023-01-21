@@ -17,9 +17,9 @@
 } */
 
 body {
-    font-family: 'Brygada 1918', 'C059', 'Century Schoolbook', 'Source Serif Pro', 'Libertinus Serif', 'NewComputerModern', 'Georgia', serif;
+    font-family: 'Brygada 1918', 'Source Serif Pro', 'Libertinus Serif', 'NewComputerModern', 'Georgia', serif;
     color: #443414 !important;
-    background: #f9eed2 !important;
+    background: #F9EED2 !important;
 }
 
 h1 {
@@ -28,7 +28,7 @@ h1 {
 
 a {
     /* color: #0a1d8a !important; */
-    color: #d32d17 !important;
+    color: #D32D17 !important;
     /* text-decoration: underline !important; */
 }
 
