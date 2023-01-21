@@ -117,14 +117,12 @@
             <div class="part-inner" style="padding-top: 190px; padding-bottom: 100px;">
                 <div id="js-siteAvatarWrapper" style="padding: 0px; min-height: 200px;">
                     <img id="js-siteAvatar" src="./neruthes-forceCircle-unpadded.png" alt=""
-                        style="display: block; height: 120px; width: 120px;">
+                        style="display: block; height: 120px; width: 120px; border-radius: 100vmax;">
                 </div>
                 <h1><span id="js-h1namespan">Neruthes</span></h1>
                 <script>
                     window.resizeTopAvatar = function () {
-                        console.log(`**  resizeTopAvatar:  Starting`);
                         const ofw = document.querySelector('#js-h1namespan').offsetWidth;
-                        console.log(ofw);
                         document.querySelector('#js-siteAvatar').style.width = ofw + 'px';
                         document.querySelector('#js-siteAvatar').style.height = ofw + 'px';
                         if (ofw >= 180) {
@@ -138,7 +136,7 @@
                     }, 4000);
 
                 </script>
-                <aside style="max-width: 515px; font-size: 15px; line-height: 1.8;">
+                <aside id="js-introBio" style="max-width: 515px; font-size: 15px; line-height: 1.8;">
                     Neoparian · Male · 1995 · Sino-Korean · Homosexual ·
                     Communist · Existentialist · Nihilist · Skeuomorphist ·
                     0xAFB3373F5200DF38
@@ -166,9 +164,9 @@
                 <div class="sitemap-section">
                     <h2>Links</h2>
                     <div class="sitemap-section-links">
-                        <a href="" onclick="location.href = atob('bWFpbHRvOmlAbmVydXRoZXMueHl6')">Email</a>&nbsp;&nbsp;
+                        <a href="#" onclick="location.href = atob('bWFpbHRvOmlAbmVydXRoZXMueHl6')">Email</a>&nbsp;&nbsp;
                         <a href="https://github.com/neruthes">GitHub</a>&nbsp;&nbsp;
-                        <a href=""
+                        <a href="#"
                             onclick="location.href = atob('aHR0cHM6Ly90Lm1lL25lcnV0aGVz')">Telegram</a>&nbsp;&nbsp;
                         <a href="https://twitter.com/neruthes">Twitter</a>&nbsp;&nbsp;
                         <a href="https://dribbble.com/neruthes">Dribbble</a>&nbsp;&nbsp;
@@ -192,6 +190,7 @@
                         <a href="./lists/">/lists</a>&nbsp;&nbsp;
                         <a href="./resume/">/resume</a><br>
                         <a href="./webstatic/">/webstatic</a>&nbsp;&nbsp;
+                        <a href="./webassetstex/">/webassetstex</a>&nbsp;&nbsp;
                         <a href="./texassets/">/texassets</a>&nbsp;&nbsp;
                     </div>
                 </div>

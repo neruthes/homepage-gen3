@@ -32,21 +32,6 @@ a {
     /* text-decoration: underline !important; */
 }
 
-
-@media screen and (max-width: 1070px) {
-    .desktop-only {
-        display: none;
-        visibility: hidden;
-    }
-}
-
-@media screen and (orientation: portrait) {
-    .desktop-only {
-        display: none;
-        visibility: hidden;
-    }
-}
-
 body[data-should-always-hide-hengpi="true"] .hengpi,
 body[data-should-hide-hengpi="true"] .hengpi {
     display: none;

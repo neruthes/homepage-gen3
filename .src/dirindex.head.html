@@ -64,7 +64,7 @@
         }
 
         header nav a {}
-        .sitemap-section-links a {
+        .sitemap-section-links-bare a {
             display: block;
             padding: 5px 0px;
             /* margin: 0px 15px 0px 0px; */
@@ -93,6 +93,7 @@
             </nav>
         </div>
         <script>
+            // Render the tree hierarchy chain
             const nav = document.querySelector('#grand-nav');
             const rawdirstr = document.body.getAttribute('data-my-location');
             const hierarchychain = rawdirstr.split('/');
@@ -105,5 +106,5 @@
             nav.innerHTML += `${hierarchychain[totalDepth - 1]}`;
         </script>
     </header>
-    <div class="part-inner sitemap-section-links">
+    <div class="part-inner sitemap-section-links-bare">
         <h2>List of files</h2>
