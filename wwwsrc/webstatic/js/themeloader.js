@@ -74,7 +74,7 @@ window.addEventListener('load', function () {
                 node.style.height = h + 'px';
                 node.style.width = w + 'px';
             });
-        }, [], 250, 6);
+        }, [], 250, 20);
         if (params.theme) {
             startJob('setHrefThemeId', function () {
                 document.querySelectorAll('a[href]').forEach(function (anchor) {
@@ -89,5 +89,5 @@ window.addEventListener('load', function () {
                 });
             }, [], 500, 5);
         }
-    }, 10);
+    }, 500);
 }, { capture: true });
