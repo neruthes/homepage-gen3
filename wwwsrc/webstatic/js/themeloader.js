@@ -89,5 +89,8 @@ window.addEventListener('load', function () {
                 });
             }, [], 500, 5);
         }
+        if (location.hash === '#availWidth') {
+            alert(window.screen.availWidth);
+        };
     }, 500);
 }, { capture: true });

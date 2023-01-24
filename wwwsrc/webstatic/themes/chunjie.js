@@ -3,7 +3,7 @@
 
     const makeElement = function (align) {
         let div = document.createElement('div');
-        div.setAttribute('class', `chunlian vertical ${align} pinMySize`);
+        div.setAttribute('class', `b0fb729a11dc418aa67e6ad642cc1f67 chunlian vertical ${align} pinMySize`);
         div.setAttribute('style', `position: fixed; top: 2vh; height: 96vh; width: 15.8vh; ${align}: 2vh;`)
         let img = document.createElement('img');
         img.setAttribute('class', '');
@@ -17,16 +17,18 @@
     };
 
     // Is screen wide enough?
-    if (window.screen.availWidth > 1070) {
+    // Skip checking and leave the problem to CSS media query
+    if (1 || window.screen.availWidth > 1070) {
         document.body.appendChild(makeElement('right'));
         document.body.appendChild(makeElement('left'));
     };
-
+    
     // Is screen tall enough?
-    if (window.screen.availHeight > 700) {
+    // Skip checking and leave the problem to CSS media query
+    if (1 || window.screen.availHeight > 700) {
         const hengpi = (function () {
             const div = document.createElement('div');
-            div.setAttribute('class', 'chunlian hengpi pinMySize');
+            div.setAttribute('class', 'b0fb729a11dc418aa67e6ad642cc1f67 chunlian hengpi pinMySize');
             div.setAttribute('style', `position: absolute; top: 2vh; width: 100vw; height: ${96 / 2152 * 350}vh; left: 0px;`);
             const img = document.createElement('img');
             // img.setAttribute('src', `https://neruthes.github.io/assets/other-images/kotomatsu-chunlian-hengpi.jpg`);

@@ -1,20 +1,5 @@
+@import url('https://autowflibcdn.pages.dev/awfl-cdn/css/brygada-1918.css');
 @import url('https://fonts.googleapis.com/css2?family=Brygada+1918:wght@400;600&display=swap');
-
-/* @font-face {
-    font-family: 'C059 woff2';
-    font-style: normal;
-    font-weight: 600;
-    font-display: swap;
-    src: url('https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/keep/homepage-gen3/C059-Bold.woff2--cb13d770116afa8fc9338c72a2549879.woff2') url('https://oss-r2.neruthes.xyz/keep/homepage-gen3/C059-Bold.woff2--cb13d770116afa8fc9338c72a2549879.woff2') format('woff2');
-}
-
-@font-face {
-    font-family: 'C059 woff2';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url('https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/keep/homepage-gen3/C059-Roman.woff2--f49af439e6265bc7488b9d2934ee7e19.woff2') url('https://oss-r2.neruthes.xyz/keep/homepage-gen3/C059-Roman.woff2--f49af439e6265bc7488b9d2934ee7e19.woff2') format('woff2');
-} */
 
 body {
     font-family: 'Brygada 1918', 'Source Serif Pro', 'Libertinus Serif', 'NewComputerModern', 'Georgia', serif;
@@ -35,6 +20,17 @@ a {
 body[data-should-always-hide-hengpi="true"] .hengpi,
 body[data-should-hide-hengpi="true"] .hengpi {
     display: none;
+}
+
+@media screen and (orientation: portrait) {
+    .chunlian.vertical {
+        display: none;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .chunlian.vertical {
+        display: none !important;
+    }
 }
 
 .chunlian {

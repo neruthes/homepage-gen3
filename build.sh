@@ -207,9 +207,8 @@ case $1 in
         done
         printf '\n'
         #---------------------------
-        bash build.sh deploy
         echo "[INFO] And other matters..."
-        echo "   $ bash build.sh afterdeploy"
+        echo "   $ bash build.sh deploy afterdeploy"
         ;;
     *)
         echo "[ERROR] No rule to build '$1'. Stopping."
