@@ -199,7 +199,7 @@ case $1 in
         echo "[INFO] Staring a full build-deloy workflow..."
         bash build.sh  prepare latex_other _texassets wwwdist tarball upload || die "[ERROR] OSS upload failed. Cannot proceed."
         #---------------------------
-        WAIT_TIME=15
+        WAIT_TIME=10
         echo "[INFO] Wait ${WAIT_TIME}s before initiating cloud-deploy, allowing Cloudflare R2 to purge the old tarball..."
         SLEPT_TIME=0
         while [[ "$SLEPT_TIME" -lt "$WAIT_TIME" ]]; do

@@ -89,13 +89,15 @@ OF9LokjlJdSoccWTJPUeqEkepxxdM4l1Kd1KccW04iqkbnHEM48uVrlTjgbOP//Z`.replace(/\n/g,
     div.setAttribute('class', `pinMySize`);
     div.setAttribute('style', `
         position: fixed;
-        top: -40px;
+        bottom: -60px;
         left: -40px;
         width: calc(100vw + 80px);
-        height: calc(100vh + 80px);
+        height: calc(100vh + 120px);
         filter: blur(20px);
-        background: scroll center no-repeat url('data:image/jpeg;base64,${base64blur}');
+        background: #000 scroll center no-repeat url('data:image/jpeg;base64,${base64blur}');
         background-size: cover;
+        transform: scale(1.15);
+        transition: all 2s ease;
         z-index: -1;
     `);
     document.body.prepend(div);
