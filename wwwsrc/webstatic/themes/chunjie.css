@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Brygada+1918:wght@400;600&display=swap');
 
 body {
-    font-family: 'Brygada 1918', 'Source Serif Pro', 'Libertinus Serif', 'NewComputerModern', 'Georgia', serif;
+    font-family: 'Brygada 1918', 'Source Serif Pro', 'Libertinus Serif', 'NewComputerModern', 'Georgia', 'Times New Roman', 'Times', serif, 'Noto Serif CJK SC';
     color: #443414 !important;
     background: #F9EED2 !important;
 }
@@ -12,10 +12,26 @@ h1 {
 }
 
 a {
-    /* color: #0a1d8a !important; */
     color: #D32D17 !important;
-    /* text-decoration: underline !important; */
 }
+
+
+
+
+
+
+
+
+.make-anchors-inlineBlock a {
+    margin-right: 10px !important;
+}
+
+
+
+
+
+
+
 
 body[data-should-always-hide-hengpi="true"] .hengpi,
 body[data-should-hide-hengpi="true"] .hengpi {

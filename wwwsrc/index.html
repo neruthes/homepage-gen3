@@ -50,7 +50,7 @@
 
         html,
         body {
-            font-family: 'JetBrains Mono NL', 'JetBrains Mono WOFF', 'JetBrains Mono', -apple-system, 'Noto Sans Mono', 'Noto Sans', sans-serif, 'Noto Sans CJK SC';
+            font-family: 'JetBrains Mono NL', 'JetBrains Mono WOFF', 'JetBrains Mono', 'Noto Sans Mono', 'Nimbus Mono', 'Libertinus Mono', 'Courier Prime', 'Courier New', 'Ubuntu Mono', monospace, 'Noto Sans CJK SC';
             font-size: 15px;
             line-height: 1.6;
             padding: 0px;
@@ -83,12 +83,27 @@
             padding: 25px 0px;
         }
 
+        .make-anchors-block a {
+            display: block;
+        }
+
+        .make-anchors-inlineBlock a {
+            display: inline-block;
+        }
+
+        .make-anchors-inlineBlock a::after {
+            content: "   ";
+            display: inline;
+        }
+
+        .sitemap-section-links {
+            font-size: 0px;
+        }
+
         .sitemap-section-links a {
-            /* color: initial; */
+            font-size: 15px;
             text-decoration: none;
             padding: 5px 0px;
-            /* margin: 0px 20px 0px 0px; */
-            margin: 0px 0px 0px 0px;
         }
 
         .sitemap-section-links a:hover {
@@ -148,50 +163,49 @@
             <div class="part-inner">
                 <div class="sitemap-section">
                     <h2>Blog</h2>
-                    <div class="sitemap-section-links">
-                        <a href="./articles/Neruthes_articles_vol002.pdf">Volume 2</a><br>
-                        <a href="./articles/Neruthes_articles_vol001.pdf">Volume 1 (WIP)</a><br>
+                    <div class="sitemap-section-links make-anchors-block">
+                        <a href="./articles/Neruthes_articles_vol002.pdf">Volume 2</a>
+                        <a href="./articles/Neruthes_articles_vol001.pdf">Volume 1 (WIP)</a>
                     </div>
                 </div>
                 <div class="sitemap-section">
                     <h2>Lists</h2>
-                    <div class="sitemap-section-links">
-                        <a href="./lists/sitebackup.pdf">Site Backups</a>&nbsp;&nbsp;
-                        <a href="./lists/video.pdf">Videos</a>&nbsp;&nbsp;
-                        <a href="./lists/socialgraph.pdf">Social Graph</a>&nbsp;&nbsp;
+                    <div class="sitemap-section-links make-anchors-inlineBlock">
+                        <a href="./lists/sitebackup.pdf">Site Backups</a>
+                        <a href="./lists/video.pdf">Videos</a>
+                        <a href="./lists/socialgraph.pdf">Social Graph</a>
                     </div>
                 </div>
                 <div class="sitemap-section">
                     <h2>Links</h2>
-                    <div class="sitemap-section-links">
-                        <a href="#" onclick="location.href = atob('bWFpbHRvOmlAbmVydXRoZXMueHl6')">Email</a>&nbsp;&nbsp;
-                        <a href="https://github.com/neruthes">GitHub</a>&nbsp;&nbsp;
-                        <a href="#"
-                            onclick="location.href = atob('aHR0cHM6Ly90Lm1lL25lcnV0aGVz')">Telegram</a>&nbsp;&nbsp;
-                        <a href="https://twitter.com/neruthes">Twitter</a>&nbsp;&nbsp;
-                        <a href="https://dribbble.com/neruthes">Dribbble</a>&nbsp;&nbsp;
-                        <a href="https://keybase.io/neruthes">Keybase</a>&nbsp;&nbsp;
-                        <a href="https://www.youtube.com/@neruthes">YouTube</a>&nbsp;&nbsp;
-                        <a href="https://space.bilibili.com/479699383">Bilibili</a>&nbsp;&nbsp;
+                    <div class="sitemap-section-links make-anchors-inlineBlock">
+                        <a href="#" onclick="location.href = atob('bWFpbHRvOmlAbmVydXRoZXMueHl6')">Email</a>
+                        <a href="https://github.com/neruthes">GitHub</a>
+                        <a href="#" onclick="location.href = atob('aHR0cHM6Ly90Lm1lL25lcnV0aGVz')">Telegram</a>
+                        <a href="https://twitter.com/neruthes">Twitter</a>
+                        <a href="https://dribbble.com/neruthes">Dribbble</a>
+                        <a href="https://keybase.io/neruthes">Keybase</a>
+                        <a href="https://www.youtube.com/@neruthes">YouTube</a>
+                        <a href="https://space.bilibili.com/479699383">Bilibili</a>
                     </div>
                 </div>
                 <div class="sitemap-section">
                     <h2>Files</h2>
-                    <div class="sitemap-section-links">
-                        <a href="./openpgp.txt">openpgp.txt</a>&nbsp;&nbsp;
-                        <a href="./authorized_keys">authorized_keys</a>&nbsp;&nbsp;
+                    <div class="sitemap-section-links make-anchors-inlineBlock">
+                        <a href="./openpgp.txt">openpgp.txt</a>
+                        <a href="./authorized_keys">authorized_keys</a>
                     </div>
                 </div>
                 <div class="sitemap-section">
                     <h2>Sitemap</h2>
-                    <div class="sitemap-section-links">
-                        <a href="./articles/">/articles</a>&nbsp;&nbsp;
-                        <a href="./articles-split/">/articles-split</a>&nbsp;&nbsp;
-                        <a href="./lists/">/lists</a>&nbsp;&nbsp;
-                        <a href="./resume/">/resume</a><br>
-                        <a href="./webstatic/">/webstatic</a>&nbsp;&nbsp;
-                        <a href="./webassetstex/">/webassetstex</a>&nbsp;&nbsp;
-                        <a href="./texassets/">/texassets</a>&nbsp;&nbsp;
+                    <div class="sitemap-section-links make-anchors-inlineBlock">
+                        <a href="./articles/">/articles</a>
+                        <a href="./articles-split/">/articles-split</a>
+                        <a href="./lists/">/lists</a>
+                        <a href="./resume/">/resume</a>
+                        <a href="./webstatic/">/webstatic</a>
+                        <a href="./webassetstex/">/webassetstex</a>
+                        <a href="./texassets/">/texassets</a>
                     </div>
                 </div>
                 <style>
@@ -207,42 +221,52 @@
                         padding: 0;
                     }
 
+                    [data-section-id="projects"] a {
+                        padding-bottom: 0px;
+                    }
+
                 </style>
                 <div class="sitemap-section" data-section-id="projects">
                     <h2>Projects</h2>
-                    <div class="sitemap-section-links">
-                        <a href="https://webdigest.pages.dev/">Web Digest</a><br>
+                    <div class="sitemap-section-links make-anchors-block">
+                        <a href="https://webdigest.pages.dev/">Web Digest</a>
                         <aside>Collection of daily big stories on the web.</aside>
                         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                        <a href="https://autowflib.pages.dev/">AutoWFLib</a><br>
+                        <a href="https://autowflib.pages.dev/">AutoWFLib</a>
                         <aside>Automated web font library.</aside>
                         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                        <a href="https://neruthesgithubdistweb.vercel.app/">Neruthes GitHub Dist Web</a><br>
+                        <a href="https://neruthesgithubdistweb.vercel.app/">Neruthes GitHub Dist Web</a>
                         <aside>Live mirror collection of the artifacts of some of my projects.</aside>
                         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                        <a href="https://ysplayerjournal.pages.dev/">Genshin Player Journal</a><br>
+                        <a href="https://ysplayerjournal.pages.dev/">Genshin Player Journal</a>
                         <aside>Memories of Genshin players inside and outside the game per se.</aside>
                         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                        <a href="https://t.me/neruthesartworkdrafts/">Neruthes Artwork Drafts Channel</a><br>
+                        <a href="https://t.me/neruthesartworkdrafts/">Neruthes Artwork Drafts Channel</a>
                         <aside>Draft artworks.</aside>
                         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-                        <a href="https://github.com/neruthes/apubnode">ApubNode</a><br>
+                        <a href="https://github.com/neruthes/staticplayer">StaticPlayer</a>
+                        <aside>Single-HTML player for music collections on private NAS servers.</aside>
+                        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                        <a href="https://github.com/neruthes/staticalbum">StaticAlbum</a>
+                        <aside>Single-HTML album for photo collections on private NAS servers.</aside>
+                        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                        <a href="https://github.com/neruthes/apubnode">ApubNode</a>
                         <aside>Experimental ActivityPub server, CLI toolkit for static site.</aside>
                     </div>
                 </div>
                 <div class="sitemap-section">
                     <h2>Site Mirrors</h2>
-                    <div class="sitemap-section-links">
-                        <a href="https://neruthes.xyz/">Main</a>&nbsp;&nbsp;
-                        <a href="https://neruthes.pages.dev/">Cloudflare Pages</a>&nbsp;&nbsp;
-                        <a href="https://neruthes.vercel.app/">Vercel</a>&nbsp;&nbsp;
+                    <div class="sitemap-section-links make-anchors-inlineBlock">
+                        <a href="https://neruthes.xyz/">Main</a>
+                        <a href="https://neruthes.pages.dev/">Cloudflare Pages</a>
+                        <a href="https://neruthes.vercel.app/">Vercel</a>
                     </div>
                 </div>
                 <div class="sitemap-section">
                     <h2>Old Site Mirrors (Gen2)</h2>
-                    <div class="sitemap-section-links">
-                        <a href="https://neruthes.github.io/">GitHub Pages</a>&nbsp;&nbsp;
-                        <a href="https://neruthes-gen2.vercel.app/">Vercel</a>&nbsp;&nbsp;
+                    <div class="sitemap-section-links make-anchors-inlineBlock">
+                        <a href="https://neruthes.github.io/">GitHub Pages</a>
+                        <a href="https://neruthes-gen2.vercel.app/">Vercel</a>
                     </div>
                 </div>
             </div>
@@ -250,8 +274,8 @@
 
         <footer class="global-part">
             <div class="part-inner" style="padding-bottom: 100px;">
-                <div>Copyright &copy; 2012-2023 Neruthes. All rights reserved.</div>
-                <div>Last build date is BUILDDATETIME. If this date is long ago, I might be dead already.</div>
+                <aside>Copyright &copy; 2012-2023 Neruthes. All rights reserved.</aside>
+                <aside>Last build date is BUILDDATETIME. If this date is long ago, I might be dead already.</aside>
             </div>
         </footer>
     </div>

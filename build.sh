@@ -189,7 +189,8 @@ case $1 in
         TZ=UTC date -Is > .deploydatemark
         pushgithubdistweb
         git add .
-        git commit -m "Automatic deploy command: $(TZ=UTC date -Is | cut -c1-19 | sed 's/T/ /')"
+        [[ -z "$msg" ]] && msg="Automatic deploy command: $(TZ=UTC date -Is | cut -c1-19 | sed 's/T/ /')"
+        git commit -m "$msg"
         git push
         ;;
     999|afterdeploy)
@@ -207,8 +208,9 @@ case $1 in
         done
         printf '\n'
         #---------------------------
+        bash build.sh deploy
         echo "[INFO] And other matters..."
-        echo "   $ bash build.sh deploy afterdeploy"
+        echo "   $ bash build.sh afterdeploy"
         ;;
     *)
         echo "[ERROR] No rule to build '$1'. Stopping."
