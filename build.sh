@@ -105,6 +105,9 @@ case $1 in
         pdftoppm  "$1"  ".tmp1/split-img/$OUTFN"  -png  -r 300  -gray
         du -h "$(realpath ".tmp1/split-img/$OUTFN-1.png")"
         ;;
+    _cf)
+        wrangler pages publish wwwdist --project-name=neruthes --commit-dirty=true --branch=master
+        ;;
     _rclone)
         proxychains -q rclone sync -P -L  pkgdist  dropbox-main:devdistpub/homepage-gen3/pkgdist
         ;;
@@ -138,7 +141,7 @@ case $1 in
         rsync -a --delete wwwsrc/ wwwdist/                          # Initialize
         rm -rf wwwdist/texassets/                                   # Clear texassets in wwwdist
         rsync -a --delete .texassets/ wwwdist/texassets/            # Reload from latest texassets
-        rsync -a _dist/ wwwdist/ --exclude .tmp                     # Copy PDF into wwwdist
+        rsync -a _dist/ wwwdist/ --exclude .tmp --exclude .tmp1     # Copy PDF into wwwdist
         make_indexhtml_for_dirs                                     # Create 'index.html' for dirs which do not already have one
         sed "s|BUILDDATETIME|$(TZ=UTC date +%F)|" wwwsrc/index.html > wwwdist/index.html
         generate_sitemap_xml
@@ -198,7 +201,7 @@ case $1 in
         ;;
     full|''|.)
         echo "[INFO] Staring a full build-deloy workflow..."
-        bash build.sh  prepare latex_other _texassets wwwdist tarball upload || die "[ERROR] OSS upload failed. Cannot proceed."
+        bash build.sh  prepare latex_articles latex_other _texassets wwwdist tarball upload || die "[ERROR] OSS upload failed. Cannot proceed."
         #---------------------------
         WAIT_TIME=10
         echo "[INFO] Wait ${WAIT_TIME}s before initiating cloud-deploy, allowing Cloudflare R2 to purge the old tarball..."
