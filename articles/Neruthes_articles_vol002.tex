@@ -31,6 +31,8 @@
 
 \setmainfont[Numbers=Lining]{Source Serif Pro}
 \setromanfont[Numbers=Lining]{Source Serif Pro}
+% \setmainfont[Numbers=Lining]{Brygada 1918}
+% \setromanfont[Numbers=Lining]{Brygada 1918}
 \setsansfont[Numbers=Lining]{Inter}
 \setmonofont{JetBrains Mono NL}
 \setCJKmainfont{Noto Serif CJK SC}
@@ -115,8 +117,15 @@
     {\small\ttfamily#1}\par\vskip 13pt
     \parbox{0.8\linewidth}{\raggedright\chaptertitlefont\myvphantom#2}\par\vskip 30pt
     \addcontentsline{toc}{chapter}{\numberline{#1}#2}
+    % Other stuff...
+    \renewcommand{\presectionskip}{0pt}
 }
-
+\newcommand{\presectionskip}{0pt}
+\newcommand{\isection}[1]{
+    \vskip\presectionskip
+    \parbox{\linewidth}{\large\rmfamily#1}\par\vskip 1pt
+    \renewcommand{\presectionskip}{7pt}
+}
 
 
 
