@@ -94,8 +94,8 @@ case $1 in
         tag_suffix="$(git tag | grep $(date +%Y%m) | wc -l)"
         tagname="v$(date +%Y%m).$tag_suffix"
         echo "COMMAND:  git tag $tagname && git push origin $tagname"
-        echo "URL:      https://github.com/neruthes/hompage-gen3/releases/new"
-        echo "MESSAGE:  Snapshot $tagname"
+        echo "URL:      https://github.com/neruthes/homepage-gen3/releases/new"
+        echo "MESSAGE:  Snapshot $tagname ($(date +%F))"
         realpath pkgdist/*
         ;;
     _dist/articles-split/vol*/*.pdf)
