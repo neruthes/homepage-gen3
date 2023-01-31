@@ -133,7 +133,7 @@ case $1 in
         rebuild_all_tex_files
         ;;
     3|wwwdist)
-        bash splitarticles.sh                                            # Split blog articles
+        bash scripts/splitarticles.sh                                            # Split blog articles
         for html in wwwsrc/*.html; do
             ### Last resort when I forget to update the CurrentYear pointer
             sed -i "s|2012-2023 Neruthes. All rights reserved.|2012-$(date +%Y) Neruthes. All rights reserved.|" "$html"

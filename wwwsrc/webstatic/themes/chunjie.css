@@ -15,6 +15,18 @@ a {
     color: #D32D17 !important;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+div,
+aside {
+    font-family: 'Brygada 1918', 'Source Serif Pro', 'Libertinus Serif', 'NewComputerModern', 'Georgia', 'Times New Roman', 'Times', serif, 'Noto Serif CJK SC';
+}
+
 
 
 
@@ -43,6 +55,7 @@ body[data-should-hide-hengpi="true"] .hengpi {
         display: none;
     }
 }
+
 @media screen and (max-width: 1000px) {
     .chunlian.vertical {
         display: none !important;
