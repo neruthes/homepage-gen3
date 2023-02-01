@@ -1,5 +1,7 @@
 #!/bin/bash
 
+REPODIR="$PWD"
+
 
 ## Preparations
 touch .env .localenv
@@ -8,13 +10,13 @@ source .localenv
 
 
 function rebuild_all_tex_files() {
-    for TEX_FILE_PATH in $(ls */*.tex | grep -v 'articles/' | sort); do
+    ls */*.tex | grep -v 'articles/' | sort | while read -r TEX_FILE_PATH; do
         PDF_FILE_PATH="_dist/${TEX_FILE_PATH:0:-4}.pdf"
         if [[ ! -e $PDF_FILE_PATH ]]; then
             echo "Artifact does not exist! $PDF_FILE_PATH"
             ntex "$TEX_FILE_PATH" --2
         else
-            if [[ $(date +%s -r $TEX_FILE_PATH) -gt $(date +%s -r $PDF_FILE_PATH) ]]; then
+            if [[ $(date +%s -r "$TEX_FILE_PATH") -gt $(date +%s -r "$PDF_FILE_PATH") ]]; then
                 echo "Must rebuild this file!"
                 ntex "$TEX_FILE_PATH" --2
             fi
@@ -29,17 +31,17 @@ function make_indexhtml_for_dirs() {
         INDEXFILE="$DIR/index.html"
         if [[ ! -e $INDEXFILE ]]; then
             echo "[INFO] Generating 'index.html' for directory '$RAWDIR'..."
-            sed "s:HTMLTITLE:Neruthes | ${RAWDIR}:" .src/dirindex.head.html \
-                | sed "s|RAWDIRNAME|$RAWDIR|"  > $INDEXFILE
+            sed "s:HTMLTITLE:Neruthes - ${RAWDIR}:" .src/dirindex.head.html \
+                | sed "s|RAWDIRNAME|$RAWDIR|"  > "$INDEXFILE"
             for ITEM in $(ls $DIR | grep -v 'index.html' | sort); do
                 if [[ -d $DIR/$ITEM ]]; then
                     ITEM_SUFFIX="/"
                 else
                     ITEM_SUFFIX=""
                 fi
-                echo "<a class='dirindexlistanchor' href='./$ITEM$ITEM_SUFFIX'>$ITEM$ITEM_SUFFIX</a>" >> $INDEXFILE
+                echo "<a class='dirindexlistanchor' href='./$ITEM$ITEM_SUFFIX'>$ITEM$ITEM_SUFFIX</a>" >> "$INDEXFILE"
             done
-            cat .src/dirindex.tail.html >> $INDEXFILE
+            cat .src/dirindex.tail.html >> "$INDEXFILE"
         fi
     done
 }
@@ -55,7 +57,7 @@ function __sitemap_urlitem() {
 </url>" >> sitemap.xml
 }
 function generate_sitemap_xml() {
-    cd wwwdist
+    cd wwwdist || exit 1
     ### Start
     DATENOW="$(date -Is)"
     echo '<?xml version="1.0" encoding="utf-8"?>
@@ -72,6 +74,7 @@ xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitem
     done
     ### End
     echo '</urlset>' >> sitemap.xml
+    cd "$REPODIR" || exit 1
 }
 
 function die() {
@@ -91,7 +94,7 @@ fi
 
 case $1 in
     tag)
-        tag_suffix="$(git tag | grep $(date +%Y%m) | wc -l)"
+        tag_suffix="$(git tag | grep "$(date +%Y%m)" | wc -l)"
         tagname="v$(date +%Y%m).$tag_suffix"
         echo "COMMAND:  git tag $tagname && git push origin $tagname"
         echo "URL:      https://github.com/neruthes/homepage-gen3/releases/new"
@@ -114,12 +117,12 @@ case $1 in
     _texassets)
         assetsdir=".texassets"
         ### Directory: video-cover
-        rsync -av --delete  --exclude '/*/.tbcache' --include '/*/*.jpg' --exclude '/*/*.*' \
-            $HOME/PIC/NeruthesVideoCovers/ \
-            $assetsdir/video-cover/
+        rsync -av --exclude '/*/.tbcache' --include '/*/*.jpg' --exclude '/*/*.*' \
+            "$HOME/PIC/NeruthesVideoCovers/" \
+            "$assetsdir/video-cover/"
         ### End
         echo "Size of assetsdir:"
-        du -xhd1 $assetsdir
+        du -xhd1 "$assetsdir"
         ;;
     0|prepare)
         bash .data/articles/makelist.sh                         # Rebuild articles list
@@ -134,6 +137,7 @@ case $1 in
         ;;
     3|wwwdist)
         bash scripts/splitarticles.sh                                            # Split blog articles
+        bash scripts/articles-rss.sh
         for html in wwwsrc/*.html; do
             ### Last resort when I forget to update the CurrentYear pointer
             sed -i "s|2012-2023 Neruthes. All rights reserved.|2012-$(date +%Y) Neruthes. All rights reserved.|" "$html"
@@ -145,6 +149,7 @@ case $1 in
         make_indexhtml_for_dirs                                     # Create 'index.html' for dirs which do not already have one
         sed "s|BUILDDATETIME|$(TZ=UTC date +%F)|" wwwsrc/index.html > wwwdist/index.html
         generate_sitemap_xml
+        bash scripts/ghdisc.sh
         ;;
     4|tarball|pkgdist)
         ### Build tarball
@@ -153,11 +158,11 @@ case $1 in
         mkdir -p .testground
         rm pkgdist/wwwdist.tar 2>/dev/null
         # Build
-        cd wwwdist
+        cd wwwdist || exit 1
         tar -cvf ../pkgdist/wwwdist.tar ./
         cd ..
         # Test
-        cd .testground
+        cd .testground || exit 1
         tar -pxvf ../pkgdist/wwwdist.tar
         cd ..
         ### Build other archives
@@ -207,7 +212,7 @@ case $1 in
         echo "[INFO] Wait ${WAIT_TIME}s before initiating cloud-deploy, allowing Cloudflare R2 to purge the old tarball..."
         SLEPT_TIME=0
         while [[ "$SLEPT_TIME" -lt "$WAIT_TIME" ]]; do
-            sleep 1; SLEPT_TIME=$((SLEPT_TIME+1)) ; printf "                \r   Progress:   $SLEPT_TIME / $WAIT_TIME  ";
+            sleep 1; SLEPT_TIME=$((SLEPT_TIME+1)) ; printf "                \r   Progress:   %s / %s  " "$SLEPT_TIME" "$WAIT_TIME";
         done
         printf '\n'
         #---------------------------

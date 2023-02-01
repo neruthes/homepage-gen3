@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+<channel>
+<title>Neruthes Articles Collection</title>
+<link>https://neruthes.xyz/</link>
+<atom:link href="https://neruthes.xyz/articles-rss.xml" rel="self" type="application/rss+xml" />
+<description>The blog articles of Neruthes.</description>
+<webMaster>Neruthes (https://neruthes.xyz/)</webMaster>
+<language>en</language>
+<ttl>120</ttl>

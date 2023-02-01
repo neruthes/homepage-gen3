@@ -3,11 +3,11 @@ window.addEventListener('load', function () {
     const css = true;
     const configMap = [
         // { id: 'debug', start: 1212, end: 1213, js: true, css: true }, // For debugging only
-        { id: 'chunjie', start: 0117, end: 0221, js, css },
-        { id: 'apple', start: 0331, end: 0402, js, css },
-        { id: '0529', start: 0527, end: 0531, js, css },
-        { id: 'birthday', start: 0913, end: 0916, js },
-        { id: 'null', start: 0101, end: 1231 } // Last resort, no theme
+        { id: 'chunjie', start: '0117', end: '0221', js, css },
+        { id: 'apple', start: '0331', end: '0402', js, css },
+        { id: '0529', start: '0527', end: '0531', js, css },
+        { id: 'birthday', start: '0913', end: '0916', js },
+        { id: 'null', start: '0101', end: '1231' } // Last resort, no theme
     ];
     const params = {};
     if (location.search) {
@@ -23,7 +23,7 @@ window.addEventListener('load', function () {
             datecode = parseInt((new Date()).toISOString().slice(5, 10).replace('-', ''));
         };
         themeId = configMap.map(function (x) {
-            if (x.start <= datecode && datecode <= x.end) {
+            if (parseInt(x.start, 10) <= datecode && datecode <= parseInt(x.end, 10)) {
                 return x.id;
             };
         })[0];

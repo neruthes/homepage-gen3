@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+<channel>
+<title>Neruthes Articles Collection</title>
+<link>https://neruthes.xyz/</link>
+<atom:link href="https://neruthes.xyz/articles-rss.xml" rel="self" type="application/rss+xml" />
+<description>The blog articles of Neruthes.</description>
+<webMaster>Neruthes (https://neruthes.xyz/)</webMaster>
+<language>en</language>
+<ttl>120</ttl>
+<lastBuildDate>Wed Feb  1 07:38:50 UTC 2023</lastBuildDate>
+<item>
+    <title>The Governmental Lifestyle</title>
+    <guid isPermaLink="false">https://neruthes.xyz/articles-comments/?id=2023-01-30.0</guid>
+    <link>https://neruthes.xyz/articles-comments/?id=2023-01-30.0</link>
+    <pubDate>2023-01-30</pubDate>
+    <description><![CDATA[
+        PDF Link: <a href="https://neruthes.xyz/articles-split/vol002/2023-01-30.0.pdf">https://neruthes.xyz/articles-split/vol002/2023-01-30.0.pdf</a><br/>
+        Comments: <a href="https://neruthes.xyz/articles-comments/?id=2023-01-30.0">https://neruthes.xyz/articles-comments/?id=2023-01-30.0</a>]]>
+    </description>
+</item>
+<item>
+    <title>A Covid Journey</title>
+    <guid isPermaLink="false">https://neruthes.xyz/articles-comments/?id=2023-01-02.0</guid>
+    <link>https://neruthes.xyz/articles-comments/?id=2023-01-02.0</link>
+    <pubDate>2023-01-02</pubDate>
+    <description><![CDATA[
+        PDF Link: <a href="https://neruthes.xyz/articles-split/vol002/2023-01-02.0.pdf">https://neruthes.xyz/articles-split/vol002/2023-01-02.0.pdf</a><br/>
+        Comments: <a href="https://neruthes.xyz/articles-comments/?id=2023-01-02.0">https://neruthes.xyz/articles-comments/?id=2023-01-02.0</a>]]>
+    </description>
+</item>
+<item>
+    <title>Requiem for Cold War 1</title>
+    <guid isPermaLink="false">https://neruthes.xyz/articles-comments/?id=2022-12-25.0</guid>
+    <link>https://neruthes.xyz/articles-comments/?id=2022-12-25.0</link>
+    <pubDate>2022-12-25</pubDate>
+    <description><![CDATA[
+        PDF Link: <a href="https://neruthes.xyz/articles-split/vol002/2022-12-25.0.pdf">https://neruthes.xyz/articles-split/vol002/2022-12-25.0.pdf</a><br/>
+        Comments: <a href="https://neruthes.xyz/articles-comments/?id=2022-12-25.0">https://neruthes.xyz/articles-comments/?id=2022-12-25.0</a>]]>
+    </description>
+</item>
+<item>
+    <title>Confrontation</title>
+    <guid isPermaLink="false">https://neruthes.xyz/articles-comments/?id=2022-12-21.0</guid>
+    <link>https://neruthes.xyz/articles-comments/?id=2022-12-21.0</link>
+    <pubDate>2022-12-21</pubDate>
+    <description><![CDATA[
+        PDF Link: <a href="https://neruthes.xyz/articles-split/vol002/2022-12-21.0.pdf">https://neruthes.xyz/articles-split/vol002/2022-12-21.0.pdf</a><br/>
+        Comments: <a href="https://neruthes.xyz/articles-comments/?id=2022-12-21.0">https://neruthes.xyz/articles-comments/?id=2022-12-21.0</a>]]>
+    </description>
+</item>
+<item>
+    <title>Statement on Name Change</title>
+    <guid isPermaLink="false">https://neruthes.xyz/articles-comments/?id=2022-12-13.0</guid>
+    <link>https://neruthes.xyz/articles-comments/?id=2022-12-13.0</link>
+    <pubDate>2022-12-13</pubDate>
+    <description><![CDATA[
+        PDF Link: <a href="https://neruthes.xyz/articles-split/vol002/2022-12-13.0.pdf">https://neruthes.xyz/articles-split/vol002/2022-12-13.0.pdf</a><br/>
+        Comments: <a href="https://neruthes.xyz/articles-comments/?id=2022-12-13.0">https://neruthes.xyz/articles-comments/?id=2022-12-13.0</a>]]>
+    </description>
+</item>
+<item>
+    <title>Blogging Redefined</title>
+    <guid isPermaLink="false">https://neruthes.xyz/articles-comments/?id=2022-12-12.0</guid>
+    <link>https://neruthes.xyz/articles-comments/?id=2022-12-12.0</link>
+    <pubDate>2022-12-12</pubDate>
+    <description><![CDATA[
+        PDF Link: <a href="https://neruthes.xyz/articles-split/vol002/2022-12-12.0.pdf">https://neruthes.xyz/articles-split/vol002/2022-12-12.0.pdf</a><br/>
+        Comments: <a href="https://neruthes.xyz/articles-comments/?id=2022-12-12.0">https://neruthes.xyz/articles-comments/?id=2022-12-12.0</a>]]>
+    </description>
+</item>
+</channel>
+</rss>

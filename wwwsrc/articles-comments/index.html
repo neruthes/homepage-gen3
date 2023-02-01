@@ -15,20 +15,22 @@
         }
     </script>
 
-    <!-- <meta property="og:type" content="profile">
+    <meta property="og:type" content="profile">
     <meta property="og:title" content="Neruthes">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@neruthes">
     <meta name="twitter:creator" content="@neruthes">
     <meta name="twitter:title" content="Neruthes (neruthes.xyz)">
     <meta name="twitter:description" content="The Personal Website of Neruthes">
-    <meta name="twitter:image" content="/neruthes-forceCircle-padded.png"> -->
+    <meta name="twitter:image" content="../neruthes-forceCircle-padded.png">
 
-    <script async src="/webstatic/js/themeloader.js"></script>
+    <script async src="../webstatic/js/themeloader.js"></script>
 
+    <link rel="alternative" type="application/rss+xml" href="../articles-rss.xml">
     <link rel="canonical" href="https://neruthes.xyz/blog-comments/">
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="apple-touch-icon" href="../neruthes.png">
+    
     <style>
         @import url('https://autowflibcdn.pages.dev/awfl-cdn/css/libertinus-serif.css');
         @import url('https://autowflibcdn.pages.dev/awfl-cdn/css/brygada-1918.css');
@@ -144,6 +146,7 @@
 
     </style>
     <style>
+        /* Special needs for this particular page */
         [data-for-mode] {
             display: none;
         }
@@ -154,6 +157,10 @@
 
         body[data-page-mode="single"] [data-for-mode="single"] {
             display: block;
+        }
+
+        h2 span.bigger {
+            font-size: 1.25em;
         }
 
     </style>
@@ -186,9 +193,6 @@
 
         <div class="global-part" data-for-mode="single">
             <div class="part-inner">
-                <div>
-                    <h2 id="js-articleInfoH2">Article Information</h2>
-                </div>
                 <div id="js-articleInfo"></div>
                 <div>
                     <iframe id="js-iframePdf" frameborder="0"
@@ -229,7 +233,7 @@
 
     <style>
         .comment-item {
-            border-bottom: 1px solid #AAA;
+            border-bottom: 1px solid rgba(127, 127, 127, 0.5);
             padding: 0 0 20px;
             margin: 0 0 20px;
         }
@@ -309,14 +313,13 @@
             xhr.onload = function () {
                 const discussionObj = JSON.parse(xhr.responseText);
                 document.querySelector('#grand-nav').innerHTML += `<a href="./">List of Articles</a> / ${discussionObj.data.repository.discussion.title}`;
-                // document.querySelector('#js-articleInfoH2').innerHTML = discussionObj.data.repository.discussion.title;
                 let volumeId = discussionObj.data.repository.discussion.title.match(/\d+?/)[0];
                 volumeId = ['000', '00', '0'][volumeId.length] + volumeId;
                 const pdfUrl = `../articles-split/vol${volumeId}/${params.id}.pdf`;
                 document.querySelector('#js-iframePdf').src = pdfUrl;
                 document.querySelector('#js-articleInfo').innerHTML = `<div>
-                    <h3>${discussionObj.data.repository.discussion.title}</h3>
-                    <p>PDF Link: <a href="${pdfUrl}">${pdfUrl}</a></p>
+                    <h2>${discussionObj.data.repository.discussion.title.replace('] ', ']<br><span class="bigger">').replace(/$/, '</span>')}</h2>
+                    <p>PDF Link: <a href="${pdfUrl}">${pdfUrl.slice(2)}</a></p>
                 </div>`;
                 document.querySelector('#js-ghDiscComments').innerHTML = (function () {
                     let outputHtml = '';
