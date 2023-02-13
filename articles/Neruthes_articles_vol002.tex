@@ -110,6 +110,7 @@
 \renewcommand{\@tocrmarg}{5em}
 \makeatother
 \renewcommand{\cftchapfont}{\ttfamily\small\raggedright}
+\renewcommand{\cftchapfont}{\rmfamily\fontspec{Old Standard TT}\small\raggedright}
 \settowidth{\cftchapnumwidth}{\cftchapfont 2222-22-22==}
 \renewcommand{\cftchappagefont}{\ttfamily\small}
 \setlength{\cftbeforechapskip}{1pt}
@@ -134,7 +135,8 @@
     \phantomsection
     {\small\ttfamily#1}\par\vskip 13pt
     \parbox{0.9\linewidth}{\raggedright\chaptertitlefont\myvphantom#2}\par\vskip 30pt
-    \addcontentsline{toc}{chapter}{\numberline{#1}#2}
+    % \addcontentsline{toc}{chapter}{\numberline{#1}#2}
+    \addcontentsline{toc}{chapter}{#2}
     % Other stuff...
     \renewcommand{\presectionskip}{0pt}
 }
@@ -160,7 +162,7 @@
 	\ttfamily
 	\leavevmode
 	\vskip 90pt
-	\includegraphics[width=33mm]{wwwsrc/neruthes-forceCircle-unpadded.png}\par
+	\includegraphics[width=28mm]{wwwsrc/neruthes-forceCircle-unpadded.png}\par
 	\vskip 50pt
 		{\fontsize{24pt}{24pt}\selectfont\MakeUppercase{NERUTHES}}\par\vskip 30pt
 		{\normalsize\MakeUppercase{Articles Collection Volume 2}}\par

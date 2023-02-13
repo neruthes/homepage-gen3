@@ -3,6 +3,8 @@
 source .env
 source .localenv
 
+mkdir -p .tmp1/gh-disc-index.d
+
 GRAPHQL_TMPL="{ \
     \"query\": \
     \"query { \
@@ -26,16 +28,20 @@ function process_line() {
     output_file="wwwsrc/.var/gh-disc-comments/${article_id:0:4}/$article_id.json"
     mkdir -p "$(dirname "$output_file")"
     if [[ "$VERB" == pull ]] && [[ "$line" == "$PREFIX"* ]]; then
-        curl -X POST -H "$GITHUB_AUTH_HEADER" "https://api.github.com/graphql" -d "$(sed "s|discussion_num|$discussion_num|g" <<< "$GRAPHQL_TMPL")" > "$output_file"
+        echo curl -X POST -H "$GITHUB_AUTH_HEADER" "https://api.github.com/graphql" -d "$(sed "s|discussion_num|$discussion_num|g" <<< "$GRAPHQL_TMPL")"
+        curl -X POST -H "$GITHUB_AUTH_HEADER" "https://api.github.com/graphql" -d "$(sed "s|discussion_num|$discussion_num|g" <<< "$GRAPHQL_TMPL")" > "$output_file" || exit 1
         sleep 1
     fi
-    echo "$line|$(jq -r .data.repository.discussion.title "$output_file")" >> wwwsrc/.var/gh-disc-comments/full-list.txt
+    echo "$line|$(jq -r .data.repository.discussion.title "$output_file")" > ".tmp1/gh-disc-index.d/$article_id.txt"
 }
 
 VERB="$1"
 
 
-printf '' > wwwsrc/.var/gh-disc-comments/full-list.txt
+LISTFN="wwwsrc/.var/gh-disc-comments/full-list.txt"
+printf '' > $LISTFN
 cat wwwsrc/.var/gh-disc-comments/blog-discus-map-*.txt | while read -r line; do
-    process_line "$line"
+    [[ "$line" == "20"* ]] && process_line "$line" || exit 1
 done
+
+cat .tmp1/gh-disc-index.d/*.txt > $LISTFN
