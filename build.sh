@@ -149,6 +149,7 @@ case $1 in
         make_indexhtml_for_dirs                                     # Create 'index.html' for dirs which do not already have one
         sed "s|BUILDDATETIME|$(TZ=UTC date +%F)|" wwwsrc/index.html > wwwdist/index.html
         generate_sitemap_xml
+        bash scripts/articles-rss.sh
         bash scripts/ghdisc.sh
         ;;
     4|tarball|pkgdist)
