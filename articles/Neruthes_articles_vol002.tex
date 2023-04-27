@@ -1,6 +1,6 @@
-\documentclass[11pt,a4paper]{report}
+\documentclass[12pt,a4paper]{report}
 
-\usepackage[a4paper,textwidth=37em,tmargin=26mm,bmargin=45mm]{geometry}
+\usepackage[a4paper,textwidth=33em,tmargin=26mm,bmargin=45mm]{geometry}
 \usepackage{calc}
 \usepackage{amsmath,xltxtra,fontspec,xunicode,tocloft,tabu,datetime2,multicol}
 \setlength{\columnsep}{3em}
@@ -27,8 +27,10 @@
 \usepackage{fancyhdr}
 \usepackage{graphicx,eso-pic}
 
-\setmainfont[Numbers=Lining]{Gentium Book Plus}
-\setromanfont[Numbers=Lining]{Gentium Book Plus}
+\setmainfont[Numbers=Lining]{Libertinus Serif}
+\setromanfont[Numbers=Lining]{Libertinus Serif}
+% \setmainfont[Numbers=Lining]{Gentium Book Plus}
+% \setromanfont[Numbers=Lining]{Gentium Book Plus}
 % \setmainfont[Numbers=Lining]{Source Serif Pro}
 % \setromanfont[Numbers=Lining]{Source Serif Pro}
 \setsansfont[Numbers=Lining]{Inter}
@@ -43,7 +45,7 @@
 
 \usepackage{listings}
 \lstset{
-	basicstyle=\ttfamily\footnotesize,
+	basicstyle=\ttfamily\footnotesize\fontspec{JetBrains Mono NL},
 	numbersep=5pt,
 	backgroundcolor=\color{black!5},
 	showspaces=false,
@@ -126,7 +128,7 @@
     % \fontspec[Numbers=Lining,Ligatures=TeX]{NewComputerModern}%
     % \fontspec[Numbers=Lining,Ligatures=TeX]{Old Standard TT}%
 }
-\newcommand{\chaptertitlefont}{\altseriffont\LARGE\mdseries}
+\newcommand{\chaptertitlefont}{\altseriffont\Large\mdseries}
 
 \newcommand{\iarticle}[2]{
     % argv: date, title
