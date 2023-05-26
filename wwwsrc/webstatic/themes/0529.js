@@ -10,7 +10,7 @@ setTimeout(function () {
         <span style="display: inline-block;">οι Έλληνες μαζί</span>
     </a>`;
     document.body.prepend(banner);
-    document.querySelector('#js-introBio').style.maxWidth = '405px';
+    document.querySelector('#js-introBio').style.maxWidth = '415px';
     window.setTimeout(function(){
         document.querySelectorAll('*').forEach(function (node) {
             if (node.innerText.indexOf('Neruthes') >= 0) {
