@@ -1,9 +1,6 @@
+@import url('https://autowflibcdn.pages.dev/awfl-cdn/css/nimbus-roman.css');
+
 html,
 body {
-    font-family: 'STIX Two Text', 'GFS Didot',
-        'Libertinus Serif',
-        'TeX Gyre Termes',
-        'Nimbus Roman',
-        serif,
-        'Noto Serif CJK SC';
+    font-family: 'Nimbus Roman', serif, 'Noto Serif CJK SC' !important;
 }
