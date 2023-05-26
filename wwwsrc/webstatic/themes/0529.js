@@ -11,5 +11,13 @@ setTimeout(function () {
     </a>`;
     document.body.prepend(banner);
     document.querySelector('#js-introBio').style.maxWidth = '405px';
+    window.setTimeout(function(){
+        document.querySelectorAll('*').forEach(function (node) {
+            if (node.innerText.indexOf('Neruthes') >= 0) {
+                console.log(node);
+                node.innerHTML = node.innerHTML.replace(/Neruthes/g, 'Νερυτηες');
+            }
+        });
+    }, 0);
 }, 50);
 

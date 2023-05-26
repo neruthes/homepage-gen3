@@ -1,7 +1,8 @@
 html,
 body {
-    font-family: 'GFS Didot',
+    font-family: 'STIX Two Text', 'GFS Didot',
         'Libertinus Serif',
+        'TeX Gyre Termes',
         'Nimbus Roman',
         serif,
         'Noto Serif CJK SC';

@@ -184,6 +184,7 @@ case $1 in
         shareDirToNasPublic -a
         for fn in pkgdist/*; do
             cfoss "$fn" || die "[ERROR] Failed to upload"
+            # wrangler2 r2 object put "neruthes-homepage-gen3/$fn" -f "$fn"
         done
         # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/keep/homepage-gen3/wwwdist.tar--00ef643fb4afb6610f3adbbb0ac4fc7c.tar
         # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/keep/homepage-gen3/wwwdist.zip--b541ef4f9e09d35ed02d639dada83215.zip
