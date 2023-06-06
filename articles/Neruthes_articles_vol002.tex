@@ -140,13 +140,10 @@
     % \addcontentsline{toc}{chapter}{\numberline{#1}#2}
     \addcontentsline{toc}{chapter}{#2}
     % Other stuff...
-    \renewcommand{\presectionskip}{0pt}
 }
-\newcommand{\presectionskip}{0pt}
 \newcommand{\isection}[1]{
-    \vskip\presectionskip plus 20pt
+    \vskip 11pt plus 20pt
     \parbox{\linewidth}{\raggedright\altseriffont\Large\myvphantom#1}\nopagebreak\par\nopagebreak\vskip 5pt\nopagebreak
-    \renewcommand{\presectionskip}{10pt}\nopagebreak
 }
 
 

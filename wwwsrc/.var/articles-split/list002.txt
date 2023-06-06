@@ -7,3 +7,4 @@ _dist/articles-split/vol002/2023-01-30.0.pdf
 _dist/articles-split/vol002/2023-02-13.0.pdf
 _dist/articles-split/vol002/2023-04-09.0.pdf
 _dist/articles-split/vol002/2023-04-27.0.pdf
+_dist/articles-split/vol002/2023-06-06.0.pdf

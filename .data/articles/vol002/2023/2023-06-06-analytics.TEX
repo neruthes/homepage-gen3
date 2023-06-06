@@ -1,0 +1,40 @@
+\iarticle{2023-06-06}{Basic Model for Analytics Systems}
+
+% \isection{Introduction}
+
+This article introduces a basic model for designing analytics systems on an abstract level.
+
+
+\isection{Window and Module}
+
+We often inspect the distribution of data points over time.
+For example, order creation and user login are common data points.
+When some event happens, it leaves a data point in the sight of analytics.
+
+When we ask how many orders were created in a specific day,
+we consider the day as a module which contains data points.
+When we ask how the order-per-day quantity were fluctuating over a specific month,
+we consider the month as a window which contains modules.
+
+
+\isection{Sensor}
+
+A sensor is a way to collect a data point out of a raw business event.
+For example, effective order quantity and sales income are 2 different sensors.
+One collects static number 1 out of each effective order while the other collects the `order.totalAmount' information out of it.
+
+
+\isection{Stem}
+
+When we ask how many orders were created in a specific day,
+we are combining the module `day 2023-01-01' and the sensor `quantity of orders'.
+This combination is called a stem.
+
+A window is spanned by a series of stems.
+
+
+\isection{Conclusion}
+
+Now we have defined the collection of data and the presentation of summarized information.
+Issues remain for scenarios like state change, and they should be left for individual implementations.
+
