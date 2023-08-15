@@ -38,7 +38,6 @@
             src: url('./webstatic/fonts/jetbrains-mono/JetBrainsMono-Light.woff2');
             font-weight: lighter;
         }
-
     </style>
     <style>
         * {
@@ -115,24 +114,32 @@
             color: inherit;
             opacity: 0.73;
         }
-
     </style>
     <style>
         #js-siteAvatar {
             opacity: 0;
         }
-
     </style>
 </head>
 
 <body>
-
+    <div class="grand-container" style="display: none;">
+        <aside style="
+            font-family: -apple-system, 'Inter', 'Helvetica Neue', 'Helvetica', 'Arial', 'Noto Sans', sans-serif;
+            font-size: 0.875rem;
+            padding: 0.5rem 1rem;
+            text-align: center;
+            color: #333;
+            background: #F7F7F7;
+        ">
+            Unused top bar; to be used later.
+        </aside>
+    </div>
     <div class="grand-container">
         <header class="global-part">
             <div class="part-inner" style="padding-top: 190px; padding-bottom: 100px;">
                 <div id="js-siteAvatarWrapper" style="padding: 0px; min-height: 200px;">
-                    <img id="js-siteAvatar" src="./neruthes-forceCircle-unpadded.png" alt=""
-                        style="display: block; height: 120px; width: 120px; border-radius: 100vmax;">
+                    <img id="js-siteAvatar" src="./neruthes-forceCircle-unpadded.png" alt="" style="display: block; height: 120px; width: 120px; border-radius: 100vmax;">
                 </div>
                 <h1><span id="js-h1namespan">Neruthes</span></h1>
                 <script>
@@ -166,7 +173,7 @@
                     <div class="sitemap-section-links make-anchors-block">
                         <a href="./articles/Neruthes_articles_vol002.pdf">Volume 2</a>
                         <a href="./articles/Neruthes_articles_vol001.pdf">Volume 1 (WIP)</a>
-                        <a href="./articles-comments/">Comments on Articles</a>
+                        <!-- <a href="./articles-comments/">Comments on Articles</a> -->
                     </div>
                 </div>
                 <div class="sitemap-section">
@@ -189,6 +196,8 @@
                         <a href="https://keybase.io/neruthes">Keybase</a>
                         <a href="https://www.youtube.com/@neruthes">YouTube</a>
                         <a href="https://space.bilibili.com/479699383">Bilibili</a>
+                        <br />
+                        <a href="https://www.buymeacoffee.com/neruthes">BuyMeACoffee.com</a>
                         <a href="./donate/">Donation</a>
                     </div>
                 </div>
@@ -227,7 +236,6 @@
                     [data-section-id="projects"] a {
                         padding-bottom: 0px;
                     }
-
                 </style>
                 <div class="sitemap-section" data-section-id="projects">
                     <h2>Projects</h2>
