@@ -1,4 +1,10 @@
 -----BEGIN PGP PUBLIC KEY BLOCK-----
+Comment: User-ID:	Neruthes <i@neruthes.xyz>
+Comment: Valid from:	23 Apr 2019 08:45:29
+Comment: Valid until:	19 Apr 2034 08:45:29
+Comment: Type:	256-bit ECDSA (secret key available)
+Comment: Usage:	Signing, Encryption, Certifying User-IDs
+Comment: Fingerprint:	CB0ABC7756440D12915E3F25AFB3373F5200DF38
 
 mE8EXL7QqRMFK4EEAAoCAwTlMsm8SQcedY8Gs6i4Bk7GBMmGJer8xwlhSLdYGokW
 DnoNak7HUs2MdQ8GyaglXpKf7+vGhf5cjiVVOO6Ex1P4tBlOZXJ1dGhlcyA8aUBu
