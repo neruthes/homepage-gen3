@@ -140,7 +140,7 @@ case $1 in
         bash scripts/articles-rss.sh
         for html in wwwsrc/*.html; do
             ### Last resort when I forget to update the CurrentYear pointer
-            sed -i "s|2012-2023 Neruthes. All rights reserved.|2012-$(date +%Y) Neruthes. All rights reserved.|" "$html"
+            sed -i "s|2012-2024 Neruthes. All rights reserved.|2012-$(date +%Y) Neruthes. All rights reserved.|" "$html"
         done
         rsync -a --delete wwwsrc/ wwwdist/                          # Initialize
         rm -rf wwwdist/texassets/                                   # Clear texassets in wwwdist
