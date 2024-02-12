@@ -1,6 +1,6 @@
-\documentclass[11pt,a4paper]{article}
+\documentclass[10pt,a4paper]{article}
 
-\usepackage[a4paper,textwidth=42em,tmargin=15mm,bmargin=15mm]{geometry}
+\usepackage[a4paper,textwidth=44em,tmargin=15mm,bmargin=15mm]{geometry}
 \usepackage{calc}
 \usepackage{amsmath,amssymb,xltxtra,fontspec,xunicode}
 
@@ -23,10 +23,16 @@
 	pdfpagemode=FullScreen,
     pdftitle={Neruthes - Resume}
 }
-\setmainfont{NewComputerModern}
-\setromanfont{NewComputerModern}
-\setsansfont{Seravek Medium}
+% \setmainfont{NewComputerModern10}
+% \setromanfont{NewComputerModern10}
+\setmainfont{Latin Modern Roman}
+\setromanfont{Latin Modern Roman}
+% \setsansfont{Seravek Medium}
+\setsansfont{Myriad Pro Bold}
 \setmonofont{JetBrains Mono}
+
+\newcommand{\fontFancySans}[0]{\fontspec{Myriad Pro}}
+
 \setCJKmainfont{Noto Sans CJK SC}
 \setCJKromanfont{Noto Sans CJK SC}
 \setCJKsansfont{Noto Sans CJK SC Medium}
@@ -102,23 +108,23 @@
 	\vskip 20pt
 	\begin{minipage}{\linewidth}
 		\mytitle{#2}\par\vskip 2pt
-		{\scshape\fontspec{Seravek}\CJKfontspec{Noto Sans CJK SC}\normalsize\mdseries#1}\par\vskip 7pt
-		\mydesctext{\small#3}
+		{\scshape\fontFancySans\CJKfontspec{Noto Sans CJK SC}\normalsize\mdseries#1}\par\vskip 7pt
+		\mydesctext{#3}
 	\end{minipage}\par
 }
 
 
 
-\newcommand{\ifontmycompany}[0]{\mdseries\fontspec{Seravek}\CJKfontspec{Noto Sans CJK SC Medium}}
+\newcommand{\ifontmycompany}[0]{\bfseries\fontFancySans\CJKfontspec{Noto Sans CJK SC Medium}}
 
 
 
 \newcommand{\myref}[1]{
 	\vskip 5pt
-	{\fontspec{Seravek}\small\mdseries\itshape\textcolor{mygray}{\myvphantom#1}}
+	{\fontFancySans\small\mdseries\itshape\textcolor{mygray}{\myvphantom#1}}
 }
 \newcommand{\mytitle}[1]{
-	{\large\sffamily\CJKfontspec{Noto Sans CJK SC Bold}{\myvphantom#1}}
+	{\large\sffamily\ifontmycompany\myvphantom#1}
 }
 \newcommand{\mycompany}[1]{
 	{\large\sffamily\ifontmycompany\myvphantom#1}
@@ -130,4 +136,5 @@
 	}
 }
 \newcommand{\mydesctext}[1]{
-	\parbox{\linewidth}{\rmfamily\normalsize\mdseries\myvphantom#1}}\par
+	\parbox{\linewidth}{\rmfamily\normalsize\mdseries\myvphantom#1}\par
+}
