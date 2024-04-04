@@ -6,7 +6,7 @@
 
 
 \usepackage{xeCJK,xeCJKfntef}
-\newcommand{\myvphantom}[0]{\vphantom{QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890ςρθδφγηξλζχψβμ\"A}}
+\newcommand{\myvphantom}[0]{\vphantom{QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890\"A}}
 \xeCJKsetup{PunctStyle=plain,RubberPunctSkip=false,CJKglue=\myvphantom\hskip 0pt,CJKecglue=\myvphantom\hskip 0.22em plus 200pt}
 \XeTeXlinebreaklocale "zh"
 \XeTeXlinebreakskip = 0pt
@@ -98,7 +98,7 @@
 		\myspan{#3 - #4}\par\vskip 4pt
 		\mytitle{#1} \hfill \mycompany{#2}\par
 		\vskip 6pt
-		\hrule
+		\hrule\vskip 4pt
 		\mydesctext{\myvphantom#5}
 	}\par
 }
@@ -136,5 +136,5 @@
 	}
 }
 \newcommand{\mydesctext}[1]{
-	\parbox{\linewidth}{\rmfamily\normalsize\mdseries\myvphantom#1}\par
+	\parbox{\linewidth}{\rmfamily\small\mdseries\myvphantom\parskip=3pt #1}\par
 }
