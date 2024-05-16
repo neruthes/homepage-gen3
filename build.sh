@@ -109,7 +109,7 @@ case $1 in
         du -h "$(realpath ".tmp1/split-img/$OUTFN-1.png")"
         ;;
     _cf)
-        wrangler pages publish wwwdist --project-name=neruthes --commit-dirty=true --branch=master
+        wrangler pages deploy wwwdist --project-name=neruthes --commit-dirty=true --branch=master
         ;;
     _rclone)
         proxychains -q rclone sync -P -L  pkgdist  dropbox-main:devdistpub/homepage-gen3/pkgdist
