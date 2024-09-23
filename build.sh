@@ -181,7 +181,7 @@ case $1 in
         mv "$tmptarballpath" pkgdist/fulltarball.tar
         ;;
     5|upload)
-        shareDirToNasPublic -a
+        # shareDirToNasPublic -a
         for fn in pkgdist/*; do
             cfoss "$fn" || die "[ERROR] Failed to upload"
             # wrangler2 r2 object put "neruthes-homepage-gen3/$fn" -f "$fn"
