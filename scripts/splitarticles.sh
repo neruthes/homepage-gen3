@@ -16,6 +16,9 @@ TOC_PATH=".tmp/Neruthes_articles_vol$VOLID.toc"
 PDF_TOTAL_PAGES="$(qpdf --show-npages "$PDF_FILE_PATH")"
 FINAL_PAGE="$((PDF_TOTAL_PAGES-1))"
 
+echo "PDF_TOTAL_PAGES=$PDF_TOTAL_PAGES"
+echo "FINAL_PAGE=$FINAL_PAGE"
+
 function parseline() {
     ln=$1
     line1="$(head "-n$ln" "$GREP_MATCH" | tail -n1)"
@@ -55,6 +58,7 @@ function makesubpdf() {
     fi
     ### Create ranged subset
     RANGED_NAME="$article_date.$local_index" pdfrange "$PDF_FILE_PATH" "$article_page_start-$article_page_end" "$OUTPUTDIR"
+    echo RANGED_NAME="$article_date.$local_index" pdfrange "$PDF_FILE_PATH" "$article_page_start-$article_page_end" "$OUTPUTDIR" >/dev/stderr
 
     ### Generate db map for comments
     # echo "$article_date.$local_index|Vol2 [$article_date] $article_title" >> wwwsrc/.var/gh-disc-comments/list-without-discnum.txt
@@ -75,6 +79,9 @@ GREP_MATCH=".tmp/splitarticles.match.txt"
 grep '{chapter}' "$TOC_PATH" > "$GREP_MATCH"
 MATCHED_LINES="$(wc -l "$GREP_MATCH" | cut -d' ' -f1)"
 
+echo "MATCHED_LINES"
+echo "$MATCHED_LINES"
+
 
 
 
@@ -84,6 +91,7 @@ export lastdate=0
 export local_index=0
 while [[ $itr -le $MATCHED_LINES ]]; do
     PARSED_LINE_INFO="$(parseline $itr)"
+    echo "$PARSED_LINE_INFO" >/dev/stderr
     makesubpdf_output="$(makesubpdf "$PARSED_LINE_INFO")"
     export lastdate="$(grep lastdate= <<< "$makesubpdf_output" | cut -d= -f2)"
     export local_index="$(grep local_index= <<< "$makesubpdf_output" | cut -d= -f2)"
@@ -93,6 +101,7 @@ done
 mkdir -p wwwsrc/.var/articles-split
 listfn="wwwsrc/.var/articles-split/list$VOLID.txt"
 find "_dist/articles-split/vol$VOLID" -type f | sort > "$listfn"
+cat "$listfn"
 
 
 
