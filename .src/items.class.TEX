@@ -5,14 +5,11 @@
 \usepackage[hidelinks]{hyperref}
 
 \usepackage[PunctStyle=plain,RubberPunctSkip=false,CJKglue=\hskip 0pt,CJKecglue=\hskip 0.22em plus 200pt]{xeCJK}
-% \newcommand{\myvphantom}[0]{\vphantom{QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890ςρθδφγηξλζχψβμ汉字ひらがなカタカナ\"A}}
-\newcommand{\myvphantom}[0]{\vphantom{QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890ςρθδφγηξλζχψβμ\"A}}
-\xeCJKsetup{CJKglue=\myvphantom\hskip 0pt,CJKecglue=\myvphantom\hskip 0.22em plus 200pt}
 \usepackage{xeCJKfntef}
 
-\setmainfont[Numbers=Lining]{Source Serif Pro}
-\setromanfont[Numbers=Lining]{Source Serif Pro}
-\setsansfont[Numbers=Lining]{Inter}
+\setmainfont{CMU Serif}
+\setromanfont{CMU Serif}
+\setsansfont{Inter}
 \setmonofont{JetBrains Mono NL}
 \setCJKmainfont{Noto Serif CJK SC}
 \setCJKromanfont{Noto Serif CJK SC}
@@ -37,7 +34,7 @@
         \small
         Neruthes Website~~\S~~List of\par\vskip 5pt
         \huge
-        {\fontspec{Libertinus Serif}#1}\par\vskip 12pt
+        {\fontspec{CMU Serif}#1}\par\vskip 12pt
         \small
         This list may be found online at these locations:\\
         \href{https://neruthes.xyz/#2.pdf}{neruthes.xyz}~~/~~%

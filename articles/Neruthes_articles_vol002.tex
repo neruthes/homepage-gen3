@@ -19,9 +19,8 @@
 
 
 \usepackage{xeCJK,xeCJKfntef}
-\newcommand{\myvphantom}[0]{\vphantom{QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890ςρθδφγηξλζχψβμ\"A}}
-\xeCJKsetup{PunctStyle=plain,RubberPunctSkip=false,CJKglue=\myvphantom\hskip 0pt,CJKecglue=\myvphantom\hskip 0.22em plus 200pt}
-\newcommand{\myvphantomCJK}[0]{\vphantom{QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890ςρθδφγηξλζχψβμ汉ひカ\"A}}
+\xeCJKsetup{PunctStyle=plain,RubberPunctSkip=false,CJKglue=\strut\hskip 0pt,CJKecglue=\strut\hskip 0.22em plus 200pt}
+
 
 % =========================================
 \usepackage{fancyhdr}
@@ -116,7 +115,7 @@
 \settowidth{\cftchapnumwidth}{\cftchapfont 2222-22-22==}
 \renewcommand{\cftchappagefont}{\ttfamily\small}
 \setlength{\cftbeforechapskip}{1pt}
-\renewcommand{\contentsname}{\chaptertitlefont\myvphantom Contents}
+\renewcommand{\contentsname}{\chaptertitlefont\strut Contents}
 \let\Contentsline\contentsline
 \renewcommand{\contentsline}[3]{\Contentsline{#1}{#2}{\leftpadnumber{#3}}}
 
@@ -136,14 +135,14 @@
     \stepcounter{chapter}
     \phantomsection
     {\small\ttfamily#1}\par\vskip 13pt
-    \parbox{0.9\linewidth}{\raggedright\chaptertitlefont\myvphantom#2}\par\vskip 30pt
+    \parbox{0.9\linewidth}{\raggedright\chaptertitlefont\strut#2}\par\vskip 30pt
     % \addcontentsline{toc}{chapter}{\numberline{#1}#2}
     \addcontentsline{toc}{chapter}{#2}
     % Other stuff...
 }
 \newcommand{\isection}[1]{
     \vskip 11pt plus 20pt
-    \parbox{\linewidth}{\raggedright\altseriffont\Large\myvphantom#1}\nopagebreak\par\nopagebreak\vskip 5pt\nopagebreak
+    \parbox{\linewidth}{\raggedright\altseriffont\Large\strut#1}\nopagebreak\par\nopagebreak\vskip 5pt\nopagebreak
 }
 
 

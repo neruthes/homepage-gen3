@@ -6,8 +6,7 @@
 
 
 \usepackage{xeCJK,xeCJKfntef}
-\newcommand{\myvphantom}[0]{\vphantom{QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890\"A}}
-\xeCJKsetup{PunctStyle=plain,RubberPunctSkip=false,CJKglue=\myvphantom\hskip 0pt,CJKecglue=\myvphantom\hskip 0.22em plus 200pt}
+\xeCJKsetup{PunctStyle=plain,RubberPunctSkip=false,CJKglue=\strut\hskip 0pt,CJKecglue=\strut\hskip 0.22em plus 200pt}
 \XeTeXlinebreaklocale "zh"
 \XeTeXlinebreakskip = 0pt
 
@@ -73,10 +72,10 @@
 		\vskip 20pt
 		\ttfamily\small
 		\baselineskip=18pt
-		\parbox[t]{8mm}{\myvphantom\faIcon{globe-asia}}       \fontspec{JetBrains Mono NL Medium}\myvphantom\href{https://neruthes.xyz}{neruthes.xyz}\par
-		\parbox[t]{8mm}{\myvphantom\faIcon{at}}               \fontspec{JetBrains Mono NL Medium}\myvphantom\href{mailto:i@neruthes.xyz}{i@neruthes.xyz}\par
-		\parbox[t]{8mm}{\myvphantom\faIcon{github}}           \fontspec{JetBrains Mono NL Medium}\myvphantom\href{https://github.com/neruthes}{github.com/neruthes}\par
-		\parbox[t]{8mm}{\myvphantom\faIcon{dribbble}}         \fontspec{JetBrains Mono NL Medium}\myvphantom\href{https://dribbble.com/neruthes}{dribbble.com/neruthes}\par
+		\parbox[t]{8mm}{\strut\faIcon{globe-asia}}       \fontspec{JetBrains Mono NL Medium}\strut\href{https://neruthes.xyz}{neruthes.xyz}\par
+		\parbox[t]{8mm}{\strut\faIcon{at}}               \fontspec{JetBrains Mono NL Medium}\strut\href{mailto:i@neruthes.xyz}{i@neruthes.xyz}\par
+		\parbox[t]{8mm}{\strut\faIcon{github}}           \fontspec{JetBrains Mono NL Medium}\strut\href{https://github.com/neruthes}{github.com/neruthes}\par
+		\parbox[t]{8mm}{\strut\faIcon{dribbble}}         \fontspec{JetBrains Mono NL Medium}\strut\href{https://dribbble.com/neruthes}{dribbble.com/neruthes}\par
 	\end{minipage}\hfill%
 	\begin{minipage}[b][54mm][t]{30mm}
 		\hfill\includegraphics[width=26mm]{/home/neruthes/DEV/homepage-gen3/wwwsrc/neruthes-forceCircle-unpadded.png} \\
@@ -87,7 +86,7 @@
 \newcommand{\mysection}[1]{
 	% \vskip 20pt
 	\parbox{\linewidth}{
-		{\fontspec[LetterSpace=0.5]{Realtime Rounded Semibold}\Large\mdseries{\myvphantom#1}}
+		{\fontspec[LetterSpace=0.5]{Realtime Rounded Semibold}\Large\mdseries{\strut#1}}
 	}\par
 	\rule{\linewidth}{1.3pt}
 }
@@ -99,7 +98,7 @@
 		\mytitle{#1} \hfill \mycompany{#2}\par
 		\vskip 6pt
 		\hrule\vskip 4pt
-		\mydesctext{\myvphantom#5}
+		\mydesctext{\strut#5}
 	}\par
 }
 
@@ -121,20 +120,20 @@
 
 \newcommand{\myref}[1]{
 	\vskip 5pt
-	{\fontFancySans\small\mdseries\itshape\textcolor{mygray}{\myvphantom#1}}
+	{\fontFancySans\small\mdseries\itshape\textcolor{mygray}{\strut#1}}
 }
 \newcommand{\mytitle}[1]{
-	{\large\sffamily\ifontmycompany\myvphantom#1}
+	{\large\sffamily\ifontmycompany\strut#1}
 }
 \newcommand{\mycompany}[1]{
-	{\large\sffamily\ifontmycompany\myvphantom#1}
+	{\large\sffamily\ifontmycompany\strut#1}
 }
 \newcommand{\myspan}[1]{
 	\parbox{\linewidth}{
 		\fontspec{JetBrains Mono NL}\bfseries\small
-		\textcolor{black}{\myvphantom#1}
+		\textcolor{black}{\strut#1}
 	}
 }
 \newcommand{\mydesctext}[1]{
-	\parbox{\linewidth}{\rmfamily\small\mdseries\myvphantom\parskip=3pt #1}\par
+	\parbox{\linewidth}{\rmfamily\small\mdseries\strut\parskip=3pt #1}\par
 }
