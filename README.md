@@ -15,4 +15,4 @@ Mirrors for homepage-gen2:
 
 ## Copyright
 
-Copyright (c) 2012-2022 Neruthes. All rights reserved.
+Copyright (c) 2012-2025 Neruthes. All rights reserved.
