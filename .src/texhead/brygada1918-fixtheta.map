@@ -1,0 +1,31 @@
+LHSName "brygada1918-fixtheta"
+RHSName "UNICODE"
+
+pass(Unicode)
+
+
+; Class "letter" consists of letters and characters denoting accents
+; in order to cope with "sigma finalis", i.e., A-Z a-z ` ' > < ~
+; we don't need the double quote because it goes only after a vowel
+UniClass[letter] = ( U+0041..U+005A U+0061..U+007A U+0060 U+0027 U+003E U+003C U+007E )
+
+
+; ligatures from Knuth's original CMR fonts
+U+002D U+002D <> U+2013 ; -- -> en dash
+U+002D U+002D U+002D <> U+2014 ; --- -> em dash
+
+; (-1)
+U+0022 <> U+2019 ; APOSTROPHE
+U+0060 <> U+2018 ; `` -> LEFT SINGLE QUOTATION MARK
+U+0027 <> U+2019 ; '' -> RIGHT SINGLE QUOTATION MARK
+U+0060 U+0060 <> U+201C ; `` -> LEFT DOUBLE QUOTATION MARK
+U+0027 U+0027 <> U+201D ; '' -> RIGHT DOUBLE QUOTATION MARK
+U+003C U+003C <> U+00AB ; << -> LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
+U+003E U+003E <> U+00BB ; >> -> RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
+U+0028 U+0028 <> U+00AB ; (( -> LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
+U+0029 U+0029 <> U+00BB ; )) -> RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
+
+
+
+; Real data
+U+0398 <> U+0472

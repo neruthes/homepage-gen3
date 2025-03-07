@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# bash .data/articles/makelist.sh
+
 DRAFTDIR=".tmp1/draftarticles"
 mkdir -p "$DRAFTDIR"
 
