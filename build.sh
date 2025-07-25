@@ -183,9 +183,14 @@ case $1 in
     5|upload)
         # shareDirToNasPublic -a
         for fn in pkgdist/*; do
-            cfoss "$fn" || die "[ERROR] Failed to upload"
+            (cfoss2 "$fn" || die "[ERROR] Failed to upload") &
             # wrangler2 r2 object put "neruthes-homepage-gen3/$fn" -f "$fn"
         done
+        # New OSS URLs:
+        # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/homepage-gen3/d94d78994215746cceeeaee6/wwwdist.tar
+        # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/homepage-gen3/43ef1e83b90f28afd40e0d65/wwwdist.zip
+        # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/homepage-gen3/9a7a03d89d97d244132531c4/fulltarball.tar
+        # Old OSS URLs:
         # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/keep/homepage-gen3/wwwdist.tar--00ef643fb4afb6610f3adbbb0ac4fc7c.tar
         # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/keep/homepage-gen3/wwwdist.zip--b541ef4f9e09d35ed02d639dada83215.zip
         # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/keep/homepage-gen3/fulltarball.tar--06e9cd96e2fe53f96483bc814e8398c4.tar

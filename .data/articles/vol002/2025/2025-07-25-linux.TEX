@@ -1,0 +1,51 @@
+\iarticle{2025-07-25}{Recap for Migrating to GNU/Linux Desktop}
+
+% \isection{Background}
+
+Historically I used Windows 98, Windows 2000, and Windows Xp,
+before I was initially equipped officially with a computer,
+a 13-inch MacBook Pro (2010) which ran Mac OS X Snow Leopard.
+I would mark it as my first contact to the UNIX-like world of desktops.
+
+I was Skeuomorphist, and I am still one today.
+Snow Leopard was followed by the Flat jihadists who brought a total decimation of the good old days in my 18-ish age.
+Steve Jobs was gone, and Apple betrayed my faith in it by murdering the holy reign of Skeuomorphism.
+
+After Mountain Lion, Mavericks was on the verge of the farewell.
+Over time, I got Yosemite, El Capitan, etc, and I became CLI supremacist in great lack of faith in having good GUI ever again.
+I started looking for alternatives to Mac over the years and only in 2020 I noticed a desirable hardware from Xiaomi.
+And for the OS, I had no other choice than GNU/Linux.
+
+
+% \isection{Search and Try}
+
+Installing Ubuntu 20.04 LTS was easy, but I wanted something else.
+
+I tried AOSC OS, a community-driven distro with an apt/dpkg system and various installation options, and soon fled because it was also a systemd-only distro.
+Before I moved away, I worked with configuration options and learned a lot stuff like bootloader, kernel, FS, LUKS, X, window manager.
+I got xinit, startx, and i3wm to work together so I would not rely on any jumbo desktop environment; I still use the combination today.
+It was a nice learning experience which enabled me to the next step.
+
+In search for non-systemd options, I noticed Gentoo for supporting OpenRC.
+Years ago, I had heard of its name and it had been reportedly hard to install and hard to update.
+I switched to Gentoo and the installation process was not a challenge for me because I had gathered enough knowledge to maneuver through
+cfdisk, cryptsetup, mkfs, mount, untar stage3, fstab, kernel, initramfs, firmware, kernel cmdline, grub-install, grub-mkconfig, kernel drivers,
+glibc, USE flags, dhcpcd, wpa\_supplicant, etc.
+
+
+% \isection{Current Setup}
+
+I have got this far...
+
+\begin{tabu}{XX[2]}
+	\toprule
+	Component  & Choice                      \\
+	\midrule
+	Kernel     & 6.15.7 (with Gentoo flavor) \\
+	Libc       & Glibc 2.41-r4               \\
+	Bootloader & GRUB                        \\
+	GUI        & Xorg + i3wm + picom         \\
+	Filesystem & Ext4 over LUKS              \\
+	\bottomrule
+\end{tabu}
+

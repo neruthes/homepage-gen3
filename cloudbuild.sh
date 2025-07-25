@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TARBALLURL='https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/keep/homepage-gen3/wwwdist.tar--00ef643fb4afb6610f3adbbb0ac4fc7c.tar'
+TARBALLURL='https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/homepage-gen3/d94d78994215746cceeeaee6/wwwdist.tar'
 if [[ $LOCAL == y ]]; then
     TARBALLURL='http://naslan.neruthes.xyz/_public/homepage-gen3-f2fe33d6fd3620c108a3db17/pkgdist/wwwdist.tar'
 fi
