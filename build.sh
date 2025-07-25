@@ -128,14 +128,14 @@ case $1 in
         bash .data/articles/makelist.sh                         # Rebuild articles list
         bash build.sh _texassets                                # Import texassets
         ;;
-    1|latex_articles)
+    1|latex_articles|articles/)
         bash .data/articles/makelist.sh
         ntex articles/*.tex --2
         ;;
     2|latex_other)
         rebuild_all_tex_files
         ;;
-    3|wwwdist)
+    3|wwwdist|wwwdist/)
         bash scripts/splitarticles.sh                                            # Split blog articles
         bash scripts/articles-rss.sh
         for html in wwwsrc/*.html; do
