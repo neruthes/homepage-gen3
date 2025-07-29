@@ -186,6 +186,7 @@ case $1 in
             (cfoss2 "$fn" || die "[ERROR] Failed to upload") &
             # wrangler2 r2 object put "neruthes-homepage-gen3/$fn" -f "$fn"
         done
+        wait
         # New OSS URLs:
         # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/homepage-gen3/d94d78994215746cceeeaee6/wwwdist.tar
         # https://pub-714f8d634e8f451d9f2fe91a4debfa23.r2.dev/homepage-gen3/43ef1e83b90f28afd40e0d65/wwwdist.zip
