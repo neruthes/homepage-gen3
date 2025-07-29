@@ -1,0 +1,26 @@
+\documentclass[a4paper,14pt]{extarticle}
+\usepackage{calc}
+\usepackage[textwidth=30em,vmargin=33mm]{geometry}
+\usepackage{fontspec,tabu,booktabs,xeCJK,xeCJKfntef,paralist,enumitem}
+
+\usepackage{tgheros}
+\usepackage[OT1]{fontenc}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{7pt}
+\frenchspacing
+\linespread{1.15}
+
+\newcommand{\iarticle}[2]{
+    \sffamily
+    \begin{flushleft}
+        #1\par
+        \vskip 1em
+        \Large\bfseries
+        #2\par
+    \end{flushleft}
+    \vskip 2em
+}
+
+\newcommand{\isection}[1]{\section*{#1}}
+

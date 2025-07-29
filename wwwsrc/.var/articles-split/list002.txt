@@ -12,3 +12,4 @@ _dist/articles-split/vol002/2023-06-20.0.pdf
 _dist/articles-split/vol002/2025-01-19.0.pdf
 _dist/articles-split/vol002/2025-04-22.0.pdf
 _dist/articles-split/vol002/2025-07-25.0.pdf
+_dist/articles-split/vol002/2025-07-29.0.pdf
