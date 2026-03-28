@@ -2,6 +2,13 @@
 
 # bash .data/articles/makelist.sh
 
+
+find .data/articles/vol002typ -name '*.TYP' | sort -u  | cut -d/ -f4- > .data/articles/vol002typ/.alist.txt
+exit 0
+
+
+
+### Deprecated old workflow. Remove in future.
 DRAFTDIR=".tmp1/draftarticles"
 mkdir -p "$DRAFTDIR"
 

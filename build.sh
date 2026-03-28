@@ -131,12 +131,15 @@ case $1 in
     1|latex_articles|articles/)
         bash .data/articles/makelist.sh
         ntex articles/*.tex --2
+		typst c --root . articles/Neruthes_articles_vol002t.typ _dist/articles/Neruthes_articles_vol002t.pdf
+		mv _dist/articles/Neruthes_articles_vol002t.pdf _dist/articles/Neruthes_articles_vol002.pdf
+        # bash scripts/splitarticles.sh  ### Legacy split script, now abandoned
+		DRY=n bash .data/articles/split.sh   ### New split script
         ;;
     2|latex_other)
         rebuild_all_tex_files
         ;;
     3|wwwdist|wwwdist/)
-        bash scripts/splitarticles.sh                                            # Split blog articles
         bash scripts/articles-rss.sh
         for html in wwwsrc/*.html; do
             ### Last resort when I forget to update the CurrentYear pointer

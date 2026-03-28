@@ -40,7 +40,8 @@ sort -r wwwsrc/.var/gh-disc-comments/full-list.txt | while IFS= read -r line; do
     article_id="$(cut -c1-12 <<< "$line")"
     title="$(cut -d' ' -f3- <<< "$line")"
     date="$(cut -c1-10 <<< "$line")"
-    url="https://neruthes.xyz/articles-comments/?id=$article_id"
+    # url="https://neruthes.xyz/articles-comments/?id=$article_id"
+    url="https://neruthes.xyz/articles-split/$article_id.pdf" ### Really?
     rss_item "$title" "$date" "$url" "$article_id"
 done >> $RSS_FN
 
