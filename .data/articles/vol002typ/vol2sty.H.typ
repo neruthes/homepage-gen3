@@ -1,4 +1,4 @@
-#let __config_main_body_end_page = 27 // How to determine dynamically?
+#let __config_main_body_end_page = 99999
 
 // END OF CONFIG ============================================================
 
@@ -52,8 +52,7 @@
         #(counter(page).get().at(0) + page_num_offset)
       ]
     }))
-    if counter(page).get().at(0) + page_num_offset < __config_main_body_end_page { ready_bg }
-    // if counter(page).get().at(0) + page_num_offset < counter(page).final().first() { ready_bg }
+    ready_bg
   })
 }
 

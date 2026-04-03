@@ -140,10 +140,10 @@ case $1 in
         rebuild_all_tex_files
         ;;
     3|wwwdist|wwwdist/)
-        bash scripts/articles-rss.sh
+        # bash scripts/articles-rss.sh
         for html in wwwsrc/*.html; do
             ### Last resort when I forget to update the CurrentYear pointer
-            sed -i "s|2012-2024 Neruthes. All rights reserved.|2012-$(date +%Y) Neruthes. All rights reserved.|" "$html"
+            sed -i "s|2012-2026 Neruthes. All rights reserved.|2012-$(date +%Y) Neruthes. All rights reserved.|" "$html"
         done
         rsync -a --delete wwwsrc/ wwwdist/                          # Initialize
         rm -rf wwwdist/texassets/                                   # Clear texassets in wwwdist

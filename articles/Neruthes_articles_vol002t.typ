@@ -68,9 +68,9 @@
 
 
 
-#pagebreak(weak: false)
-#v(1fr)
-#[
+// #pagebreak(weak: false)
+#page(background: none, foreground: none, [
+  #v(1fr)
   #set text(size: 9 * kp, font: __fonts_sans, number-width: "tabular")
   Copyright #sym.copyright; 2022-2026 Neruthes. All rights reserved.
 
@@ -82,7 +82,7 @@
   #link("https://neruthes.pages.dev/articles/Neruthes_articles_vol002.pdf")[neruthes.pages.dev]
   ~/~
   #link("https://neruthes.vercel.app/articles/Neruthes_articles_vol002.pdf")[neruthes.vercel.app]
-]
+])
 
 
 
